@@ -4,57 +4,32 @@
 /// Description: Spaceship class, allowing movements with arrow keys or wasd.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SpaceShips;
 using GameObjectsN;
+using Spicy_Invader;
+using System.Threading;
+using System.Diagnostics;
 
 
-
-namespace SpaceShips
+namespace MissileN
 {
-    internal class SpaceShip : GameObjects
+    internal class Missile : GameObjects
     {
         /// <summary>
         /// Width of the sprite
         /// </summary>
-        const int WIDTH = 5;
+        const int WIDTH = 1;
 
         /// <summary>
         /// Height of the sprite
-        /// </summary>
+        /// </summary>-
         const int HEIGHT = 1;
 
         private int _left = 20;
         private int _top = 20;
 
 
-        
-
-        public int Width
-        {
-            get { return WIDTH; }
-        }
-        public int Heigth
-        {
-            get { return HEIGHT; }
-        }
-
-        public int Left
-        {
-            get { return _left; }
-            set { _left = value; }
-        }
-
-        public int Top
-        {
-            get { return _top; }
-            set { _top = value; }
-        }
-
-
-        private const string SPRITE =  "/-^-\\";
+        private const string SPRITE =  "|";
 
         
 
@@ -67,23 +42,30 @@ namespace SpaceShips
             }
         }
 
-        public void GoLeft() {
+         void GoUp() {
+            
+            while (_top > 0) { 
             DelPosition();
-            _left--;
+            _top--;
+            Debug.WriteLine("x:" + _left+" y"+_top);
             Draw();
-        }
-        public void GoRight()
-        {
+            Thread.Sleep(50);
+            }
             DelPosition();
-            _left++;
-            Draw();
         }
+        
         public void Draw()
         {
             Console.SetCursorPosition(_left, _top);
             Console.Write(SPRITE);
         }
-        public SpaceShip() { }
+        public Missile(int left, int top) {
+            _top = top;
+            _left = left;
+            Thread t1 = new Thread(GoUp);
+            t1.Start();
+
+        }
 
 
     }
