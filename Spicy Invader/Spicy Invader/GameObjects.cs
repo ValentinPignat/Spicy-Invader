@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace GameObjectsN
+namespace GameObjectsNS
 {
     internal class GameObjects 
     {

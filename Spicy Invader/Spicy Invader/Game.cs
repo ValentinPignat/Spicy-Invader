@@ -1,74 +1,55 @@
 ﻿/// ETML
 /// Author: Valentin Pignat 
 /// Date (creation): 18.01.2024
-/// Description: Spicy Invader Game
+/// Description: Spicy Invader Game, initiate the player's ship and enter a loop:
+///     - Reads for input 
+///     - Update
+///     - Thread.Sleep()
 
-using SpaceShips;
+using SpaceshipNS;
 using System;
 using System.Threading;
-using MissileN;
+using MissileNS;
+using System.Windows.Input;
+using System.Collections.Generic;
 
+// Handle multiple input at each cycle 
+// Assembly added: WindowsBase and PresentationCore
+// https://learn.microsoft.com/en-us/dotnet/api/system.windows.input.keyboard.iskeydown?view=windowsdesktop-8.0
+// https://learn.microsoft.com/en-us/dotnet/api/system.windows.input.key?view=windowsdesktop-8.0
+// https://stackoverflow.com/questions/6373645/c-sharp-winforms-how-to-set-main-function-stathreadattribute
 
 namespace Spicy_Invader
 {
     internal class Game
     {
+        // Allows Keyboard.IsKeyDown
+        [STAThread]
         static void Main(string[] args)
         {
-            // Main thread = current
-            Thread mainThread = Thread.CurrentThread;
-            mainThread.Name = "Main Thread";
+            // Game running 
+            bool gameRunning = false;
 
-            Thread playerControl = new Thread(PlayerControl);
-            playerControl.Name = "Read Input";
+            // Hides cursor
+            Console.CursorVisible = false;
 
-
+            // Placeholder menu
             Console.WriteLine("This is a menu");
             Console.ReadKey();
             Console.Clear();
+
+            // Game starts
+            gameRunning = true;
             
-            
-            playerControl.Start();
-            
+            // Create the spaceship and displays it
+            SpaceShip player = new SpaceShip();
 
-            void PlayerControl()
-            {
-                // Readkey variable
-                ConsoleKey keyPressed;
-
-                // Hide the cursor 
-                Console.CursorVisible = false;
-
-                // Créate the spaceship and displays it
-                SpaceShip player = new SpaceShip();
-
-                player.Draw();
-
-                while (true)
-                {
-                    keyPressed = Console.ReadKey(true).Key;
-                    switch (keyPressed)
-                    {
-                        case ConsoleKey.Spacebar:
-                            Missile missile = new Missile(left : player.Left+(player.Width/2), top :player.Top-(player.Heigth)) ;
-                            break;
-                        case ConsoleKey.A:
-                        case ConsoleKey.LeftArrow:
-                            player.GoLeft();
-                            break;
-
-                        case ConsoleKey.D:
-                        case ConsoleKey.RightArrow:
-                            player.GoRight();
-                            break;
-
-                        default:
-                            break;
-                    }
-
-                }
+            // Loop : Reads an input, actions accordingly in player / updates missiles / sleep
+            while (gameRunning) {
+                player.PlayerControl();
+                player.PlayerMissileUpdate();
+                Thread.Sleep(100);
             }
-  
-        }
+        }   
     }
 }
