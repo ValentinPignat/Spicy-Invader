@@ -46,6 +46,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnemyBlock.cs" />
+    <Compile Include="Enemies.cs" />
     <Compile Include="GameObjects.cs" />
     <Compile Include="Missile.cs" />
     <Compile Include="SpaceShip.cs" />

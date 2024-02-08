@@ -13,6 +13,8 @@ using MissileNS;
 using System.Windows.Input;
 using System.Collections.Generic;
 
+
+
 // Handle multiple input at each cycle 
 // Assembly added: WindowsBase and PresentationCore
 // https://learn.microsoft.com/en-us/dotnet/api/system.windows.input.keyboard.iskeydown?view=windowsdesktop-8.0
@@ -23,6 +25,26 @@ namespace Spicy_Invader
 {
     internal class Game
     {
+        /// <summary>
+        /// Margin for the display / player and ennemies movement zone
+        /// </summary>
+        public const int MARGIN_SIDE = 5;
+
+        /// <summary>
+        /// Margin for the display / player and ennemies movement zone
+        /// </summary>
+        public const int MARGIN_TOP_BOTTOM = 2;
+
+        /// <summary>
+        /// Width of the game space 
+        /// </summary>
+        public const int WIDTH = 50;
+
+        /// <summary>
+        /// Height of the game space 
+        /// </summary>
+        public const int HEIGHT = 30;
+
         // Allows Keyboard.IsKeyDown
         [STAThread]
         static void Main(string[] args)
@@ -40,16 +62,65 @@ namespace Spicy_Invader
 
             // Game starts
             gameRunning = true;
+            DrawLayout();
             
             // Create the spaceship and displays it
-            SpaceShip player = new SpaceShip();
+            SpaceShip player = new SpaceShip(x: MARGIN_SIDE + (WIDTH/2), y : HEIGHT);
+            player.Draw();
 
-            // Loop : Reads an input, actions accordingly in player / updates missiles / sleep
+            // Create ennemy block 
+            EnemyBlock enemyBlock = new EnemyBlock();
+            
+            
+            // Loop : Reads an input, acts accordingly in player / update missiles / sleep
             while (gameRunning) {
                 player.PlayerControl();
                 player.PlayerMissileUpdate();
+                enemyBlock.Update();
                 Thread.Sleep(100);
             }
-        }   
+        }
+
+        static void DrawLayout() {
+
+            for (int i = MARGIN_SIDE; i <= WIDTH + MARGIN_SIDE; i++) {
+                for (int j = MARGIN_TOP_BOTTOM; j <= HEIGHT + MARGIN_TOP_BOTTOM; j++)
+                {
+                    if (i == MARGIN_SIDE && j == MARGIN_TOP_BOTTOM)
+                    {
+                        Console.SetCursorPosition(i, j);
+                        Console.Write("╔");
+                    }
+                    else if (i == MARGIN_SIDE && j == MARGIN_TOP_BOTTOM + HEIGHT)
+                    {
+
+                        Console.SetCursorPosition(i, j);
+                        Console.Write("╚");
+                    }
+                    else if (i == MARGIN_SIDE + WIDTH && j == MARGIN_TOP_BOTTOM + HEIGHT)
+                    {
+
+                        Console.SetCursorPosition(i, j);
+                        Console.Write("╝");
+                    }
+                    else if (i == MARGIN_SIDE + WIDTH && j == MARGIN_TOP_BOTTOM )
+                    {
+
+                        Console.SetCursorPosition(i, j);
+                        Console.Write("╗");
+                    }
+
+                    else if (i == MARGIN_SIDE || i == WIDTH + MARGIN_SIDE) {
+                        Console.SetCursorPosition(i, j);
+                        Console.Write("║");
+                    }
+                    else if (j == MARGIN_TOP_BOTTOM || j == HEIGHT + MARGIN_TOP_BOTTOM) 
+                    {
+                        Console.SetCursorPosition(i, j);
+                        Console.Write("═");
+                    }               
+                }
+            }
+        }
     }
 }

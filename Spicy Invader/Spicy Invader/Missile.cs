@@ -33,12 +33,12 @@ namespace MissileNS
         /// <summary>
         /// Horizontal coordinates
         /// </summary>
-        private int _left = 20;
+        private int _x = 20;
 
         /// <summary>
         /// Vertical coordinates
         /// </summary>
-        private int _top = 20;
+        private int _y = 20;
 
         /// <summary>
         /// Missile sprite
@@ -49,7 +49,7 @@ namespace MissileNS
         /// Deletes missiles old coordinates
         /// </summary>
         public void DelPosition() {
-            Console.SetCursorPosition(_left, _top);
+            Console.SetCursorPosition(_x, _y);
 
             // Draw as much empty character as the sprite's width
             for (int i = 0; i < WIDTH; i++)
@@ -68,12 +68,12 @@ namespace MissileNS
             bool outOfBounds = false; 
 
             // If missile isn't at the screen top border..
-            if (_top > 0)
+            if (_y > Game.MARGIN_TOP_BOTTOM + 1)
             {
 
                 // ..Move it up
                 DelPosition();
-                _top--;
+                _y--;
                 Draw();    
             }
 
@@ -92,18 +92,18 @@ namespace MissileNS
         /// </summary>
         public void Draw()
         {
-            Console.SetCursorPosition(_left, _top);
+            Console.SetCursorPosition(_x, _y);
             Console.Write(SPRITE);
         }
 
         /// <summary>
         /// Missile constructor
         /// </summary>
-        /// <param name="left">Horizontal position</param>
-        /// <param name="top">Vertical position</param>
-        public Missile(int left, int top) {
-            _top = top;
-            _left = left;  
+        /// <param name="x">Horizontal position</param>
+        /// <param name="y">Vertical position</param>
+        public Missile(int x, int y) {
+            _y = y;
+            _x = x;  
         }
         
 
