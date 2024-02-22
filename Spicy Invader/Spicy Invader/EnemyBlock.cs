@@ -1,46 +1,64 @@
-﻿using System;
+﻿/// ETML
+/// Author: Valentin Pignat 
+/// Date (creation): 08.02.2024
+/// Description: EnnemyBlock class
+///     - Update all ennemies positions
+///     - Manage ennemy fire 
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EnemiesNS;
+using Spicy_Invader;
 
 
-namespace Spicy_Invader
+namespace EnemyBlockNS
 {
     internal class EnemyBlock
     {
-        public List<Enemies> enemiesList = new List<Enemies>();
+        
         private const int BETWEEN_X = 3;
-        private const int BETWEEB_Y = 1;
-        private const int ROW = 4;
-        private const int COL = 5;
-        private bool _border = false;
+        private const int BETWEEN_Y = 1;
+        private const int ROW = 3;
+        private const int COL = 4;
         private bool _right = true;
         public bool _edge = false;
         public bool _change = false;
+        private double randomShootProbability = 0.35;
+        Random rnd = new Random();
+        public Enemy[,] enemiesTab = new Enemy[COL,ROW];
+        public int[] enemiesByCol = new int[COL];
 
-        public bool Change { 
-            get { return _change; }
 
-        }
 
         public EnemyBlock() {
             for (int i = 0; i <COL; i++)
             {
-                for (int j = 0; j < ROW; j++) { 
-                    Enemies enemy = new Enemies(x : Game.MARGIN_SIDE +1 + j*Enemies.WIDTH +j*BETWEEN_X, y : Game.MARGIN_TOP_BOTTOM + 1 + i*Enemies.HEIGHT + i*BETWEEB_Y);
-                    enemiesList.Add(enemy);
-
+                for (int j = 0; j < ROW; j++) {
+                    Enemy enemy = new Enemy(x: Game.MARGIN_SIDE + 1 + i * Enemy.WIDTH + i * BETWEEN_X, y: Game.MARGIN_TOP_BOTTOM + 1 + j * Enemy.HEIGHT + j * BETWEEN_Y, row: i, col: j);
+                    enemiesTab[i, j] = enemy;
                 }
+            }
+
+            for (int i = 0; i < enemiesByCol.Length; i++) { 
+                enemiesByCol[i] = ROW;
             }
         }
 
         public void Update() {
-            foreach (Enemies enemy in enemiesList)
+            int colFiring = 0;
+
+            foreach (Enemy enemy in enemiesTab)
             {
-                if (enemy.Move(_right, _edge)) {
-                    _change = true;
+                if (enemy != null) {
+                    if (enemy.Move(_right, _edge))
+                    {
+                        _change = true;
+                    }
                 }
+                
 
             }
             if (_change)
@@ -51,6 +69,20 @@ namespace Spicy_Invader
             }
             else if (_edge) {
                 _edge = false;
+            }
+
+            if (rnd.NextDouble() < randomShootProbability) {
+                do{
+                    colFiring = rnd.Next(0, COL);
+                } while (enemiesByCol[colFiring] == 0);
+                for (int i = ROW; i >= 0; i--) {
+                    if (enemiesTab[i,colFiring] != null) {
+                        enemiesTab[i, colFiring].DelPosition();
+                        enemiesTab[i, colFiring] = null;
+                        break;
+                    }
+                }
+
             }
 
         

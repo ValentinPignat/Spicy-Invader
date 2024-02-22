@@ -5,4 +5,12 @@ D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Inva
 D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.csproj.CoreCompileInputs.cache
 D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.exe
 D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.pdb
+F:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\bin\Debug\Spicy Invader.exe.config
+F:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\bin\Debug\Spicy Invader.exe
+F:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\bin\Debug\Spicy Invader.pdb
+F:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.csproj.AssemblyReference.cache
+F:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.csproj.SuggestedBindingRedirects.cache
+F:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.csproj.CoreCompileInputs.cache
+F:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.exe
+F:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.pdb
 D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.csproj.SuggestedBindingRedirects.cache

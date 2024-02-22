@@ -26,11 +26,6 @@ namespace SpaceshipNS
     internal class SpaceShip : GameObjects
     {
         /// <summary>
-        /// Track if a missile is active 
-        /// </summary>
-        private bool _reload = false;
-
-        /// <summary>
         /// Width of the sprite
         /// </summary>
         const int WIDTH = 5;
@@ -190,19 +185,16 @@ namespace SpaceshipNS
         /// </summary>
         public void FireMissile() {
 
-            // if the player isnt reloading
-            if (!_reload) { 
+            // if the player has no active missile
+            if (missilesList.Count == 0) { 
 
             // Create a new missile 
             Missile missile = new Missile(x: _x + (WIDTH / 2), y: _y - (HEIGHT));
 
             // Add the missile to the list to allow updates
             missilesList.Add(missile);
-
-            // A missile is active 
-            _reload = true;
             }
-    }
+        }
 
 
         /// <summary>
@@ -226,9 +218,6 @@ namespace SpaceshipNS
 
                     // ..removes it from the list 
                     missilesList.Remove(missilesList[i]);
-
-                    // no missile is active
-                    _reload = false;
 
                     // Decrement as the list is displaced by the removal
                     i--;

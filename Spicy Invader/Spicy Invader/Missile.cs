@@ -12,6 +12,7 @@ using GameObjectsNS;
 using Spicy_Invader;
 using System.Threading;
 using System.Diagnostics;
+using EnemiesNS;
 
 namespace MissileNS
 {
@@ -46,6 +47,24 @@ namespace MissileNS
         private const string SPRITE =  "|";
 
         /// <summary>
+        /// Get missile horizontal coordinate
+        /// </summary>
+        public int X
+        {
+            get { return _x; }
+            set { _x = value; }
+        }
+
+        /// <summary>
+        /// Get missile vertical coordinate
+        /// </summary>
+        public int Y
+        {
+            get { return _y; }
+            set { _y = value; }
+        }
+
+        /// <summary>
         /// Deletes missiles old coordinates
         /// </summary>
         public void DelPosition() {
@@ -66,7 +85,7 @@ namespace MissileNS
 
             // Missile isn't out of bounds
             bool outOfBounds = false; 
-
+            
             // If missile isn't at the screen top border..
             if (_y > Game.MARGIN_TOP_BOTTOM + 1)
             {
@@ -86,7 +105,8 @@ namespace MissileNS
             // Return (true) out of bounds / (false) in bounds
             return outOfBounds;
         }
-        
+
+
         /// <summary>
         /// Write missile sprite at new coordinates
         /// </summary>
