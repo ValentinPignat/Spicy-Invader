@@ -14,13 +14,19 @@ using System.Threading;
 using System.Diagnostics;
 using EnemiesNS;
 
+
 namespace MissileNS
 {
     /// <summary>
     /// Missile class 
     /// </summary>
-    internal class Missile : GameObjects
+    internal class Missile 
     {
+        /// <summary>
+        /// Status used for collision : Friendly, Ennemy, Neutral
+        /// </summary>
+        Game.collisionStatus _collisionStatus;
+
         /// <summary>
         /// Width of the sprite
         /// </summary>
@@ -40,6 +46,11 @@ namespace MissileNS
         /// Vertical coordinates
         /// </summary>
         private int _y = 20;
+
+        /// <summary>
+        /// Move vector
+        /// </summary>
+        private int _vectorY = 0; 
 
         /// <summary>
         /// Missile sprite
@@ -64,6 +75,15 @@ namespace MissileNS
             set { _y = value; }
         }
 
+        public Missile(int x, int y, int vectorY, Game.collisionStatus collisionStatus)
+        {
+            _collisionStatus = collisionStatus;
+            _vectorY = vectorY;
+            _x = x;
+            _y = y;
+        }
+
+
         /// <summary>
         /// Deletes missiles old coordinates
         /// </summary>
@@ -81,18 +101,17 @@ namespace MissileNS
         /// Delete sprite at old position, change coordinates and redraw sprite
         /// </summary>
         /// <returns>True boolean if missile goes out of bounds</returns>
-        public bool GoUp() {
+        public bool Move() {
 
             // Missile isn't out of bounds
             bool outOfBounds = false; 
             
             // If missile isn't at the screen top border..
-            if (_y > Game.MARGIN_TOP_BOTTOM + 1)
+            if (_y > Game.MARGIN_TOP_BOTTOM + 1 && _y < Game.MARGIN_TOP_BOTTOM + Game.HEIGHT - 1)
             {
-
                 // ..Move it up
                 DelPosition();
-                _y--;
+                _y += _vectorY;
                 Draw();    
             }
 
@@ -105,7 +124,6 @@ namespace MissileNS
             // Return (true) out of bounds / (false) in bounds
             return outOfBounds;
         }
-
 
         /// <summary>
         /// Write missile sprite at new coordinates

@@ -23,8 +23,13 @@ using Spicy_Invader;
 
 namespace SpaceshipNS
 {
-    internal class SpaceShip : GameObjects
+    internal class SpaceShip : GameObject
     {
+        /// <summary>
+        /// Maximum active missiles 
+        /// </summary>
+        public const int MAX_ACTIVE_MISSILES = 1;
+
         /// <summary>
         /// Width of the sprite
         /// </summary>
@@ -36,16 +41,6 @@ namespace SpaceshipNS
         const int HEIGHT = 1;
 
         /// <summary>
-        /// Horitontal coordinate
-        /// </summary>
-        private int _x = 20;
-
-        /// <summary>
-        /// Vertical coordinates
-        /// </summary>
-        private int _y = 20;
-
-        /// <summary>
         /// List of players active missile
         /// </summary>
         public List<Missile> missilesList = new List<Missile>();
@@ -55,7 +50,7 @@ namespace SpaceshipNS
         /// </summary>
         public int Width
         {
-            get { return WIDTH; }
+            get { return _width; }
         }
 
         /// <summary>
@@ -63,7 +58,7 @@ namespace SpaceshipNS
         /// </summary>
         public int Heigth
         {
-            get { return HEIGHT; }
+            get { return _height; }
         }
 
         /// <summary>
@@ -97,52 +92,9 @@ namespace SpaceshipNS
         public SpaceShip(int x, int y) {
             _x = x;
             _y = y;
-        }
-
-        /// <summary>
-        /// Deletes spaceship at old coordinates
-        /// </summary>
-        public void DelPosition() {
-            Console.SetCursorPosition(_x, _y);
-            for (int i = 0; i < WIDTH; i++)
-            {
-                Console.Write(" ");
-            }
-        }
-
-        /// <summary>
-        /// Delete sprite at old position, change coordinates and redraw sprite
-        /// </summary>
-        public void GoLeft() {
-
-            // if player isn't on the left edge of the map
-            if (_x > Game.MARGIN_SIDE+1) { 
-            DelPosition();
-            _x--;
-            Draw();
-            }
-        }
-
-        /// <summary>
-        /// Delete sprite at old position, change coordinates and redraw sprite
-        /// </summary>
-        public void GoRight()
-        {
-            if (_x < Game.WIDTH + Game.MARGIN_SIDE - WIDTH)
-            {
-                DelPosition();
-                _x++;
-                Draw();
-            }
-        }
-
-        /// <summary>
-        /// Write spaceship sprite at new coordinates
-        /// </summary>
-        public void Draw()
-        {
-            Console.SetCursorPosition(_x, _y);
-            Console.Write(SPRITE);
+            _sprite = SPRITE;
+            _height = HEIGHT;
+            _width = WIDTH;
         }
 
         /// <summary>
@@ -161,46 +113,29 @@ namespace SpaceshipNS
             // SPACE pressed,creates a missile at player coordinates
             if (Keyboard.IsKeyDown(Key.Space))
             {
-                FireMissile();
+                FireMissile(missilesList: missilesList, vectorY: -1, maxMissiles: MAX_ACTIVE_MISSILES);
             }
 
             // LEFT movement key pressed and right movement key not pressed..
             if ((Keyboard.IsKeyDown(Key.Left) || Keyboard.IsKeyDown(Key.A)) & !Keyboard.IsKeyDown(Key.Right) & !Keyboard.IsKeyDown(Key.D))
             {
                 // ..Go left
-                GoLeft();
+                Move(vectorX: -1, vectorY: 0);
             }
 
             // RIGTH movement key pressed and left movement key not pressed..
             if ((Keyboard.IsKeyDown(Key.Right) || Keyboard.IsKeyDown(Key.D)) & !Keyboard.IsKeyDown(Key.Left) & !Keyboard.IsKeyDown(Key.A))
             {
                 // ..Go right
-                GoRight();
+                Move(vectorX: 1, vectorY: 0);
             }
 
         }
-
-        /// <summary>
-        /// Create a missile object at the player coordinate
-        /// </summary>
-        public void FireMissile() {
-
-            // if the player has no active missile
-            if (missilesList.Count == 0) { 
-
-            // Create a new missile 
-            Missile missile = new Missile(x: _x + (WIDTH / 2), y: _y - (HEIGHT));
-
-            // Add the missile to the list to allow updates
-            missilesList.Add(missile);
-            }
-        }
-
 
         /// <summary>
         /// Update missile position
         /// </summary>
-        public void PlayerMissileUpdate()
+        public void MissileUpdate()
         {
 
             // Track if current missile is out of bounds
@@ -210,7 +145,7 @@ namespace SpaceshipNS
             for (int i = 0; i < missilesList.Count; i++)
             {
                 // Missile goes up 
-                outOfBounds = missilesList[i].GoUp();
+                outOfBounds = missilesList[i].Move();
                 
                 // If missile is out of bounds.. 
                 if (outOfBounds)

@@ -13,6 +13,7 @@
 ///     - change postions to vectors
 ///     - use vectors for directions
 ///     - gamerunning bool useful ?
+///     - UniversalMove Check Collision limits
 
 
 
@@ -22,6 +23,9 @@ using System.Threading;
 using EnemiesNS;
 using EnemyBlockNS;
 using MissileNS;
+using System.Collections.Generic;
+using GameObjectsNS;
+
 
 
 
@@ -53,7 +57,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Missile speed (number of cycle before update)
         /// </summary>
-        public const int MISSILES_SPEED = 1;
+        public const int MISSILES_SPEED = 3;
 
         /// <summary>
         /// Margin for the display / player and enemies movement zone
@@ -84,20 +88,25 @@ namespace Spicy_Invader
         /// Height of the game space 
         /// </summary>
         public const int HEIGHT = 25;
-
+        
+        /// <summary>
+        /// Enum used for collision check (Friendly, Enemy, Neutral)
+        /// </summary>
+        public enum collisionStatus
+        {
+            Friendly,
+            Enemy,
+            Neutral,
+        }
+        
         // Allows Keyboard.IsKeyDown
         [STAThread]
         static void Main(string[] args)
         {
-            // Set console size depending on map size 
-            Console.WindowWidth = WIDTH + WIDTH_CONSOLE_MARGIN;
-            Console.WindowHeight = HEIGHT + HEIGHT_CONSOLE_MARGIN;
-            
+            ConsoleSetup();
+
             // Game running 
             bool gameRunning = false;
-
-            // Hides cursor
-            Console.CursorVisible = false;
 
             // Placeholder menu
             Console.WriteLine("This is a menu");
@@ -107,13 +116,18 @@ namespace Spicy_Invader
             // Game starts
             gameRunning = true;
             DrawLayout();
-            
+            List<GameObject> collisionObjects = new List<GameObject>();
+
             // Create the spaceship and displays it
             SpaceShip player = new SpaceShip(x: MARGIN_SIDE + (WIDTH/2), y : HEIGHT);
             player.Draw();
+            collisionObjects.Add(player);
 
             // Create enemy block 
             EnemyBlock enemyBlock = new EnemyBlock();
+            /*foreach (Enemy enemy in enemyBlock.enemiesTab) {
+                collisionObjects.Add(enemy);
+            }*/
 
             // Tracks cycles between updates
             int missileCycle = 0;
@@ -123,7 +137,7 @@ namespace Spicy_Invader
             // Loop : Reads an input, acts accordingly in player / update missiles / sleep
             while (gameRunning) {
 
-                // Missiles update every PLAYER_SPEED cycles
+                // Player update every PLAYER_SPEED cycles
                 if (playerCycle == PLAYER_SPEED)
                 {
                     player.PlayerControl();
@@ -138,9 +152,10 @@ namespace Spicy_Invader
                 if (missileCycle == MISSILES_SPEED)
                 {
 
-                    player.PlayerMissileUpdate();
+                    player.MissileUpdate();
                     CheckColision();
-                    
+                    enemyBlock.MissileUpdate();
+
                     void CheckColision() {
                         foreach (Missile playerm in player.missilesList)
                         {
@@ -160,7 +175,28 @@ namespace Spicy_Invader
                             }
                         }
                     }
-                    
+                    /*void CheckColision(List<Missile> missilesList)
+                    {
+                        foreach (Missile missile in missilesList)
+                        {
+                            foreach (GameObject gameObject in collisionObjects)
+                            {
+                                if (gameObject != null)
+                                {
+                                    if (missile.X >= gameObject.X && missile.X <= gameObject.X + gameObject.Width && missile.Y == gameObject.Y)
+                                    {
+                                        missilesList.Remove(missile);
+                                        gameObject.DelPosition();
+                                        missile.DelPosition();
+                                        enemyBlock.enemiesTab[gameObject.Row, gameObject.Col] = null;
+                                        enemyBlock.enemiesByCol[gameObject.Col]--;
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    }*/
+
                     missileCycle = 0;
                 }
                 else { 
@@ -184,6 +220,17 @@ namespace Spicy_Invader
             }
         }
 
+        /// <summary>
+        /// Set up console parameters (Dimension, Cursor)
+        /// </summary>
+        static void ConsoleSetup() {
+            // Set console size depending on map size 
+            Console.WindowWidth = WIDTH + WIDTH_CONSOLE_MARGIN;
+            Console.WindowHeight = HEIGHT + HEIGHT_CONSOLE_MARGIN;
+
+            // Hides cursor
+            Console.CursorVisible = false;
+        }
         /// <summary>
         /// Draws the game map and other interface elements
         /// </summary>
