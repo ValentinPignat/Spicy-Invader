@@ -7,26 +7,18 @@
 
 
 using System;
-using SpaceshipNS;
+
 using GameObjectsNS;
 using Spicy_Invader;
-using System.Threading;
-using System.Diagnostics;
-using EnemiesNS;
 
 
-namespace MissileNS
+namespace MissileNS 
 {
     /// <summary>
     /// Missile class 
     /// </summary>
-    internal class Missile 
+    internal class Missile :GameObject
     {
-        /// <summary>
-        /// Status used for collision : Friendly, Ennemy, Neutral
-        /// </summary>
-        Game.collisionStatus _collisionStatus;
-
         /// <summary>
         /// Width of the sprite
         /// </summary>
@@ -38,16 +30,6 @@ namespace MissileNS
         const int HEIGHT = 1;
 
         /// <summary>
-        /// Horizontal coordinates
-        /// </summary>
-        private int _x = 20;
-
-        /// <summary>
-        /// Vertical coordinates
-        /// </summary>
-        private int _y = 20;
-
-        /// <summary>
         /// Move vector
         /// </summary>
         private int _vectorY = 0; 
@@ -57,81 +39,24 @@ namespace MissileNS
         /// </summary>
         private const string SPRITE =  "|";
 
-        /// <summary>
-        /// Get missile horizontal coordinate
-        /// </summary>
-        public int X
+        private readonly GameObject OWNER;
+
+        public int VectorY
         {
-            get { return _x; }
-            set { _x = value; }
+            get { return _vectorY; }
+            set { _vectorY = value; }
         }
 
-        /// <summary>
-        /// Get missile vertical coordinate
-        /// </summary>
-        public int Y
-        {
-            get { return _y; }
-            set { _y = value; }
-        }
-
-        public Missile(int x, int y, int vectorY, Game.collisionStatus collisionStatus)
+        public Missile(int x, int y, int vectorY, Game.collisionStatus collisionStatus, GameObject owner)
         {
             _collisionStatus = collisionStatus;
             _vectorY = vectorY;
             _x = x;
             _y = y;
-        }
-
-
-        /// <summary>
-        /// Deletes missiles old coordinates
-        /// </summary>
-        public void DelPosition() {
-            Console.SetCursorPosition(_x, _y);
-
-            // Draw as much empty character as the sprite's width
-            for (int i = 0; i < WIDTH; i++)
-            {
-                Console.Write(" ");
-            }
-        }
-
-        /// <summary>
-        /// Delete sprite at old position, change coordinates and redraw sprite
-        /// </summary>
-        /// <returns>True boolean if missile goes out of bounds</returns>
-        public bool Move() {
-
-            // Missile isn't out of bounds
-            bool outOfBounds = false; 
-            
-            // If missile isn't at the screen top border..
-            if (_y > Game.MARGIN_TOP_BOTTOM + 1 && _y < Game.MARGIN_TOP_BOTTOM + Game.HEIGHT - 1)
-            {
-                // ..Move it up
-                DelPosition();
-                _y += _vectorY;
-                Draw();    
-            }
-
-            // else change the boolen to true
-            else { 
-                DelPosition(); 
-                outOfBounds = true;
-            }
-
-            // Return (true) out of bounds / (false) in bounds
-            return outOfBounds;
-        }
-
-        /// <summary>
-        /// Write missile sprite at new coordinates
-        /// </summary>
-        public void Draw()
-        {
-            Console.SetCursorPosition(_x, _y);
-            Console.Write(SPRITE);
+            _sprite = SPRITE;
+            _width = WIDTH;
+            _height = HEIGHT;
+            _owner = OWNER;
         }
 
         /// <summary>
@@ -143,8 +68,16 @@ namespace MissileNS
             _y = y;
             _x = x;  
         }
-        
 
+        private void OnHit()
+        {
+            _hp--;
+            if (_hp == 0)
+            {
+                _owner.missilesList.Remove(this);
+            }
+
+        }
 
     }
 }

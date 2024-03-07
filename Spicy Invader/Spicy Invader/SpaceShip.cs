@@ -25,6 +25,8 @@ namespace SpaceshipNS
 {
     internal class SpaceShip : GameObject
     {
+        public const int MAX_HP = 3;
+
         /// <summary>
         /// Maximum active missiles 
         /// </summary>
@@ -40,49 +42,13 @@ namespace SpaceshipNS
         /// </summary>
         const int HEIGHT = 1;
 
-        /// <summary>
-        /// List of players active missile
-        /// </summary>
-        public List<Missile> missilesList = new List<Missile>();
-
-        /// <summary>
-        /// Get sprite width
-        /// </summary>
-        public int Width
-        {
-            get { return _width; }
-        }
-
-        /// <summary>
-        /// Get sprite height
-        /// </summary>
-        public int Heigth
-        {
-            get { return _height; }
-        }
-
-        /// <summary>
-        /// Get sprite horizontal coordinate
-        /// </summary>
-        public int X
-        {
-            get { return _x; }
-            set { _x = value; }
-        }
-
-        /// <summary>
-        /// Get sprite vertical coordinate
-        /// </summary>
-        public int Y
-        {
-            get { return _y; }
-            set { _y = value; }
-        }
-
+        
         /// <summary>
         /// Spaceship sprite
         /// </summary>
         private const string SPRITE =  "/-^-\\";
+
+        private const Game.collisionStatus STATUS = Game.collisionStatus.Friendly;
 
         /// <summary>
         /// Constructor SpaceShip, position depending on map size
@@ -95,13 +61,8 @@ namespace SpaceshipNS
             _sprite = SPRITE;
             _height = HEIGHT;
             _width = WIDTH;
-        }
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public SpaceShip() {
-            Draw();
+            _collisionStatus = STATUS;
+            _hp = MAX_HP;
         }
 
         /// <summary>
@@ -113,7 +74,7 @@ namespace SpaceshipNS
             // SPACE pressed,creates a missile at player coordinates
             if (Keyboard.IsKeyDown(Key.Space))
             {
-                FireMissile(missilesList: missilesList, vectorY: -1, maxMissiles: MAX_ACTIVE_MISSILES);
+                FireMissile(missilesList: missilesList, vectorY: -1, maxMissiles: MAX_ACTIVE_MISSILES, x: _x + _width/2, y:_y - _height, status:Game.collisionStatus.Friendly, owner: this);
             }
 
             // LEFT movement key pressed and right movement key not pressed..
@@ -129,37 +90,6 @@ namespace SpaceshipNS
                 // ..Go right
                 Move(vectorX: 1, vectorY: 0);
             }
-
-        }
-
-        /// <summary>
-        /// Update missile position
-        /// </summary>
-        public void MissileUpdate()
-        {
-
-            // Track if current missile is out of bounds
-            bool outOfBounds;
-
-            // Goes through the missile list and update them 
-            for (int i = 0; i < missilesList.Count; i++)
-            {
-                // Missile goes up 
-                outOfBounds = missilesList[i].Move();
-                
-                // If missile is out of bounds.. 
-                if (outOfBounds)
-                {
-
-                    // ..removes it from the list 
-                    missilesList.Remove(missilesList[i]);
-
-                    // Decrement as the list is displaced by the removal
-                    i--;
-                }
-            }
-           
-            
         }
 
 

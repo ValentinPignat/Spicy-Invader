@@ -5,9 +5,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MissileNS;
 using Spicy_Invader;
 
@@ -15,7 +12,10 @@ using Spicy_Invader;
 namespace GameObjectsNS
 {
     internal class GameObject 
-    {  
+    {
+        protected GameObject _owner;
+        protected int _hp = 1;
+
         /// <summary>
         /// GameObject x axis position
         /// </summary>
@@ -25,6 +25,55 @@ namespace GameObjectsNS
         /// GameObject y axis position
         /// </summary>
         protected int _y = 0;
+
+        /// <summary>
+        /// Status used for collision : Friendly, Ennemy, Neutral
+        /// </summary>
+        protected Game.collisionStatus _collisionStatus;
+
+        public Game.collisionStatus ColisionStatus
+        {
+            get { return _collisionStatus; }
+            set { _collisionStatus = value; }
+        }
+
+
+        /// <summary>
+        /// Get missile horizontal coordinate
+        /// </summary>
+        public int X
+        {
+            get { return _x; }
+            set { _x = value; }
+        }
+
+        /// <summary>
+        /// Get missile vertical coordinate
+        /// </summary>
+        public int Y
+        {
+            get { return _y; }
+            set { _y = value; }
+        }
+
+        public int Width
+        {
+            get { return _width; }
+        }
+
+        /// <summary>
+        /// Get sprite height
+        /// </summary>
+        public int Height
+        {
+            get { return _height; }
+        }
+        
+
+        /// <summary>
+        /// List of players active missile
+        /// </summary>
+        public List<Missile> missilesList = new List<Missile>();
 
         /// <summary>
         /// GameObject sprite
@@ -47,7 +96,7 @@ namespace GameObjectsNS
         /// <returns>True boolean if missile goes out of bounds</returns>
         public bool Move(int vectorX, int vectorY)
         {
-            if (CastCollision(vectorXCast : vectorX, vectorYCast: vectorY)) {
+            if (CastOutOfBounds(vectorXCast : vectorX, vectorYCast: vectorY)) {
                 // ..Move it up
                 DelPosition();
                 _y += vectorY;
@@ -81,12 +130,12 @@ namespace GameObjectsNS
             }
         }
 
-        public bool CastCollision(int vectorXCast, int vectorYCast)
+        public bool CastOutOfBounds(int vectorXCast, int vectorYCast)
         {
-            if (_x + vectorXCast >= Game.MARGIN_SIDE + Game.WIDTH || _x + vectorXCast <= Game.MARGIN_SIDE) {
+            if (_x + vectorXCast > Game.MARGIN_SIDE + Game.WIDTH - this._width || _x + vectorXCast <= Game.MARGIN_SIDE) {
                 return false;
             }
-            if (_y + vectorYCast >= Game.MARGIN_TOP_BOTTOM + Game.HEIGHT || _y + vectorXCast <= Game.MARGIN_TOP_BOTTOM)
+            if (_y + vectorYCast >= Game.MARGIN_TOP_BOTTOM + Game.HEIGHT || _y + vectorYCast<= Game.MARGIN_TOP_BOTTOM )
             {
                 return false;
             }
@@ -95,7 +144,7 @@ namespace GameObjectsNS
         /// <summary>
         /// Create a missile object at the player coordinate
         /// </summary>
-        public void FireMissile(List<Missile> missilesList, int vectorY, int maxMissiles)
+        public void FireMissile(List<Missile> missilesList, int vectorY, int maxMissiles, int x, int y, Game.collisionStatus status, GameObject owner)
         {
 
             // if the player has no active missile
@@ -103,11 +152,41 @@ namespace GameObjectsNS
             {
 
                 // Create a new missile 
-                Missile missile = new Missile(x: _x + (_width / 2), y: _y - (_height), vectorY: vectorY, Game.collisionStatus.Friendly);
+                Missile missile = new Missile(x: x, y: y, vectorY: vectorY,collisionStatus: status, owner: owner);
 
                 // Add the missile to the list to allow updates
                 missilesList.Add(missile);
+                missile.Draw();
             }
+        }
+        /// <summary>
+        /// Update missile position
+        /// </summary>
+        public void MissileUpdate()
+        {
+
+            // Track if current missile is out of bounds
+            bool outOfBounds;
+
+            // Goes through the missile list and update them 
+            for (int i = 0; i < missilesList.Count; i++)
+            {
+                // Missile goes up 
+                outOfBounds = missilesList[i].Move(vectorX: 0, vectorY: missilesList[i].VectorY);
+
+                // If missile is out of bounds.. 
+                if (!outOfBounds)
+                {
+                    missilesList[i].DelPosition();
+                    // ..removes it from the list 
+                    missilesList.Remove(missilesList[i]);
+
+                    // Decrement as the list is displaced by the removal
+                    i--;
+                }
+            }
+
+
         }
 
     }

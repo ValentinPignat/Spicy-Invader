@@ -25,6 +25,7 @@ using EnemyBlockNS;
 using MissileNS;
 using System.Collections.Generic;
 using GameObjectsNS;
+using System.Diagnostics;
 
 
 
@@ -47,7 +48,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Player speed (number of cycle before update)
         /// </summary>
-        public const int PLAYER_SPEED = 2;
+        public const int PLAYER_SPEED = 2; 
 
         /// <summary>
         /// Enemy speed (number of cycle before update)
@@ -57,7 +58,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Missile speed (number of cycle before update)
         /// </summary>
-        public const int MISSILES_SPEED = 3;
+        public const int MISSILES_SPEED = 4;
 
         /// <summary>
         /// Margin for the display / player and enemies movement zone
@@ -125,9 +126,9 @@ namespace Spicy_Invader
 
             // Create enemy block 
             EnemyBlock enemyBlock = new EnemyBlock();
-            /*foreach (Enemy enemy in enemyBlock.enemiesTab) {
+            foreach (Enemy enemy in enemyBlock.enemiesTab) {
                 collisionObjects.Add(enemy);
-            }*/
+            }
 
             // Tracks cycles between updates
             int missileCycle = 0;
@@ -153,27 +154,31 @@ namespace Spicy_Invader
                 {
 
                     player.MissileUpdate();
-                    CheckColision();
                     enemyBlock.MissileUpdate();
-
-                    void CheckColision() {
-                        foreach (Missile playerm in player.missilesList)
+                    //CheckColision();
+                    foreach (Missile missile in player.missilesList) {
+                        CheckColision(missile: missile);
+                    }
+                    foreach (Missile missile in enemyBlock.missilesList) {
+                        CheckColision(missile: missile);
+                    }
+                        void CheckColision(Missile missile) {
+                        
+                        foreach (GameObject gameObj in collisionObjects )
                         {
-                            foreach (Enemy enemy in enemyBlock.enemiesTab)
-                            {
-                                if (enemy != null) {
-                                      if (playerm.X >= enemy.X && playerm.X <= enemy.X + enemy.Width && playerm.Y == enemy.Y)
+                            if (gameObj != null) {
+                                    if (missile.X >= gameObj.X && missile.X <= gameObj.X + gameObj.Width && missile.Y == gameObj.Y)
                                     {
-                                        player.missilesList.Remove(playerm);
-                                        enemy.DelPosition();
-                                        playerm.DelPosition();
-                                        enemyBlock.enemiesTab[enemy.Row, enemy.Col] = null;
-                                        enemyBlock.enemiesByCol[enemy.Col]--;
+                                    if (missile.ColisionStatus != gameObj.ColisionStatus)
+                                        missile.OnHit();
+                                        //gameObj.OnHit();
+
+                                        Debug.WriteLine("touch");
                                         return;
                                     }
-                                }
                             }
                         }
+                        
                     }
                     /*void CheckColision(List<Missile> missilesList)
                     {
