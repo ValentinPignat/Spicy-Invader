@@ -40,7 +40,7 @@ namespace EnemyBlockNS
             for (int i = 0; i <COL; i++)
             {
                 for (int j = 0; j < ROW; j++) {
-                    Enemy enemy = new Enemy(x: Game.MARGIN_SIDE + 1 + i * Enemy.WIDTH + i * BETWEEN_X, y: Game.MARGIN_TOP_BOTTOM + 1 + j * Enemy.HEIGHT + j * BETWEEN_Y, row: i, col: j);
+                    Enemy enemy = new Enemy(x: Game.MARGIN_SIDE + 1 + i * Enemy.WIDTH + i * BETWEEN_X, y: Game.MARGIN_TOP_BOTTOM + 1 + j * Enemy.HEIGHT + j * BETWEEN_Y, row: i, col: j, owner: this);
                     enemiesTab[i, j] = enemy;
                 }
             }
@@ -101,6 +101,17 @@ namespace EnemyBlockNS
             }
 
         
+        }
+
+        public bool IsEmpty() {
+            bool isEmpty = true;
+            foreach (Enemy enemy in enemiesTab) {
+                if (enemy != null)
+                {
+                    isEmpty = false;
+                }  
+            }
+            return isEmpty ;
         }
     }
 }

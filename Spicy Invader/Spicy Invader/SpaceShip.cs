@@ -25,12 +25,12 @@ namespace SpaceshipNS
 {
     internal class SpaceShip : GameObject
     {
-        public const int MAX_HP = 3;
+        public const int MAX_HP =50;
 
         /// <summary>
         /// Maximum active missiles 
         /// </summary>
-        public const int MAX_ACTIVE_MISSILES = 1;
+        public const int MAX_ACTIVE_MISSILES = 20;
 
         /// <summary>
         /// Width of the sprite

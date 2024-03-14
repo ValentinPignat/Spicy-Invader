@@ -7,13 +7,7 @@
 ///     - Thread.Sleep()
 
 /// TODO :
-///     - create two groups of objects: friendly, ennemy neutral
-///     - use checkcolision by giving it two lists with var (), to then use with both ennemy missile and friendly collisions.
-///     - change Goup, godown, go up to a single method using directions
-///     - change postions to vectors
-///     - use vectors for directions
-///     - gamerunning bool useful ?
-///     - UniversalMove Check Collision limits
+///     - Change to onhit method in each object to manage collision and avoid updatig all
 
 
 
@@ -89,7 +83,7 @@ namespace Spicy_Invader
         /// Height of the game space 
         /// </summary>
         public const int HEIGHT = 25;
-        
+
         /// <summary>
         /// Enum used for collision check (Friendly, Enemy, Neutral)
         /// </summary>
@@ -109,6 +103,7 @@ namespace Spicy_Invader
             // Game running 
             bool gameRunning = false;
 
+            int score = 0;
             // Placeholder menu
             Console.WriteLine("This is a menu");
             Console.ReadKey();
@@ -116,6 +111,7 @@ namespace Spicy_Invader
 
             // Game starts
             gameRunning = true;
+            score = 0;
             DrawLayout();
             List<GameObject> collisionObjects = new List<GameObject>();
 
@@ -162,7 +158,8 @@ namespace Spicy_Invader
                     foreach (Missile missile in enemyBlock.missilesList) {
                         CheckColision(missile: missile);
                     }
-                        void CheckColision(Missile missile) {
+
+                    void CheckColision(Missile missile) {
                         
                         foreach (GameObject gameObj in collisionObjects )
                         {
@@ -170,15 +167,40 @@ namespace Spicy_Invader
                                     if (missile.X >= gameObj.X && missile.X <= gameObj.X + gameObj.Width && missile.Y == gameObj.Y)
                                     {
                                     if (missile.ColisionStatus != gameObj.ColisionStatus)
-                                        missile.OnHit();
-                                        //gameObj.OnHit();
-
-                                        Debug.WriteLine("touch");
+                                        if (missile.Hp > 0) { missile.Hp--; }
+                                        if (gameObj.Hp > 0) { gameObj.Hp--; }
                                         return;
                                     }
                             }
                         }
                         
+                    }
+                    DeadUpdate(collisionObjects);
+                    if (enemyBlock.IsEmpty()) { 
+                        gameRunning = false;
+                    }
+
+                    DisplayScoreHp(score: score, hp: player.Hp);
+
+
+                    void DeadUpdate(List <GameObject> gameObjects) {
+                        List<GameObject> toRemove = new List<GameObject>();
+                        foreach (GameObject gameObj in gameObjects)
+                        {
+
+                            if (gameObj.Hp == 0)
+                            {
+                                if (gameObj == player) { 
+                                    gameRunning = false;
+                                }
+                                score += gameObj.Destroyed();
+                                toRemove.Add(gameObj);
+                            }
+                        }
+                        foreach (GameObject gameObj in toRemove)
+                        {
+                            collisionObjects.Remove(gameObj);
+                        }
                     }
                     /*void CheckColision(List<Missile> missilesList)
                     {
@@ -223,6 +245,10 @@ namespace Spicy_Invader
                 // Time between each cycle
                 Thread.Sleep(CYCLE_SPEED);
             }
+            Console.Clear();
+            Console.WriteLine("Boooo");
+            Console.ReadLine();
+
         }
 
         /// <summary>
@@ -279,6 +305,12 @@ namespace Spicy_Invader
                     }               
                 }
             }
+        }
+
+        static public void DisplayScoreHp(int score, int hp) {
+
+            Console.SetCursorPosition(MARGIN_SIDE, MARGIN_TOP_BOTTOM + HEIGHT);
+            Console.WriteLine("\n\n HP: " + hp + "\n\n SCORE : " + score);
         }
     }
 }

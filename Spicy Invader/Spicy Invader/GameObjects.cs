@@ -7,13 +7,13 @@ using System;
 using System.Collections.Generic;
 using MissileNS;
 using Spicy_Invader;
+using System.Diagnostics;
 
 
 namespace GameObjectsNS
 {
-    internal class GameObject 
+    internal abstract class GameObject 
     {
-        protected GameObject _owner;
         protected int _hp = 1;
 
         /// <summary>
@@ -69,6 +69,11 @@ namespace GameObjectsNS
             get { return _height; }
         }
         
+        public int Hp 
+        {
+            get { return _hp; }
+            set { _hp = value; }
+        }
 
         /// <summary>
         /// List of players active missile
@@ -175,8 +180,9 @@ namespace GameObjectsNS
                 outOfBounds = missilesList[i].Move(vectorX: 0, vectorY: missilesList[i].VectorY);
 
                 // If missile is out of bounds.. 
-                if (!outOfBounds)
+                if (!outOfBounds || missilesList[i].Hp == 0)
                 {
+                    Debug.WriteLine("okay okay");
                     missilesList[i].DelPosition();
                     // ..removes it from the list 
                     missilesList.Remove(missilesList[i]);
@@ -187,6 +193,10 @@ namespace GameObjectsNS
             }
 
 
+        }
+
+        public virtual int Destroyed() {
+            return 1;
         }
 
     }

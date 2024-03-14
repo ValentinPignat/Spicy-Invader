@@ -5,6 +5,8 @@
 
 using GameObjectsNS;
 using Spicy_Invader;
+using EnemyBlockNS;
+using System.Diagnostics;
 
 namespace EnemiesNS
 {
@@ -16,9 +18,11 @@ namespace EnemiesNS
         private const string SPRITE = "╓╫╖";
         private int _col = 0;
         private int _row = 0;
+        private EnemyBlock _owner;
         private const Game.collisionStatus STATUS = Game.collisionStatus.Enemy;
+        private const int SCORE = 40;
 
-        public Enemy(int x, int y, int col, int row) {
+        public Enemy(int x, int y, int col, int row, EnemyBlock owner) {
             _x = x;
             _y = y;
             _col = col;
@@ -27,6 +31,8 @@ namespace EnemiesNS
             _width = WIDTH;
             _height = HEIGHT;
             _collisionStatus = STATUS;
+            _owner = owner;
+
         }
 
         /// <summary>
@@ -47,11 +53,14 @@ namespace EnemiesNS
             set { _row = value; }
         }
 
-        private void OnHit() {
-            _hp--;
-            if (_hp == 0) {
-            }
-        
+
+        public override int Destroyed()
+        {
+            Debug.WriteLine("Entered");
+            _owner.enemiesTab[_row, _col] = null;
+            _owner.enemiesByCol[_col]--;
+            DelPosition();
+            return SCORE; 
         }
     }
 }

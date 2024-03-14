@@ -7,7 +7,7 @@
 
 
 using System;
-
+using System.Diagnostics;
 using GameObjectsNS;
 using Spicy_Invader;
 
@@ -19,6 +19,11 @@ namespace MissileNS
     /// </summary>
     internal class Missile :GameObject
     {
+        /// <summary>
+        /// Missile HP
+        /// </summary>
+        const int HP = 1;
+
         /// <summary>
         /// Width of the sprite
         /// </summary>
@@ -39,7 +44,7 @@ namespace MissileNS
         /// </summary>
         private const string SPRITE =  "|";
 
-        private readonly GameObject OWNER;
+        private GameObject _owner;
 
         public int VectorY
         {
@@ -56,7 +61,8 @@ namespace MissileNS
             _sprite = SPRITE;
             _width = WIDTH;
             _height = HEIGHT;
-            _owner = OWNER;
+            _owner = owner;
+            _hp = HP;
         }
 
         /// <summary>
@@ -67,16 +73,6 @@ namespace MissileNS
         public Missile(int x, int y) {
             _y = y;
             _x = x;  
-        }
-
-        private void OnHit()
-        {
-            _hp--;
-            if (_hp == 0)
-            {
-                _owner.missilesList.Remove(this);
-            }
-
         }
 
     }
