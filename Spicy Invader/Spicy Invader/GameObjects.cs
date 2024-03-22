@@ -161,6 +161,7 @@ namespace GameObjectsNS
 
                 // Add the missile to the list to allow updates
                 missilesList.Add(missile);
+                
                 missile.Draw();
             }
         }

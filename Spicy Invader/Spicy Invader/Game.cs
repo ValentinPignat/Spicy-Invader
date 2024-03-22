@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using GameObjectsNS;
 using System.Diagnostics;
 using BricksNS;
+using System.Windows.Input;
 
 
 
@@ -75,7 +76,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Missile speed (number of cycle before update)
         /// </summary>
-        public const int MISSILES_SPEED = 10;
+        public const int MISSILES_SPEED = 6;
 
         /// <summary>
         /// Margin for the display / player and enemies movement zone
@@ -95,7 +96,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Console horizontal margin around the map
         /// </summary>
-        public const int WIDTH_CONSOLE_MARGIN = 10;
+        public const int WIDTH_CONSOLE_MARGIN = 20;
 
         /// <summary>
         /// Console margin around the map
@@ -130,18 +131,21 @@ namespace Spicy_Invader
             int enemyCycle = 0;
             int playerCycle = 0;
             int score = 0;
+            List<GameObject> collisionObjects = new List<GameObject>();
+            Menu menu = new Menu();
 
             // Placeholder menu
-            Console.WriteLine("This is a menu");
+            ConsoleSetup();
+            Console.WriteLine("Space Invaders");
             Console.ReadKey();
-            Console.Clear();
 
             // Game starts
             gameRunning = true;
             score = 0;
-            ConsoleSetup();
+
             DrawLayout();
-            List<GameObject> collisionObjects = new List<GameObject>();
+            
+
 
             // Create the spaceship and displays it
             SpaceShip player = new SpaceShip(x: MARGIN_SIDE + (WIDTH/2), y : HEIGHT);
@@ -154,8 +158,6 @@ namespace Spicy_Invader
                 collisionObjects.Add(enemy);
             }
 
-
-
             for (int i = 0; i< NB_WALLS; i++) {
                 for (int j = 0; j < WALL_WIDTH; j++) {
                     for (int k = 0; k<WALL_HEIGHT; k++) { 
@@ -167,7 +169,13 @@ namespace Spicy_Invader
 
             // Loop : Reads an input, acts accordingly in player / update missiles / sleep
             while (gameRunning) {
-
+                if (Keyboard.IsKeyDown(Key.V))
+                {
+                    while (!Keyboard.IsKeyDown(Key.R)){ 
+                    
+                    
+                    }
+                }
                 // Player update every PLAYER_SPEED cycles
                 if (playerCycle == PLAYER_SPEED)
                 {
@@ -270,7 +278,7 @@ namespace Spicy_Invader
                 Thread.Sleep(CYCLE_SPEED);
             }
             Console.Clear();
-            Console.WriteLine("Boooo");
+            Console.WriteLine("Terminé");
             Console.ReadLine();
 
         }

@@ -22,7 +22,7 @@ namespace EnemyBlockNS
 {
     internal class EnemyBlock : GameObject
     {
-        private int MAX_ACTIVE_MISSILES = 4;
+        private int MAX_ACTIVE_MISSILES = 2;
         private const int BETWEEN_X = 3;
         private const int BETWEEN_Y = 1;
         private const int ROW = 3;
