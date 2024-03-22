@@ -8,6 +8,7 @@
 
 /// TODO :
 ///     - Change to onhit method in each object to manage collision and avoid updatig all
+///     - Colision between ennemies and bricks/player (Physical)
 
 
 
@@ -20,6 +21,7 @@ using MissileNS;
 using System.Collections.Generic;
 using GameObjectsNS;
 using System.Diagnostics;
+using BricksNS;
 
 
 
@@ -34,6 +36,27 @@ namespace Spicy_Invader
 {
     internal class Game
     {
+        #region CONSTANTS 
+        /// <summary>
+        /// Distance between the player and the walls
+        /// </summary>
+        public const int PLAYER_TO_WALL = 5;
+
+        /// <summary>
+        /// Walls height
+        /// </summary>
+        public const int WALL_HEIGHT = 2;
+
+        /// <summary>
+        /// Number of walls to spawn
+        /// </summary>
+        public const int NB_WALLS = 3;
+
+        /// <summary>
+        /// Walls width
+        /// </summary>
+        public const int WALL_WIDTH = 6;
+
         /// <summary>
         /// Time between cycles in ms
         /// </summary>
@@ -52,7 +75,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Missile speed (number of cycle before update)
         /// </summary>
-        public const int MISSILES_SPEED = 4;
+        public const int MISSILES_SPEED = 10;
 
         /// <summary>
         /// Margin for the display / player and enemies movement zone
@@ -84,6 +107,8 @@ namespace Spicy_Invader
         /// </summary>
         public const int HEIGHT = 25;
 
+        #endregion
+
         /// <summary>
         /// Enum used for collision check (Friendly, Enemy, Neutral)
         /// </summary>
@@ -98,12 +123,14 @@ namespace Spicy_Invader
         [STAThread]
         static void Main(string[] args)
         {
-            ConsoleSetup();
-
             // Game running 
             bool gameRunning = false;
-
+            // Tracks cycles between updates
+            int missileCycle = 0;
+            int enemyCycle = 0;
+            int playerCycle = 0;
             int score = 0;
+
             // Placeholder menu
             Console.WriteLine("This is a menu");
             Console.ReadKey();
@@ -112,6 +139,7 @@ namespace Spicy_Invader
             // Game starts
             gameRunning = true;
             score = 0;
+            ConsoleSetup();
             DrawLayout();
             List<GameObject> collisionObjects = new List<GameObject>();
 
@@ -126,10 +154,16 @@ namespace Spicy_Invader
                 collisionObjects.Add(enemy);
             }
 
-            // Tracks cycles between updates
-            int missileCycle = 0;
-            int enemyCycle = 0;
-            int playerCycle = 0;
+
+
+            for (int i = 0; i< NB_WALLS; i++) {
+                for (int j = 0; j < WALL_WIDTH; j++) {
+                    for (int k = 0; k<WALL_HEIGHT; k++) { 
+                    collisionObjects.Add(new Brick(x: (WIDTH/(NB_WALLS+1) * (i+1))+j + MARGIN_SIDE, y: HEIGHT - PLAYER_TO_WALL + k));
+                    }
+                }
+            
+            }
 
             // Loop : Reads an input, acts accordingly in player / update missiles / sleep
             while (gameRunning) {
@@ -145,90 +179,80 @@ namespace Spicy_Invader
                     playerCycle++;
                 }
                 
-                // Missiles update every MISSILE_SPEED cycles
+                // Missiles update and MOVE every MISSILE_SPEED cycles
                 if (missileCycle == MISSILES_SPEED)
                 {
-
-                    player.MissileUpdate();
-                    enemyBlock.MissileUpdate();
-                    //CheckColision();
-                    foreach (Missile missile in player.missilesList) {
-                        CheckColision(missile: missile);
-                    }
-                    foreach (Missile missile in enemyBlock.missilesList) {
-                        CheckColision(missile: missile);
-                    }
-
-                    void CheckColision(Missile missile) {
-                        
-                        foreach (GameObject gameObj in collisionObjects )
-                        {
-                            if (gameObj != null) {
-                                    if (missile.X >= gameObj.X && missile.X <= gameObj.X + gameObj.Width && missile.Y == gameObj.Y)
-                                    {
-                                    if (missile.ColisionStatus != gameObj.ColisionStatus)
-                                        if (missile.Hp > 0) { missile.Hp--; }
-                                        if (gameObj.Hp > 0) { gameObj.Hp--; }
-                                        return;
-                                    }
-                            }
-                        }
-                        
-                    }
-                    DeadUpdate(collisionObjects);
-                    if (enemyBlock.IsEmpty()) { 
-                        gameRunning = false;
-                    }
-
-                    DisplayScoreHp(score: score, hp: player.Hp);
-
-
-                    void DeadUpdate(List <GameObject> gameObjects) {
-                        List<GameObject> toRemove = new List<GameObject>();
-                        foreach (GameObject gameObj in gameObjects)
-                        {
-
-                            if (gameObj.Hp == 0)
-                            {
-                                if (gameObj == player) { 
-                                    gameRunning = false;
-                                }
-                                score += gameObj.Destroyed();
-                                toRemove.Add(gameObj);
-                            }
-                        }
-                        foreach (GameObject gameObj in toRemove)
-                        {
-                            collisionObjects.Remove(gameObj);
-                        }
-                    }
-                    /*void CheckColision(List<Missile> missilesList)
-                    {
-                        foreach (Missile missile in missilesList)
-                        {
-                            foreach (GameObject gameObject in collisionObjects)
-                            {
-                                if (gameObject != null)
-                                {
-                                    if (missile.X >= gameObject.X && missile.X <= gameObject.X + gameObject.Width && missile.Y == gameObject.Y)
-                                    {
-                                        missilesList.Remove(missile);
-                                        gameObject.DelPosition();
-                                        missile.DelPosition();
-                                        enemyBlock.enemiesTab[gameObject.Row, gameObject.Col] = null;
-                                        enemyBlock.enemiesByCol[gameObject.Col]--;
-                                        return;
-                                    }
-                                }
-                            }
-                        }
-                    }*/
-
+                    player.MissileUpdate(moving: true) ;
+                    enemyBlock.MissileUpdate(moving: true);
                     missileCycle = 0;
                 }
+                // Missile update without moving
                 else { 
                     missileCycle++;
+                    player.MissileUpdate(moving: false);
+                    enemyBlock.MissileUpdate(moving: false);
                 }
+
+                //CheckColision();
+                foreach (Missile missile in player.missilesList)
+                {
+                    CheckColision(missile: missile);
+                }
+                foreach (Missile missile in enemyBlock.missilesList)
+                {
+                    CheckColision(missile: missile);
+                }
+
+                void CheckColision(Missile missile)
+                {
+
+                    foreach (GameObject gameObj in collisionObjects)
+                    {
+                        if (gameObj != null)
+                        {
+                            if (missile.X >= gameObj.X && missile.X <= gameObj.X + gameObj.Width && missile.Y == gameObj.Y)
+                            {
+                                if (missile.ColisionStatus != gameObj.ColisionStatus)
+                                    if (missile.Hp > 0) { missile.Hp--; }
+                                if (gameObj.Hp > 0) { gameObj.Hp--; }
+                                return;
+                            }
+                        }
+                    }
+
+                }
+                DeadUpdate(collisionObjects);
+                
+                if (enemyBlock.IsEmpty())
+                {
+                    gameRunning = false;
+                }
+
+                DisplayScoreHp(score: score, hp: player.Hp);
+
+
+                void DeadUpdate(List<GameObject> gameObjects)
+                {
+                    List<GameObject> toRemove = new List<GameObject>();
+                    foreach (GameObject gameObj in gameObjects)
+                    {
+
+                        if (gameObj.Hp == 0)
+                        {
+                            if (gameObj == player)
+                            {
+                                gameRunning = false;
+                            }
+                            score += gameObj.Destroyed();
+                            toRemove.Add(gameObj);
+                        }
+                    }
+                    foreach (GameObject gameObj in toRemove)
+                    {
+                        collisionObjects.Remove(gameObj);
+                    }
+                }
+
 
                 // Enemy update every ENEMY_SPEED cycles
                 if (enemyCycle == ENEMY_SPEED)
@@ -306,7 +330,11 @@ namespace Spicy_Invader
                 }
             }
         }
-
+        /// <summary>
+        /// Add or remove hp/score and update it
+        /// </summary>
+        /// <param name="score">Player's score</param>
+        /// <param name="hp">Player's hp</param>
         static public void DisplayScoreHp(int score, int hp) {
 
             Console.SetCursorPosition(MARGIN_SIDE, MARGIN_TOP_BOTTOM + HEIGHT);

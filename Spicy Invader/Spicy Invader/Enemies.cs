@@ -56,7 +56,6 @@ namespace EnemiesNS
 
         public override int Destroyed()
         {
-            Debug.WriteLine("Entered");
             _owner.enemiesTab[_row, _col] = null;
             _owner.enemiesByCol[_col]--;
             DelPosition();

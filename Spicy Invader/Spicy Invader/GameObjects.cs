@@ -167,22 +167,25 @@ namespace GameObjectsNS
         /// <summary>
         /// Update missile position
         /// </summary>
-        public void MissileUpdate()
+        public void MissileUpdate(bool moving)
         {
 
             // Track if current missile is out of bounds
-            bool outOfBounds;
+            bool moved;
 
             // Goes through the missile list and update them 
             for (int i = 0; i < missilesList.Count; i++)
             {
+                moved = true;
                 // Missile goes up 
-                outOfBounds = missilesList[i].Move(vectorX: 0, vectorY: missilesList[i].VectorY);
+                if (moving && missilesList[i].Hp != 0) {
+                    moved = missilesList[i].Move(vectorX: 0, vectorY: missilesList[i].VectorY);
+                }
 
+                //
                 // If missile is out of bounds.. 
-                if (!outOfBounds || missilesList[i].Hp == 0)
+                if (!moved || missilesList[i].Hp == 0)
                 {
-                    Debug.WriteLine("okay okay");
                     missilesList[i].DelPosition();
                     // ..removes it from the list 
                     missilesList.Remove(missilesList[i]);
@@ -196,7 +199,7 @@ namespace GameObjectsNS
         }
 
         public virtual int Destroyed() {
-            return 1;
+            return 0;
         }
 
     }

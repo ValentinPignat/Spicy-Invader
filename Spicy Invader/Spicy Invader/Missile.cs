@@ -74,6 +74,5 @@ namespace MissileNS
             _y = y;
             _x = x;  
         }
-
     }
 }

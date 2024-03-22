@@ -46,7 +46,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bricks.cs" />
+    <Compile Include="Brick.cs" />
     <Compile Include="Walls.cs" />
     <Compile Include="EnemyBlock.cs" />
     <Compile Include="Enemies.cs" />

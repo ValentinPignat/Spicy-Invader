@@ -19,16 +19,16 @@ namespace WallsNS
         private const string SPRITE = "▓";
         private const Game.collisionStatus STATUS = Game.collisionStatus.Neutral;
 
-        private List<Bricks> bricksList = new List<Bricks>();
+        private List<Brick> bricksList = new List<Brick>();
 
-        public Walls(int x, int y, int width, int height) {
+        /*public Walls(int x, int y, int width, int height) {
             _x = x;
             _y = y;
             for (int i = 0; i < width; i++) {
-                Bricks brick = new Bricks(x: _x + i, y: _y, sprite: SPRITE);
+                Brick brick = new Brick(x: _x + i, y: _y, sprite: SPRITE);
                 bricksList.Add(brick);
             }
             _width = width;
-        }
+        }*/
     }
 }

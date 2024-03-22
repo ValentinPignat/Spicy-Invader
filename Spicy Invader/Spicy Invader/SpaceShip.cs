@@ -30,7 +30,7 @@ namespace SpaceshipNS
         /// <summary>
         /// Maximum active missiles 
         /// </summary>
-        public const int MAX_ACTIVE_MISSILES = 20;
+        public const int MAX_ACTIVE_MISSILES = 1;
 
         /// <summary>
         /// Width of the sprite
