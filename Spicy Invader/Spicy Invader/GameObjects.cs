@@ -7,13 +7,34 @@ using System;
 using System.Collections.Generic;
 using MissileNS;
 using Spicy_Invader;
-using System.Diagnostics;
-
 
 namespace GameObjectsNS
 {
     internal abstract class GameObject 
     {
+        /// <summary>
+        /// GameObject maximum X position
+        /// </summary>
+        protected int _maxX = Game.MARGIN_SIDE + Game.WIDTH;
+
+        /// <summary>
+        /// GameObject minimum X position
+        /// </summary>
+        protected int _minX = Game.MARGIN_SIDE;
+
+        /// <summary>
+        /// GameObject maximum Y position
+        /// </summary>
+        protected int _minY = Game.MARGIN_TOP_BOTTOM;
+
+        /// <summary>
+        /// GameObject minimum Y position
+        /// </summary>
+        protected int _maxY = Game.MARGIN_TOP_BOTTOM + Game.HEIGHT;
+
+        /// <summary>
+        /// GameObject hp
+        /// </summary>
         protected int _hp = 1;
 
         /// <summary>
@@ -27,19 +48,20 @@ namespace GameObjectsNS
         protected int _y = 0;
 
         /// <summary>
-        /// Status used for collision : Friendly, Ennemy, Neutral
+        /// GameObject status used for collision : Friendly, Ennemy, Neutral
         /// </summary>
         protected Game.collisionStatus _collisionStatus;
 
-        public Game.collisionStatus ColisionStatus
+        /// <summary>
+        /// Get GameObject _collisionStatus
+        /// </summary>
+        public Game.collisionStatus CollisionStatus
         {
             get { return _collisionStatus; }
-            set { _collisionStatus = value; }
         }
 
-
         /// <summary>
-        /// Get missile horizontal coordinate
+        /// Get GameObject horizontal coordinate
         /// </summary>
         public int X
         {
@@ -48,27 +70,32 @@ namespace GameObjectsNS
         }
 
         /// <summary>
-        /// Get missile vertical coordinate
+        /// Get GameObject vertical coordinate
         /// </summary>
         public int Y
         {
             get { return _y; }
-            set { _y = value; }
         }
 
+        /// <summary>
+        /// Get Get GameObject width
+        /// </summary>
         public int Width
         {
             get { return _width; }
         }
 
         /// <summary>
-        /// Get sprite height
+        /// Get Get GameObject height
         /// </summary>
         public int Height
         {
             get { return _height; }
         }
         
+        /// <summary>
+        /// Get/Set GameObject _hp
+        /// </summary>
         public int Hp 
         {
             get { return _hp; }
@@ -76,7 +103,7 @@ namespace GameObjectsNS
         }
 
         /// <summary>
-        /// List of players active missile
+        /// List of GameObject active missile
         /// </summary>
         public List<Missile> missilesList = new List<Missile>();
 
@@ -101,25 +128,34 @@ namespace GameObjectsNS
         /// <returns>True boolean if missile goes out of bounds</returns>
         public bool Move(int vectorX, int vectorY)
         {
-            if (CastOutOfBounds(vectorXCast : vectorX, vectorYCast: vectorY)) {
-                // ..Move it up
+            // If destination isn't out of bounds...
+            if (CastOutOfBounds(vectorXCast: vectorX, vectorYCast: vectorY))
+            {
+
+                //  .. move and return true
                 DelPosition();
                 _y += vectorY;
                 _x += vectorX;
                 Draw();
                 return true;
-            }    
-            return false;
-            
+            }
+            else {
+                return false;
+            }
         }
 
         /// <summary>
-        /// Write spaceship sprite at new coordinates
+        /// Write GameObject sprite (one or multiple lines) at coordinates
         /// </summary>
         public void Draw()
         {
-            Console.SetCursorPosition(_x, _y);
-            Console.Write(_sprite);
+            string[] lines = _sprite.Split('\n');
+
+            for (int i = 0; i < lines.Length; i++) {
+                Console.SetCursorPosition(_x, _y+i);
+                Console.Write(_sprite);
+
+            }
         }
 
 
@@ -129,23 +165,29 @@ namespace GameObjectsNS
         public void DelPosition()
         {
             Console.SetCursorPosition(_x, _y);
-            for (int i = 0; i < _width; i++)
+            for (int i = 0; i < _height; i++)
             {
-                Console.Write(" ");
+                for (int j = 0; j < _width; j++)
+                {
+                    Console.SetCursorPosition(_x+j, _y+i);
+                    Console.Write(" ");
+                }
+                
             }
         }
 
         public bool CastOutOfBounds(int vectorXCast, int vectorYCast)
         {
-            if (_x + vectorXCast > Game.MARGIN_SIDE + Game.WIDTH - this._width || _x + vectorXCast <= Game.MARGIN_SIDE) {
+            if (_x + vectorXCast > _maxX - _width || _x + vectorXCast <= _minX) {
                 return false;
             }
-            if (_y + vectorYCast >= Game.MARGIN_TOP_BOTTOM + Game.HEIGHT || _y + vectorYCast<= Game.MARGIN_TOP_BOTTOM )
+            if (_y + vectorYCast > _maxY - _height || _y + vectorYCast<= _minY)
             {
                 return false;
             }
             return true;
         }
+
         /// <summary>
         /// Create a missile object at the player coordinate
         /// </summary>
@@ -155,7 +197,6 @@ namespace GameObjectsNS
             // if the player has no active missile
             if (missilesList.Count < maxMissiles)
             {
-
                 // Create a new missile 
                 Missile missile = new Missile(x: x, y: y, vectorY: vectorY,collisionStatus: status, owner: owner);
 

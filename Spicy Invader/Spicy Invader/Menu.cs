@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace Spicy_Invader
 {
-    internal class Menu
+    internal static class Menu
     {
         /// <summary>
         /// Menu Title
@@ -36,7 +36,7 @@ namespace Spicy_Invader
                                         "                       4) HELP\n" +
                                         "                       5) EXIT\n";
 
-        private readonly string[] ONE_CD ={"\n" ,
+        /*private readonly string[] ONE_CD ={"\n" ,
                                   " __  \n" ,
                                   "/_ | \n" ,
                                   " | | \n" ,
@@ -57,8 +57,8 @@ namespace Spicy_Invader
                                        " |__ <  \n" ,
                                        " ___) | \n" ,
                                        "|____/  \n" };
-
-        //private readonly string[][] COUNTDOWN_NB = { ONE_CD, TWO_CD, THREE_CD};
+        */
+        //private readonly string[string[]]COUNTDOWN_NB = { ONE_CD, TWO_CD, THREE_CD};
 
         /*public void Enter() {
 

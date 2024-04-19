@@ -1,9 +1,8 @@
 ﻿/// ETML
 /// Author: Valentin Pignat 
 /// Date (creation): 18.01.2024
-/// Description: Missile class: 
-///     - GoUp() deletes the missile at its old position, change his coordinates, redraw it
-///         |-> Returns a boolean true if the missile goes out of bound
+/// Description: Missile class inheriting GameObject 
+///         |-> 
 
 
 using System;
@@ -42,7 +41,8 @@ namespace MissileNS
         /// <summary>
         /// Missile sprite
         /// </summary>
-        private const string SPRITE =  "|";
+        private const string SPRITE =  "|"
+;
 
         private GameObject _owner;
 
@@ -52,6 +52,14 @@ namespace MissileNS
             set { _vectorY = value; }
         }
 
+        /// <summary>
+        /// Missile Constructor 
+        /// </summary>
+        /// <param name="x">Horizontal position</param>
+        /// <param name="y">Vertical position</param>
+        /// <param name="vectorY">Vertical vector</param>
+        /// <param name="collisionStatus">Enemy, Friendly, Neutral</param>
+        /// <param name="owner">Object that shooted the missile</param>
         public Missile(int x, int y, int vectorY, Game.collisionStatus collisionStatus, GameObject owner)
         {
             _collisionStatus = collisionStatus;
@@ -63,16 +71,6 @@ namespace MissileNS
             _height = HEIGHT;
             _owner = owner;
             _hp = HP;
-        }
-
-        /// <summary>
-        /// Missile constructor
-        /// </summary>
-        /// <param name="x">Horizontal position</param>
-        /// <param name="y">Vertical position</param>
-        public Missile(int x, int y) {
-            _y = y;
-            _x = x;  
         }
     }
 }

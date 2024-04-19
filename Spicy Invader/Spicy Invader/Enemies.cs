@@ -7,12 +7,15 @@ using GameObjectsNS;
 using Spicy_Invader;
 using EnemyBlockNS;
 using System.Diagnostics;
+using System.Runtime.ExceptionServices;
+using System.Runtime.Remoting.Messaging;
 
 namespace EnemiesNS
 {
     internal class Enemy : GameObject
     {
-
+        private const int MAX_HP = 1;
+        private new const int MAX_Y = Game.MARGIN_TOP_BOTTOM + Game.HEIGHT - Game.PLAYER_TO_WALL - Game.WALL_HEIGHT - 1;
         public const int WIDTH = 3;
         public const int HEIGHT = 1;
         private const string SPRITE = "╓╫╖";
@@ -32,7 +35,8 @@ namespace EnemiesNS
             _height = HEIGHT;
             _collisionStatus = STATUS;
             _owner = owner;
-
+            _hp = MAX_HP;
+            _maxY = MAX_Y;
         }
 
         /// <summary>
