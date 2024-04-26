@@ -18,6 +18,7 @@ namespace Spicy_Invader
     internal class Game
     {
         // Tracks cycles between updates
+        private Menu _pauseMenu;
         private SpaceShip _player;
         private EnemyBlock _enemyBlock;
         private int _missileCycle = 0;
@@ -116,7 +117,8 @@ namespace Spicy_Invader
         /// Enum used for collision check (Friendly, Enemy, Neutral)
         /// </summary>
 
-        public Game() { 
+        public Game(Menu pauseMenu) { 
+            _pauseMenu = pauseMenu;
             GameSetup();
             GameStart();
         }
@@ -182,6 +184,7 @@ namespace Spicy_Invader
         }
 
         private void GameSetup() {
+
             // Create the spaceship and displays it
             _player = new SpaceShip(x: MARGIN_SIDE + (WIDTH / 2), y: HEIGHT);
             _player.Draw();
@@ -208,6 +211,7 @@ namespace Spicy_Invader
             _gameRunning = true;
             _score = 0;
 
+            Console.Clear();
             DrawLayout();
 
         }
@@ -221,14 +225,7 @@ namespace Spicy_Invader
             {
                 if (Keyboard.IsKeyDown(Key.V))
                 {
-                    do
-                    {
-                        _input = Console.ReadKey().Key;
-                        Console.SetCursorPosition(HEIGHT / 2, WIDTH / 2);
-                        Console.WriteLine("Game is paused, press R to resume");
-
-                    } while (_input != ConsoleKey.R);
-
+                    _pauseMenu.Pause();
                 }
                 // Player update every PLAYER_SPEED cycles
                 if (_playerCycle == PLAYER_SPEED)

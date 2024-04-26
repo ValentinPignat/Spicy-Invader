@@ -14,6 +14,7 @@
 ///     CALCULATE WIDTH AND HEIGHT FROM SPRTIE (No need for manual change)
 ///     ENEMY MOVE AFTER COLISION AND DEAD UPDATE ? 
 ///     Stop console change / remove nativemethods ?
+///     FINISH PAUSE COUNTDOWN ETC (redisplay all after pause)
 ///
 /// REVIEW CDC: 26.04.2024
 /// https://perso.esiee.fr/~perretb/I3FM/POO1/projet/index.html#cahier-des-charges-fonctionnel
@@ -67,18 +68,9 @@ namespace Spicy_Invader
         static void Main(string[] args)
         {
             NativeMethods.BlockInput(true);
+            ConsoleSetup();
 
             Menu menu = new Menu();
-            // Placeholder menu
-            ConsoleSetup();
-            Console.WriteLine("Space Invaders");
-            while (Console.KeyAvailable) { Console.ReadKey(true); }
-            Console.ReadKey();
-            Game game = new Game();
-
-            while (Console.KeyAvailable) { Console.ReadKey(true); }
-            Console.WriteLine("We are in program.cs");
-            Console.ReadLine(); 
         }
 
 
