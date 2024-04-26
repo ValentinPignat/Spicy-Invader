@@ -9,8 +9,12 @@ using System.Threading;
 
 namespace Spicy_Invader
 {
-    internal static class Menu
+    internal class Menu
     {
+        private bool _easyMode =  false;
+        private bool _songOn = false;
+
+
         /// <summary>
         /// Menu Title
         /// Adapted from https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
@@ -31,10 +35,30 @@ namespace Spicy_Invader
                                     "      _| |_ | | | | \\ V / | (_| || (_| ||  __/| |   \\__ \\   \n" +
                                     "      \\___/ |_| |_|  \\_/   \\__,_| \\__,_| \\___||_|   |___/ \n";
         private const string MAIN_MENU = "\n\n\n" +
-                                        "                       1) RESUME / NEW GAME\n" +
-                                        "                       3) OPTIONS\n" +
-                                        "                       4) HELP\n" +
-                                        "                       5) EXIT\n";
+                                        "                       1) NEW GAME\n" +
+                                        "                       2) OPTIONS\n" +
+                                        "                       3) ABOUT\n" +
+                                        "                       4) EXIT\n";
+
+        public Menu()
+        {
+            MainMenu();
+        }
+
+        private void MainMenu() {
+            do
+            {
+                Console.Clear();
+                Console.WriteLine(TITLE);
+                Console.WriteLine(MAIN_MENU);
+
+                do { } 
+                
+                while (true);
+
+
+            } while (true);
+        }
 
         /*private readonly string[] ONE_CD ={"\n" ,
                                   " __  \n" ,
