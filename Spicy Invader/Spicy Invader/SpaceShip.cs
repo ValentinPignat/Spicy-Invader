@@ -8,15 +8,9 @@
 ///         - FireMissile() TODOOOOOOOOOO
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GameObjectsNS;
-using System.Windows.Input;
-using MissileNS;
 using Spicy_Invader;
+using System.Windows.Input;
 
 
 
@@ -25,12 +19,20 @@ namespace SpaceshipNS
 {
     internal class SpaceShip : GameObject
     {
+        /// <summary>
+        /// Maximum hp
+        /// </summary>
         public const int MAX_HP = 5;
+
+        /// <summary>
+        /// (HARD MODE) Maximum hp
+        /// </summary>
+        public const int MAX_HP_HARD = 3;
 
         /// <summary>
         /// Maximum active missiles 
         /// </summary>
-        public const int MAX_ACTIVE_MISSILES = 1;
+        public const int MAX_ACTIVE_MISSILES = 20;
 
         /// <summary>
         /// Width of the sprite
@@ -42,7 +44,6 @@ namespace SpaceshipNS
         /// </summary>
         const int HEIGHT = 1;
 
-        
         /// <summary>
         /// Spaceship sprite
         /// </summary>
@@ -55,42 +56,27 @@ namespace SpaceshipNS
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public SpaceShip(int x, int y) {
+        public SpaceShip(int x, int y, bool easymode) {
+            if (easymode)
+            {
+                _hp= MAX_HP;
+            }
+            else {
+                _hp = MAX_HP_HARD;
+            }
+
             _x = x;
             _y = y;
             _sprite = SPRITE;
             _height = HEIGHT;
             _width = WIDTH;
             _collisionStatus = STATUS;
-            _hp = MAX_HP;
         }
 
-        /// <summary>
-        /// Read for user input (mouvement/fire) 
-        /// </summary>
-        public void PlayerControl()
-        {
-
-            // SPACE pressed,creates a missile at player coordinates
-            if (Keyboard.IsKeyDown(Key.Space))
-            {
-                FireMissile(missilesList: missilesList, vectorY: -1, maxMissiles: MAX_ACTIVE_MISSILES, x: _x + _width/2, y:_y - _height, status:Game.collisionStatus.Friendly, owner: this);
-            }
-
-            // LEFT movement key pressed and right movement key not pressed..
-            if ((Keyboard.IsKeyDown(Key.Left) || Keyboard.IsKeyDown(Key.A)) & !Keyboard.IsKeyDown(Key.Right) & !Keyboard.IsKeyDown(Key.D))
-            {
-                // ..Go left
-                Move(vectorX: -1, vectorY: 0);
-            }
-
-            // RIGTH movement key pressed and left movement key not pressed..
-            if ((Keyboard.IsKeyDown(Key.Right) || Keyboard.IsKeyDown(Key.D)) & !Keyboard.IsKeyDown(Key.Left) & !Keyboard.IsKeyDown(Key.A))
-            {
-                // ..Go right
-                Move(vectorX: 1, vectorY: 0);
-            }
+        public void Shoot() {
+            FireMissile(missilesList: missilesList, vectorY: -1, maxMissiles: MAX_ACTIVE_MISSILES, x: _x + _width / 2, y: _y - _height, status: Game.collisionStatus.Friendly, owner: this);
         }
+
 
 
     }

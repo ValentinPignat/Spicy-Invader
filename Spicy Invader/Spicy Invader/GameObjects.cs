@@ -3,10 +3,10 @@
 /// Date (creation): 29.02.2024
 /// Description: Game objects class, used for commomn atributes between missiles, player, ennemies.
 
-using System;
-using System.Collections.Generic;
 using MissileNS;
 using Spicy_Invader;
+using System;
+using System.Collections.Generic;
 
 namespace GameObjectsNS
 {
@@ -209,7 +209,7 @@ namespace GameObjectsNS
         /// <summary>
         /// Update missile position
         /// </summary>
-        public void MissileUpdate(bool moving)
+        public void Update(bool moving)
         {
 
             // Track if current missile is out of bounds

@@ -3,12 +3,9 @@
 /// Date (creation): 08.02.2024
 /// Description: Ennemies class, object with coodrinates, sprite
 
+using EnemyBlockNS;
 using GameObjectsNS;
 using Spicy_Invader;
-using EnemyBlockNS;
-using System.Diagnostics;
-using System.Runtime.ExceptionServices;
-using System.Runtime.Remoting.Messaging;
 
 namespace EnemiesNS
 {

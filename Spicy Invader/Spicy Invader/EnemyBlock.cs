@@ -5,24 +5,20 @@
 ///     - Update all ennemies positions
 ///     - Manage ennemy fire 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EnemiesNS;
-using Spicy_Invader;
-using MissileNS;
 using GameObjectsNS;
-
-
-
+using Spicy_Invader;
+using System;
+using System.Linq;
 
 namespace EnemyBlockNS
 {
     internal class EnemyBlock : GameObject
     {
-        private int MAX_ACTIVE_MISSILES = 2;
+        private const int MAX_ACTIVE_MISSILES = 1;
+        private const int MAX_ACTIVE_MISSILES_HARD = 2;
+
+        private int _maxActiveMissile;
         private const int BETWEEN_X = 3;
         private const int BETWEEN_Y = 1;
         private const int ROW = 3;
@@ -34,7 +30,7 @@ namespace EnemyBlockNS
         private int _nextVectorX = 1;
         private int _nextVectorY = 0;
         public bool _change = false;
-        private double randomShootProbability = 0.35;
+        private double randomShootProbability = 0.15;
         private int _linesDown = 0;
 
         public int LinesDown
@@ -48,7 +44,17 @@ namespace EnemyBlockNS
         public int[] enemiesByCol = new int[COL];
 
 
-        public EnemyBlock() {
+        public EnemyBlock(bool easymode) {
+
+            // Maximum nb of active missile for the ennemyBlock depending on difficulty
+            if (easymode)
+            {
+                _maxActiveMissile = MAX_ACTIVE_MISSILES;
+            }
+            else {
+                _maxActiveMissile = MAX_ACTIVE_MISSILES_HARD;
+            }
+
             for (int i = 0; i <COL; i++)
             {
                 for (int j = 0; j < ROW; j++) {
@@ -140,7 +146,7 @@ namespace EnemyBlockNS
                 if (enemiesTab[colFiring, i] != null)
                 {
                     Enemy firingEnnemy = enemiesTab[colFiring, i];
-                    FireMissile(missilesList: missilesList, vectorY: +1, maxMissiles: MAX_ACTIVE_MISSILES, x: firingEnnemy.X + firingEnnemy.Height, y: firingEnnemy.Y + firingEnnemy.Width / 2, status: Game.collisionStatus.Enemy, owner: this);
+                    FireMissile(missilesList: missilesList, vectorY: +1, maxMissiles: _maxActiveMissile, x: firingEnnemy.X + firingEnnemy.Height, y: firingEnnemy.Y + firingEnnemy.Width / 2, status: Game.collisionStatus.Enemy, owner: this); ;
                     break;
                 }
             }

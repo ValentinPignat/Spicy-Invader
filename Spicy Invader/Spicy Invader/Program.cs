@@ -1,10 +1,7 @@
 ﻿/// ETML
 /// Author: Valentin Pignat 
 /// Date (creation): 18.01.2024
-/// Description: Spicy Invader Game, initiate the player's ship and enter a loop:
-///     - Reads for input 
-///     - Update
-///     - Thread.Sleep()
+/// Description: Main Program for the Spicy Invader Game
 
 /// TODO :
 ///     - Change to onhit method in each object to manage collision and avoid updatig all ? THTHTHTHTH
@@ -15,35 +12,28 @@
 ///     ENEMY MOVE AFTER COLISION AND DEAD UPDATE ? 
 ///     Stop console change / remove nativemethods ?
 ///     FINISH PAUSE COUNTDOWN ETC (redisplay all after pause)
+///     Tidy game class to separate methods
+///     Tidy code
+///     ADD CONTROLS FOR USER (V for pause etc...)
+///     win/loose screen 
 ///
 /// REVIEW CDC: 26.04.2024
 /// https://perso.esiee.fr/~perretb/I3FM/POO1/projet/index.html#cahier-des-charges-fonctionnel
 /// 
 /// Missing/Incomplete feature:
 ///     - Son on/off
-///     
 ///     - Difficulté facile/difficile
 ///     - Highscore
 ///     - A propos
 ///     - Quitter
+///     finish menu add commands help
 
-using SpaceshipNS;
 using System;
-using System.Threading;
-using EnemiesNS;
-using EnemyBlockNS;
-using MissileNS;
-using System.Collections.Generic;
-using GameObjectsNS;
-using BricksNS;
-using System.Windows.Input;
-using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 
-
-
-// Handle multiple input at each cycle 
-// Assembly added: WindowsBase and PresentationCore
+// IsKeyDown() used to handle multiple input at each cycle 
+// References: WindowsBase and PresentationCore
 // https://learn.microsoft.com/en-us/dotnet/api/system.windows.input.keyboard.iskeydown?view=windowsdesktop-8.0
 // https://learn.microsoft.com/en-us/dotnet/api/system.windows.input.key?view=windowsdesktop-8.0
 // https://stackoverflow.com/questions/6373645/c-sharp-winforms-how-to-set-main-function-stathreadattribute
@@ -52,22 +42,24 @@ namespace Spicy_Invader
 {
     internal class Program
     {
-        public partial class NativeMethods
-        {
 
-            /// Return Type: BOOL->int
-            ///fBlockIt: BOOL->int
-            [System.Runtime.InteropServices.DllImportAttribute("user32.dll", EntryPoint = "BlockInput")]
-            [return: System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.Bool)]
-            public static extern bool BlockInput([System.Runtime.InteropServices.MarshalAsAttribute(System.Runtime.InteropServices.UnmanagedType.Bool)] bool fBlockIt);
-
-        }
+        // https://stackoverflow.com/questions/38426338/c-sharp-console-disable-resize
+        // Used for the DisableResize() Method
+        #region Disable Resize
+        private const int MF_BYCOMMAND = 0x00000000; 
+        public const int SC_CLOSE = 0xF060; 
+        public const int SC_MINIMIZE = 0xF020; 
+        public const int SC_MAXIMIZE = 0xF030;
+        public const int SC_SIZE = 0xF000;//resize
+        [DllImport("user32.dll")] public static extern int DeleteMenu(IntPtr hMenu, int nPosition, int wFlags);
+        [DllImport("user32.dll")] private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+        [DllImport("kernel32.dll", ExactSpelling = true)] private static extern IntPtr GetConsoleWindow();
+        #endregion
 
         // Allows Keyboard.IsKeyDown
         [STAThread]
         static void Main(string[] args)
         {
-            NativeMethods.BlockInput(true);
             ConsoleSetup();
 
             Menu menu = new Menu();
@@ -75,7 +67,7 @@ namespace Spicy_Invader
 
 
         /// <summary>
-        /// Set up console parameters (Dimension, Cursor)
+        /// Set up console parameters (Dimension, Cursor, Scrolling, Resize)
         /// </summary>
         static void ConsoleSetup()
         {
@@ -85,6 +77,30 @@ namespace Spicy_Invader
 
             // Hides cursor
             Console.CursorVisible = false;
+
+            // Disable scrolling 
+            // https://stackoverflow.com/questions/19568127/hide-scrollbars-in-console-without-flickering
+            Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
+
+            // Disable Resize
+            DisableResize();
+        }
+
+        /// <summary>
+        /// Disable resizing, minimizing and maximizing
+        /// https://stackoverflow.com/questions/38426338/c-sharp-console-disable-resize
+        /// </summary>
+        static void DisableResize() {
+            IntPtr handle = GetConsoleWindow();
+            IntPtr sysMenu = GetSystemMenu(handle, false);
+
+            if (handle != IntPtr.Zero)
+            {
+                // DeleteMenu(sysMenu, SC_CLOSE, MF_BYCOMMAND);
+                DeleteMenu(sysMenu, SC_MINIMIZE, MF_BYCOMMAND);
+                DeleteMenu(sysMenu, SC_MAXIMIZE, MF_BYCOMMAND);
+                DeleteMenu(sysMenu, SC_SIZE, MF_BYCOMMAND);//resize
+            }
         }
     }
 }

@@ -3,13 +3,6 @@
 /// Date (creation): 14.03.2024
 /// Description: Brick class 
 
-using System;
-using System.Collections.Generic;
-using System.IO.Packaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using GameObjectsNS;
 using Spicy_Invader;
 
@@ -17,7 +10,15 @@ namespace BricksNS
 {
     internal class Brick : GameObject
     {
+
+        /// <summary>
+        /// Brick sprite
+        /// </summary>
         private const string SPRITE = "░";
+
+        /// <summary>
+        /// Brick hp
+        /// </summary>
         private const int HP = 1;
         private const int WIDTH = 1;
         private const Game.collisionStatus STATUS = Game.collisionStatus.Neutral;

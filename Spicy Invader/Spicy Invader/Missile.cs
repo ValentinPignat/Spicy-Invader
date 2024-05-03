@@ -5,13 +5,11 @@
 ///         |-> 
 
 
-using System;
-using System.Diagnostics;
 using GameObjectsNS;
 using Spicy_Invader;
 
 
-namespace MissileNS 
+namespace MissileNS
 {
     /// <summary>
     /// Missile class 
