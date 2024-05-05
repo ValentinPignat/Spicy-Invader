@@ -77,7 +77,6 @@ namespace Spicy_Invader
         private const string BACK = "3) MAIN MEMU\n";
         public Menu()
         {
-            
             _highscores =  GetHighscore();
             MainMenu();
         }

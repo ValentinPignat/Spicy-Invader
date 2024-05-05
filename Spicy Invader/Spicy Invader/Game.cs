@@ -2,7 +2,7 @@
 /// Author: Valentin Pignat
 /// Date (creation) : 26.04.2024
 /// Description : Game class for Spicy Invader
-///         -   Create a game and loops until end of game
+///         -   Create a game with many GameObjects and loops until end of game
 ///         -   Constants can be changed to tweak different aspects of the game
 
 using BricksNS;
@@ -45,22 +45,22 @@ namespace Spicy_Invader
         /// <summary>
         /// Time between cycles in ms
         /// </summary>
-        public const int CYCLE_SPEED = 1;
+        private const int CYCLE_SPEED = 1;
 
         /// <summary>
         /// Player speed (number of cycle before update)
         /// </summary>
-        public const int PLAYER_SPEED = 2;
+        private const int PLAYER_SPEED = 2;
 
         /// <summary>
         /// Enemy speed (number of cycle before update)
         /// </summary>
-        public const int ENEMY_SPEED = 5;
+        private const int ENEMY_SPEED = 5;
 
         /// <summary>
         /// Missile speed (number of cycle before update)
         /// </summary>
-        public const int MISSILES_SPEED = 6;
+        private const int MISSILES_SPEED = 6;
 
         /// <summary>
         /// Margin for the display / player and enemies movement zone
@@ -92,10 +92,15 @@ namespace Spicy_Invader
         /// </summary>
         public const int HEIGHT = 25;
 
-        private const double RATIO_LINEDOWN_SPEED = 5;
+        /// <summary>
+        /// Every x line went down speed goes up by 1 
+        /// </summary>
+        private const double RATIO_LINEDOWN_ACCELETATION = 5;
 
-        private bool _easymode = true;
-
+        /// <summary>
+        /// Easy mode
+        /// </summary>
+        public bool _easymode = true;
         #endregion
 
         #region ATTRIBUTES
@@ -165,14 +170,14 @@ namespace Spicy_Invader
             _pauseMenu = menu;
             _easymode = easymode;
             GameSetup();
-            GameStart();
+            GameStartLoop();
         }
 
         /// <summary>
         /// Add or remove hp/score and update it
         /// </summary>
-        /// <param name="score">Player's score</param>
-        /// <param name="hp">Player's hp</param>
+        /// <param name="score">Player's score to add/remove</param>
+        /// <param name="hp">Player's hp to add/remove</param>
         public static void DisplayScoreHp(int score, int hp)
         {
 
@@ -254,15 +259,21 @@ namespace Spicy_Invader
                 }
 
             }
+
+            // Start game with score at 0
             _gameRunning = true;
             _score = 0;
 
-
+            // Draw Layout
             DrawLayout();
         }
 
-        public void RedrawAll() { 
+        /// <summary>
+        /// Redraw every game and UI element
+        /// </summary>
+        private void RedrawAll() { 
             DrawLayout();
+            DisplayScoreHp(score: 0, hp:0) ;
             foreach (GameObject go in _collisionObjects) {
                 go.Draw();
             }
@@ -275,6 +286,10 @@ namespace Spicy_Invader
                 missile.Draw();
             }
         }
+
+        /// <summary>
+        /// Populate _enemyBlock with and EnemyBlock
+        /// </summary>
         private void SpawnEnemies() {
             // Create enemy block 
             _enemyBlock = new EnemyBlock(easymode: _easymode);
@@ -290,7 +305,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Enter game loop until end of game
         /// </summary>
-        private void GameStart() {
+        private void GameStartLoop() {
 
             // Loop : Check for pause > Player action > Missile upate > Enemy update > Colisions check > Dispose of dead objects
             while (_gameRunning)
@@ -316,16 +331,16 @@ namespace Spicy_Invader
                 // Missiles update and MOVE every MISSILE_SPEED cycles
                 if (_missileCycle == MISSILES_SPEED)
                 {
-                    _player.Update(moving: true);
-                    _enemyBlock.Update(moving: true);
+                    _player.UpdateMissile(moving: true);
+                    _enemyBlock.UpdateMissile(moving: true);
                     _missileCycle = 0;
                 }
                 // Missile update without moving
                 else
                 {
                     _missileCycle++;
-                    _player.Update(moving: false);
-                    _enemyBlock.Update(moving: false);
+                    _player.UpdateMissile(moving: false);
+                    _enemyBlock.UpdateMissile(moving: false);
                 }
 
                 // CheckColision() for player's missile(s);
@@ -333,9 +348,8 @@ namespace Spicy_Invader
                 {
                     CheckColision(missile: missile, target: _collisionObjects);
 
-                    //CheckColision(missile: missile, target: enemyBlock.missilesList);
+                    // CheckColision(missile: missile, target: enemyBlock.missilesList);
                 }
-
 
                 // CheckColision() for enemy missile(s);
                 foreach (Missile missile in _enemyBlock.missilesList)
@@ -356,7 +370,7 @@ namespace Spicy_Invader
                 DisplayScoreHp(score: _score, hp: _player.Hp);
 
                 // Enemy speed goes up when they go down, ratio can be changed
-                if (_enemyCycle >= (double)ENEMY_SPEED - ((_enemyBlock.LinesDown > 1) ? (double)_enemyBlock.LinesDown / RATIO_LINEDOWN_SPEED : 1))
+                if (_enemyCycle >= (double)ENEMY_SPEED - ((_enemyBlock.LinesDown > 1) ? (double)_enemyBlock.LinesDown / RATIO_LINEDOWN_ACCELETATION : 1))
                 {
                     _enemyBlock.Update();
                     _enemyCycle = 0;
@@ -369,17 +383,15 @@ namespace Spicy_Invader
                 // Time between each cycle
                 Thread.Sleep(CYCLE_SPEED);
 
-                // 
+                // If game is not running bc enemyBlock is empty and easy mode is off
                 if (_gameRunning == false && !_easymode && _player.Hp > 0)
                 {
+
+                    // Respawn ennemies and continue
                     SpawnEnemies();
                     _gameRunning = true;
-
-                }
-                
-                
-                
-            }
+                }                               
+            } // End of Game loop
 
             // After game end add score to highscore
             _pauseMenu.AddToHighscore(_score);

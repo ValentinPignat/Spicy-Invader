@@ -2,6 +2,7 @@
 /// Author: Valentin Pignat 
 /// Date (creation): 18.01.2024
 /// Description: Main Program for the Spicy Invader Game
+///         - Setup console and enter menus
 
 /// TODO :
 ///     - Change to onhit method in each object to manage collision and avoid updatig all ? THTHTHTHTH
@@ -9,13 +10,13 @@
 ///     see cdc
 ///     DISABLE SCROLL AND CLICK
 ///     CALCULATE WIDTH AND HEIGHT FROM SPRTIE (No need for manual change)
-///     ENEMY MOVE AFTER COLISION AND DEAD UPDATE ? 
 ///     Stop console change / remove nativemethods ?
 ///     FINISH PAUSE COUNTDOWN ETC (redisplay all after pause)
 ///     Tidy game class to separate methods
 ///     Tidy code
 ///     ADD CONTROLS FOR USER (V for pause etc...)
 ///     win/loose screen 
+///     TODO windows 11 ???
 ///
 /// REVIEW CDC: 26.04.2024
 /// https://perso.esiee.fr/~perretb/I3FM/POO1/projet/index.html#cahier-des-charges-fonctionnel
@@ -27,10 +28,11 @@
 ///     - A propos
 ///     - Quitter
 ///     finish menu add commands help
+///     
+/// Make a GameObject constructor ... then base vitrual override 
 
 using System;
 using System.Runtime.InteropServices;
-
 
 // IsKeyDown() used to handle multiple input at each cycle 
 // References: WindowsBase and PresentationCore
@@ -45,7 +47,6 @@ namespace Spicy_Invader
 
         // https://stackoverflow.com/questions/38426338/c-sharp-console-disable-resize
         // Used for the DisableResize() Method
-        #region Disable Resize
         private const int MF_BYCOMMAND = 0x00000000; 
         public const int SC_CLOSE = 0xF060; 
         public const int SC_MINIMIZE = 0xF020; 
@@ -54,7 +55,7 @@ namespace Spicy_Invader
         [DllImport("user32.dll")] public static extern int DeleteMenu(IntPtr hMenu, int nPosition, int wFlags);
         [DllImport("user32.dll")] private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
         [DllImport("kernel32.dll", ExactSpelling = true)] private static extern IntPtr GetConsoleWindow();
-        #endregion
+
 
         // Allows Keyboard.IsKeyDown
         [STAThread]
@@ -62,6 +63,7 @@ namespace Spicy_Invader
         {
             ConsoleSetup();
 
+            // Enter menus
             Menu menu = new Menu();
         }
 

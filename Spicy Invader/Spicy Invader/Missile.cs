@@ -2,7 +2,7 @@
 /// Author: Valentin Pignat 
 /// Date (creation): 18.01.2024
 /// Description: Missile class inheriting GameObject 
-///         |-> 
+///         - Vector added for repeated moves
 
 
 using GameObjectsNS;
@@ -41,9 +41,14 @@ namespace MissileNS
         /// </summary>
         private const string SPRITE =  "|"
 ;
-
+        /// <summary>
+        /// Missile shooter
+        /// </summary>
         private GameObject _owner;
 
+        /// <summary>
+        /// Missile Y vector getter
+        /// </summary>
         public int VectorY
         {
             get { return _vectorY; }
