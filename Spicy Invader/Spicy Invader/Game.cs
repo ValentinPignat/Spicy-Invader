@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Input;
+using System.Media;
 
 namespace Spicy_Invader
 {
@@ -149,6 +150,10 @@ namespace Spicy_Invader
         /// </summary>
         private bool _gameRunning = false;
 
+        /// <summary>
+        /// SoundManager to call for audio
+        /// </summary>
+        private SoundManager _soundManager;
         #endregion
 
         /// <summary>
@@ -165,10 +170,12 @@ namespace Spicy_Invader
         /// Game constructor. Setup and start game
         /// </summary>
         /// <param name="menu">Menu used for pause during play and highscore update</param>
-        /// <param name="easymode">True for easy / False for hard (default true)</param>
-        public Game(Menu menu, bool easymode = true) { 
+        /// <param name="easyMode">True for easy / False for hard (default true)</param>
+        public Game(Menu menu, SoundManager soundManager, bool easyMode = true) { 
+
             _pauseMenu = menu;
-            _easymode = easymode;
+            _easymode = easyMode;
+            _soundManager = soundManager;
             GameSetup();
             GameStartLoop();
         }
@@ -292,7 +299,7 @@ namespace Spicy_Invader
         /// </summary>
         private void SpawnEnemies() {
             // Create enemy block 
-            _enemyBlock = new EnemyBlock(easymode: _easymode);
+            _enemyBlock = new EnemyBlock(easymode: _easymode, soundManager:_soundManager);
 
             // Create enemies
             foreach (Enemy enemy in _enemyBlock.enemiesTab)
@@ -407,6 +414,7 @@ namespace Spicy_Invader
             if (Keyboard.IsKeyDown(Key.Space))
             {
                 _player.Shoot();
+                _soundManager.FiringSound();
             }
 
             // LEFT movement key pressed and right movement key not pressed..
@@ -444,7 +452,7 @@ namespace Spicy_Invader
                     {
                         if (missile.CollisionStatus != gameObj.CollisionStatus)
                         {
-
+                            _soundManager.CollisionSound();
                             // ... deal one damage to both objects
                             if (missile.Hp > 0) { missile.Hp--; }
                             if (gameObj.Hp > 0) { gameObj.Hp--; }
@@ -496,5 +504,8 @@ namespace Spicy_Invader
                 _collisionObjects.Remove(gameObj);
             }
         }
+
+
+
     }
 }

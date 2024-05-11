@@ -2,7 +2,7 @@
 /// Author: Valentin Pignat 
 /// Date (creation): 08.02.2024
 /// Description: EnnemyBlock class
-///     - Update all ennemies positions
+///     - Update all ennemies positions and decide next movement
 ///     - Manage ennemy fire 
 
 using EnemiesNS;
@@ -10,41 +10,117 @@ using GameObjectsNS;
 using Spicy_Invader;
 using System;
 using System.Linq;
+using System.Media;
 
 namespace EnemyBlockNS
 {
     internal class EnemyBlock : GameObject
     {
+        /// <summary>
+        /// Max active missiles in easy mode
+        /// </summary>
         private const int MAX_ACTIVE_MISSILES = 1;
+
+        /// <summary>
+        /// Max active missile in hard mode
+        /// </summary>
         private const int MAX_ACTIVE_MISSILES_HARD = 2;
 
-        private int _maxActiveMissile;
+        /// <summary>
+        /// Max active missile depensding on game difficulty
+        /// </summary>
+        private readonly int _maxActiveMissile;
+
+        /// <summary>
+        /// Horizontal space between each enemy
+        /// </summary>
         private const int BETWEEN_X = 3;
+
+        /// <summary>
+        /// Vertical space betwenn each enemy
+        /// </summary>
         private const int BETWEEN_Y = 1;
+
+        /// <summary>
+        /// Nb of enemy rows
+        /// </summary>
         private const int ROW = 3;
+
+        /// <summary>
+        /// Nb of enemy collums
+        /// </summary>
         private const int COL = 4;
-        private const int Y_LIMIT = 18;
+
+        /// <summary>
+        /// EnemyBlock X vector
+        /// </summary>
         private int _vectorX = 1;
+
+        /// <summary>
+        /// EnemyBlock Y vector
+        /// </summary>
         private int _vectorY = 0;
+
+        /// <summary>
+        /// EnemyBlock previous X vector
+        /// </summary>
         private int _lastVectorX;
+
+        /// <summary>
+        /// EnemyBlock next X vector
+        /// </summary>
         private int _nextVectorX = 1;
+
+        /// <summary>
+        /// Enemy next Y vector
+        /// </summary>
         private int _nextVectorY = 0;
-        public bool _change = false;
+
+        /// <summary>
+        /// EnemyBlock fire probability at each update
+        /// </summary>
         private double randomShootProbability = 0.15;
+
+        /// <summary>
+        /// EnemyBlcock nb of lines went down
+        /// </summary>
         private int _linesDown = 0;
 
+        /// <summary>
+        /// EnemyBlcock nb of lines went down getter
+        /// </summary>
         public int LinesDown
         {
             get { return _linesDown; }
-            set { _linesDown = value; }
         }
 
-        Random rnd = new Random();
+        /// <summary>
+        /// Random
+        /// </summary>
+        private Random rnd = new Random();
+
+        /// <summary>
+        /// Enemy tab, storing each enemy by position
+        /// </summary>
         public Enemy[,] enemiesTab = new Enemy[COL,ROW];
+
+        /// <summary>
+        /// Nb of alive enemies by column
+        /// </summary>
         public int[] enemiesByCol = new int[COL];
 
+        /// <summary>
+        /// SoundManager to call for audio
+        /// </summary>
+        private SoundManager _soundManager;
 
-        public EnemyBlock(bool easymode) {
+        /// <summary>
+        /// EnemyBlock constructor
+        /// </summary>
+        /// <param name="easymode">True if easy mode on</param>
+        public EnemyBlock(bool easymode, SoundManager soundManager) {
+
+            _soundManager = soundManager;
 
             // Maximum nb of active missile for the ennemyBlock depending on difficulty
             if (easymode)
@@ -55,6 +131,7 @@ namespace EnemyBlockNS
                 _maxActiveMissile = MAX_ACTIVE_MISSILES_HARD;
             }
 
+            // Create enemies and put them in the 2D array
             for (int i = 0; i <COL; i++)
             {
                 for (int j = 0; j < ROW; j++) {
@@ -62,13 +139,17 @@ namespace EnemyBlockNS
                     enemiesTab[i, j] = enemy;
                 }
             }
-
+            
+            // Foreach column, nb of enemies = nb of rows
             for (int i = 0; i < enemiesByCol.Length; i++) { 
                 enemiesByCol[i] = ROW;
             }
         }
+
         
-            
+        /// <summary>
+        /// Update every enemy in EnemyBlock, moving them and tryning to Fire. Calculate next move.
+        /// </summary>
         public void Update() {
 
             // Update direction before moving the enemies individually
@@ -128,7 +209,8 @@ namespace EnemyBlockNS
             
             // Random chance of making a random enemy fire
             if (rnd.NextDouble() < randomShootProbability) {
-                RandomFire();              
+                RandomFire();
+                _soundManager.FiringSound();
             }  
         }
 
@@ -137,10 +219,13 @@ namespace EnemyBlockNS
         /// </summary>
         private void RandomFire() {
             int colFiring = 0;
-            do
-            {
+
+            // Keep getting random column if empty
+            do{
                 colFiring = rnd.Next(0, COL);
             } while (enemiesByCol[colFiring] == 0);
+
+            // Iterate through line of enemy and make lowest fire
             for (int i = ROW - 1; i >= 0; i--)
             {
                 if (enemiesTab[colFiring, i] != null)
@@ -152,7 +237,10 @@ namespace EnemyBlockNS
             }
         }
 
-
+        /// <summary>
+        /// Check if enemiesTab îs empty
+        /// </summary>
+        /// <returns>True if empty</returns>
         public bool IsEmpty() {
             bool isEmpty = true;
             foreach (Enemy enemy in enemiesTab) {
@@ -163,7 +251,5 @@ namespace EnemyBlockNS
             }
             return isEmpty ;
         }
-
-
     }
 }

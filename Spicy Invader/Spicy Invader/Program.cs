@@ -30,6 +30,7 @@
 ///     finish menu add commands help
 ///     
 /// Make a GameObject constructor ... then base vitrual override 
+/// Shooter class => EnemyBlock
 
 using System;
 using System.Runtime.InteropServices;

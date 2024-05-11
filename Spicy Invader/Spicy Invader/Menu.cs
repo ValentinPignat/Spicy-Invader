@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Threading;
 using System.Xml.Schema;
 
@@ -12,9 +13,14 @@ namespace Spicy_Invader
         private const int MAX_SCORES = 10;
         private const char SEPARATOR = '\n';
         private bool _easyMode = true;
-        private bool _soundOn = true;
+
         private ConsoleKey _input;
         private const int MARGIN_TOP = 5;
+
+        /// <summary>
+        /// SoundManager to call for audio
+        /// </summary>
+        private SoundManager _soundManager;
 
         private const string HIGHSCORE_PATH = @"D:\Temp\SpicyInvaderHighScores.txt";
 
@@ -77,8 +83,10 @@ namespace Spicy_Invader
         private const string BACK = "3) MAIN MEMU\n";
         public Menu()
         {
+            _soundManager = new SoundManager();
             _highscores =  GetHighscore();
             MainMenu();
+   
         }
 
         /// <summary>
@@ -160,18 +168,22 @@ namespace Spicy_Invader
                 switch (_input)
                 {
                     case ConsoleKey.D1:
-                        Game game = new Game(menu:this, easymode:_easyMode);                    
+                        Game game = new Game(menu:this, easyMode:_easyMode, soundManager: _soundManager);                    
                         break;
                     case ConsoleKey.D2:
+                        _soundManager.MenuSound();                      
                         OptionsMenu();
                         break;
                     case ConsoleKey.D3:
+                        _soundManager.MenuSound();
                         HighscoreMenu();
                         break;
                     case ConsoleKey.D4:
+                        _soundManager.MenuSound();
                         AboutMenu();
                         break;
                     case ConsoleKey.D5:
+                        _soundManager.MenuSound();          
                         Environment.Exit(0);
                         break;
                     default:
@@ -183,7 +195,7 @@ namespace Spicy_Invader
 
         }
         public void Pause() {
-            
+            _soundManager.MenuSound();
             do
             {
 
@@ -191,6 +203,7 @@ namespace Spicy_Invader
                 _input = Console.ReadKey(intercept: true).Key;
 
             } while (_input != ConsoleKey.R);
+            _soundManager.MenuSound();
             Console.ForegroundColor = ConsoleColor.Black;
             WriteCenterHorizontal(toDisplay: PAUSED, top: Console.WindowHeight / RATIO_CONSOLE_HEIGHT);
             Console.ForegroundColor = ConsoleColor.White;
@@ -210,22 +223,23 @@ namespace Spicy_Invader
                 switch (_input)
                 {
                     case ConsoleKey.D1:
+                        _soundManager.MenuSound();
                         _easyMode = !_easyMode;
                         Console.Clear();
                         DisplayOptions();
                         break;
                     case ConsoleKey.D2:
-                        _soundOn = !_soundOn;
+                        _soundManager.MenuSound();
+                        _soundManager.SoundOn = !_soundManager.SoundOn;
                         Console.Clear();
                         DisplayOptions();
                         break;
                     case ConsoleKey.D3:
+                        _soundManager.MenuSound();
                         return;
                     default:
                         break;
-
                 }
-
             } while (true);
         }
 
@@ -248,6 +262,7 @@ namespace Spicy_Invader
             }
             WriteCenterHorizontal(toDisplay: toDisplay, top: MARGIN_TOP *2 + HIGHSCORE_TITLE.Split('\n').Length);
             Console.ReadLine();
+            _soundManager.MenuSound();
         }
 
         public void AddToHighscore(int score) {
@@ -271,19 +286,19 @@ namespace Spicy_Invader
 
         private void DisplayOptions() {
             WriteCenterHorizontal(toDisplay: MAIN_TITLE, top: MARGIN_TOP);
-            if (_easyMode && _soundOn)
+            if (_easyMode && _soundManager.SoundOn)
             {
                 WriteCenterHorizontal(top: MARGIN_TOP * 2 + MAIN_TITLE.Split('\n').Length, toDisplay: EASY_MODE + SOUND_ON + BACK);
             }
-            else if (_easyMode && !_soundOn)
+            else if (_easyMode && !_soundManager.SoundOn)
             {
                 WriteCenterHorizontal(top: MARGIN_TOP * 2 + MAIN_TITLE.Split('\n').Length, toDisplay: EASY_MODE + SOUND_OFF + BACK);
             }
-            else if (!_easyMode && !_soundOn)
+            else if (!_easyMode && !_soundManager.SoundOn)
             {
                 WriteCenterHorizontal(top: MARGIN_TOP * 2 + MAIN_TITLE.Split('\n').Length, toDisplay: HARD_MODE + SOUND_OFF + BACK);
             }
-            else if (!_easyMode && _soundOn)
+            else if (!_easyMode && _soundManager.SoundOn)
             {
                 WriteCenterHorizontal(top: MARGIN_TOP * 2 + MAIN_TITLE.Split('\n').Length, toDisplay: HARD_MODE + SOUND_ON + BACK);
             }
@@ -293,6 +308,7 @@ namespace Spicy_Invader
             Console.Clear();
             Console.WriteLine("Under construction\nPress any key to return");
             Console.ReadLine();
+            _soundManager.MenuSound();
         }
 
         private const string ONE_CD = " __  \n" +
@@ -318,10 +334,11 @@ namespace Spicy_Invader
 
         public void Countdown() {
             foreach (string number in NB_COUNTDOWN) {
+                _soundManager.MenuSound();
                 WriteCenterHorizontal(top: Console.WindowHeight/4, toDisplay: number);
-                Thread.Sleep(1000);
-            
+                Thread.Sleep(1000);         
             }
+            _soundManager.MenuSound();
             
         }
     }
