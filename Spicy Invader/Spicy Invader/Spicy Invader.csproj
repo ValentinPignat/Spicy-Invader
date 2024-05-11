@@ -61,11 +61,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="253169__suntemple__retro-game-sfx-explosion.wav" />
-    <Content Include="328011__astrand__retro-blaster-fire.wav" />
-    <Content Include="404780__owlstorm__retro-video-game-sfx-tiny-warble.wav" />
-    <Content Include="717687__maodin204__retro-laser-2.wav" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,8 +1,7 @@
 ﻿/// ETML
 /// Author: Valentin Pignat 
 /// Date (creation): 14.03.2024
-/// Description: Brick class used to create bunkers
-///         - Basic GameObject with position and colison
+/// Description: Brick class derived from GameObject, used to create bunkers
 
 using GameObjectsNS;
 using Spicy_Invader;

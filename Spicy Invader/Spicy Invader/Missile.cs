@@ -4,10 +4,8 @@
 /// Description: Missile class inheriting GameObject 
 ///         - Vector added for repeated moves
 
-
 using GameObjectsNS;
 using Spicy_Invader;
-
 
 namespace MissileNS
 {

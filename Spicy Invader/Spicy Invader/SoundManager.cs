@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿/// ETML
+/// Author : Valentin Pignat
+/// Date (creation): 11.05.2024
+/// Descrition : SoundManager class used to play sound and keep track of the on/off option
+///     - The wav files are put in the bin/debug and bin/release folder
+
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Spicy_Invader
 {
@@ -34,6 +35,9 @@ namespace Spicy_Invader
         /// </summary>
         SoundPlayer _menuSound = new SoundPlayer("404780__owlstorm__retro-video-game-sfx-tiny-warble.wav");
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public SoundManager() {
             _gameOverSound.Load();
             _firingSound.Load();
@@ -41,17 +45,32 @@ namespace Spicy_Invader
             _menuSound.Load();
         }
 
+        /// <summary>
+        /// Menu sound
+        /// </summary>
         public void MenuSound() {
             if (SoundOn) { _menuSound.Play(); }
         }
+
+        /// <summary>
+        /// Firing sound
+        /// </summary>
         public void FiringSound()
         {
             if (SoundOn) { _firingSound.Play(); }
         }
+
+        /// <summary>
+        /// Collision sound
+        /// </summary>
         public void CollisionSound()
         {
             if (SoundOn) { _collisionSound.Play(); }
         }
+
+        /// <summary>
+        /// Game over sound
+        /// </summary>
         public void GameOverSound()
         {
             if (SoundOn) { _gameOverSound.Play(); }

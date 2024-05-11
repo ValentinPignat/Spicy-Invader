@@ -1,19 +1,11 @@
 ﻿/// ETML
 /// Author: Valentin Pignat 
 /// Date (creation): 18.01.2024
-/// Description: Spaceship class, allowing movements with arrow keys or wasd and fire missile with space
-///     - PlayerControl() Reads for input 
-///         - GoLeft()
-///         - GoRigth()
-///         - FireMissile() TODOOOOOOOOOO
-
+/// Description: Spaceship class derived from GameObject
+///     - Shoot() method fires a missile upwards from player position
 
 using GameObjectsNS;
 using Spicy_Invader;
-using System.Windows.Input;
-
-
-
 
 namespace SpaceshipNS
 {
@@ -57,6 +49,8 @@ namespace SpaceshipNS
         /// <param name="x"></param>
         /// <param name="y"></param>
         public SpaceShip(int x, int y, bool easymode) {
+
+            // Hp depending on dificulty
             if (easymode)
             {
                 _hp= MAX_HP;
@@ -73,6 +67,9 @@ namespace SpaceshipNS
             _collisionStatus = STATUS;
         }
 
+        /// <summary>
+        /// Shoot upwards from player position
+        /// </summary>
         public void Shoot() {
             FireMissile(missilesList: missilesList, vectorY: -1, maxMissiles: MAX_ACTIVE_MISSILES, x: _x + _width / 2, y: _y - _height, status: Game.collisionStatus.Friendly, owner: this);
         }

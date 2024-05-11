@@ -1,7 +1,7 @@
 ﻿/// ETML
 /// Author: Valentin Pignat 
 /// Date (creation): 08.02.2024
-/// Description: Ennemies class, object with coodrinates, sprite
+/// Description: Ennemies class derived from GameObject
 
 using EnemyBlockNS;
 using GameObjectsNS;
@@ -11,15 +11,54 @@ namespace EnemiesNS
 {
     internal class Enemy : GameObject
     {
+        /// <summary>
+        /// Enemy max hp
+        /// </summary>
         private const int MAX_HP = 1;
-        private new const int MAX_Y = Game.MARGIN_TOP_BOTTOM + Game.HEIGHT - Game.PLAYER_TO_WALL - Game.WALL_HEIGHT - 1;
+
+        /// <summary>
+        /// Max y position changed from GameObject so that ennemies can't go below walls
+        /// </summary>
+        private const int MAX_Y = Game.MARGIN_TOP_BOTTOM + Game.HEIGHT - Game.PLAYER_TO_WALL - Game.WALL_HEIGHT - 1;
+
+        /// <summary>
+        /// Enemy width
+        /// </summary>
         public const int WIDTH = 3;
+
+        /// <summary>
+        /// Enemy height
+        /// </summary>
         public const int HEIGHT = 1;
+
+        /// <summary>
+        /// Enemy sprite
+        /// </summary>
         private const string SPRITE = "╓╫╖";
+
+        /// <summary>
+        /// Enemy column in EnemyBlock
+        /// </summary>
         private int _col = 0;
+
+        /// <summary>
+        /// Enemy row in EnemyBlock
+        /// </summary>
         private int _row = 0;
+
+        /// <summary>
+        /// Enemy block controlling this enemy
+        /// </summary>
         private EnemyBlock _owner;
+
+        /// <summary>
+        /// Collision status = Enemy
+        /// </summary>
         private const Game.collisionStatus STATUS = Game.collisionStatus.Enemy;
+
+        /// <summary>
+        /// Score returned on death
+        /// </summary>
         private const int SCORE = 40;
 
         public Enemy(int x, int y, int col, int row, EnemyBlock owner) {
@@ -54,7 +93,10 @@ namespace EnemiesNS
             set { _row = value; }
         }
 
-
+        /// <summary>
+        /// Return a score on death
+        /// </summary>
+        /// <returns>Score to award on destruction</returns>
         public override int Destroyed()
         {
             _owner.enemiesTab[_row, _col] = null;

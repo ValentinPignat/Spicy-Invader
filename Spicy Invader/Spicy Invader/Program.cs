@@ -2,35 +2,22 @@
 /// Author: Valentin Pignat 
 /// Date (creation): 18.01.2024
 /// Description: Main Program for the Spicy Invader Game
-///         - Setup console and enter menus
+///     - Setup console and enter menus
 
 /// TODO :
-///     - Change to onhit method in each object to manage collision and avoid updatig all ? THTHTHTHTH
-///     ADD MENU
-///     see cdc
+///     Change to onhit method in each object to manage collision and avoid updatig all ? THTHTHTHTH
 ///     DISABLE SCROLL AND CLICK
-///     CALCULATE WIDTH AND HEIGHT FROM SPRTIE (No need for manual change)
+///     CALCULATE WIDTH AND HEIGHT FROM SPRTIE (No need for manual change) Make a GameObject constructor ... then base vitrual override 
 ///     Stop console change / remove nativemethods ?
-///     FINISH PAUSE COUNTDOWN ETC (redisplay all after pause)
-///     Tidy game class to separate methods
-///     Tidy code
 ///     ADD CONTROLS FOR USER (V for pause etc...)
 ///     win/loose screen 
 ///     TODO windows 11 ???
-///
-/// REVIEW CDC: 26.04.2024
-/// https://perso.esiee.fr/~perretb/I3FM/POO1/projet/index.html#cahier-des-charges-fonctionnel
-/// 
-/// Missing/Incomplete feature:
-///     - Son on/off
-///     - Difficulté facile/difficile
-///     - Highscore
-///     - A propos
-///     - Quitter
-///     finish menu add commands help
+///     Shooter class => EnemyBlock
 ///     
-/// Make a GameObject constructor ... then base vitrual override 
-/// Shooter class => EnemyBlock
+/// Missing/Incomplete feature:
+///     - Where should high score path be located ?
+///     - A propos
+///     - CONTROL SCHEEEEEEEEMEMEMEMMEMEME test on WIN10
 
 using System;
 using System.Runtime.InteropServices;

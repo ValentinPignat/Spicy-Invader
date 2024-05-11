@@ -15,7 +15,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Input;
-using System.Media;
 
 namespace Spicy_Invader
 {
@@ -98,13 +97,16 @@ namespace Spicy_Invader
         /// </summary>
         private const double RATIO_LINEDOWN_ACCELETATION = 5;
 
+        private const string CONTROL_SCHEME = "SPACEBAR : Shoot  V : Pause  R : Resume  A/D or <-/-> : Move";
+        #endregion
+
+        #region ATTRIBUTES
+
         /// <summary>
         /// Easy mode
         /// </summary>
         public bool _easymode = true;
-        #endregion
 
-        #region ATTRIBUTES
         /// <summary>
         /// Menu called for pause
         /// </summary>
@@ -187,9 +189,17 @@ namespace Spicy_Invader
         /// <param name="hp">Player's hp to add/remove</param>
         public static void DisplayScoreHp(int score, int hp)
         {
-
             Console.SetCursorPosition(MARGIN_SIDE, MARGIN_TOP_BOTTOM + HEIGHT);
             Console.WriteLine("\n\n HP: " + hp + "\n\n SCORE : " + score);
+        }
+
+        /// <summary>
+        /// Display command scheme for space invaders
+        /// </summary>
+        public static void DisplayControlScheme()
+        {
+            Console.SetCursorPosition(MARGIN_SIDE, MARGIN_TOP_BOTTOM*2 + HEIGHT );
+            Console.WriteLine(CONTROL_SCHEME);
         }
 
         /// <summary>
@@ -273,6 +283,7 @@ namespace Spicy_Invader
 
             // Draw Layout
             DrawLayout();
+            DisplayControlScheme();
         }
 
         /// <summary>
@@ -280,6 +291,7 @@ namespace Spicy_Invader
         /// </summary>
         private void RedrawAll() { 
             DrawLayout();
+            DisplayControlScheme();  
             DisplayScoreHp(score: 0, hp:0) ;
             foreach (GameObject go in _collisionObjects) {
                 go.Draw();
@@ -320,6 +332,7 @@ namespace Spicy_Invader
                 // If V is pressed enter pause
                 if (Keyboard.IsKeyDown(Key.V))
                 {
+                    _soundManager.MenuSound();
                     _pauseMenu.Pause();
                     RedrawAll();
                 }
@@ -504,8 +517,5 @@ namespace Spicy_Invader
                 _collisionObjects.Remove(gameObj);
             }
         }
-
-
-
     }
 }
