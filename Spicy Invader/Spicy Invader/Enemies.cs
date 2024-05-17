@@ -1,15 +1,18 @@
 ﻿/// ETML
 /// Author: Valentin Pignat 
 /// Date (creation): 08.02.2024
-/// Description: Ennemies class derived from GameObject
+/// Description: Enemy class derived from GameObject
 
-using EnemyBlockNS;
-using GameObjectsNS;
-using Spicy_Invader;
+using System.Runtime.CompilerServices;
 
-namespace EnemiesNS
+[assembly: InternalsVisibleToAttribute("SpicyTest")]
+namespace Spicy_Invader
 {
-    internal class Enemy : GameObject
+
+    /// <summary>
+    /// Enemy class derived from GameObject
+    /// </summary>
+    public class Enemy : GameObject
     {
         /// <summary>
         /// Enemy max hp
@@ -49,7 +52,7 @@ namespace EnemiesNS
         /// <summary>
         /// Enemy block controlling this enemy
         /// </summary>
-        private EnemyBlock _owner;
+        public EnemyBlock Owner { get; private set; }
 
         /// <summary>
         /// Collision status = Enemy
@@ -61,6 +64,14 @@ namespace EnemiesNS
         /// </summary>
         private const int SCORE = 40;
 
+        /// <summary>
+        /// Ennemy constructor
+        /// </summary>
+        /// <param name="x">Horizontal position</param>
+        /// <param name="y">Vertical position</param>
+        /// <param name="col">Enemy column in EnemyBlock</param>
+        /// <param name="row">Enemy row in EnemyBlock</param>
+        /// <param name="owner">Enemy owner EnemyBlock</param>
         public Enemy(int x, int y, int col, int row, EnemyBlock owner) {
             _x = x;
             _y = y;
@@ -70,7 +81,7 @@ namespace EnemiesNS
             _width = WIDTH;
             _height = HEIGHT;
             _collisionStatus = STATUS;
-            _owner = owner;
+            Owner = owner;
             _hp = MAX_HP;
             _maxY = MAX_Y;
         }
@@ -99,8 +110,8 @@ namespace EnemiesNS
         /// <returns>Score to award on destruction</returns>
         public override int Destroyed()
         {
-            _owner.enemiesTab[_row, _col] = null;
-            _owner.enemiesByCol[_col]--;
+            Owner.enemiesTab[_row, _col] = null;
+            Owner.enemiesByCol[_col]--;
             DelPosition();
             return SCORE; 
         }

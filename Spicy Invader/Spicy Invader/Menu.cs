@@ -10,11 +10,16 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 
+[assembly: InternalsVisibleToAttribute("SpicyTest")]
 namespace Spicy_Invader
 {
-    internal class Menu
+    /// <summary>
+    ///  Menu class used to display various menus and manage options / highscores
+    /// </summary>
+    public class Menu
     {
         #region CONSTANTS
         /// <summary>
@@ -243,6 +248,8 @@ namespace Spicy_Invader
         {
             // Setup
             _soundManager = new SoundManager();
+            _soundManager.Load();
+
             _highscores =  GetHighscore();
 
             // Enter main menu
@@ -287,7 +294,11 @@ namespace Spicy_Invader
             {
                 // Split username and score 
                 string[] splited = line.Split(SEPARATOR);
+
+                // Test that two elements are on the line
                 if (splited.Length == 2) {
+
+                    // Test if highscore has a valid value
                     if (Int32.TryParse(splited[INDEX_SCORE], out score))
                     {
                         Highscore highscore = new Highscore(score: score, username: splited[INDEX_USERNAME]);

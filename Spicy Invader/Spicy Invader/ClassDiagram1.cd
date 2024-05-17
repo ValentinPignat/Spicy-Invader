@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Spicy_Invader.Brick">
+    <Position X="23.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAQAAEAAAAAAEAAAAAA=</HashCode>
+      <FileName>Brick.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.Enemy">
+    <Position X="22" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAGAAAAAAAAAAAAAAAAwAAUAAkAAAAEAEABgAIA=</HashCode>
+      <FileName>Enemies.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.EnemyBlock">
+    <Position X="18.75" Y="9.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAREAUAAAIEAQoAAAAAigAAAAACAAAAEAAAAAAEACQA=</HashCode>
+      <FileName>EnemyBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.Game">
+    <Position X="8.75" Y="2.75" Width="2.75" />
+    <NestedTypes>
+      <Enum Name="Spicy_Invader.Game.collisionStatus" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Game.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>tAEABgAAgAgAAgAECIAACgAQgAUAAAQAAKAQ5MBNBQg=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.GameObject">
+    <Position X="16.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEABAIFISACgAIAQCCAEACABAAIAEAAAEACAAAYIA=</HashCode>
+      <FileName>GameObjects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.Highscore">
+    <Position X="12" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Highscore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.Menu">
+    <Position X="13.75" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAkgowIgIxISAAAAAQIQAAEQgiACAFAQcCQ4IAAQAAU=</HashCode>
+      <FileName>Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.Missile">
+    <Position X="20.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAIAAAAAAAAIAAAAAQAQAAAAAAAAAEABAAAA=</HashCode>
+      <FileName>Missile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.SoundManager">
+    <Position X="11.75" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAkAAAAACAAAAAAAAAgBAAgAAAAAAAgAAAACAQCAA=</HashCode>
+      <FileName>SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.SpaceShip">
+    <Position X="20.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAACAAAAAAQAAEAAQAAAEABgAAA=</HashCode>
+      <FileName>SpaceShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

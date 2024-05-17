@@ -4,11 +4,15 @@
 /// Descrition : SoundManager class used to play sound and keep track of the on/off option
 ///     - The wav files are put in the bin/debug and bin/release folder
 
+using System;
 using System.Media;
 
 namespace Spicy_Invader
 {
-    internal class SoundManager
+    /// <summary>
+    /// SoundManager class used to play sound and keep track of the on/off option
+    /// </summary>
+    public class SoundManager
     {
         /// <summary>
         /// Toggle sound on/off
@@ -39,12 +43,18 @@ namespace Spicy_Invader
         /// Default constructor
         /// </summary>
         public SoundManager() {
+        }
+
+        /// <summary>
+        /// Load every sound
+        /// </summary>
+        public void Load() {
             _gameOverSound.Load();
             _firingSound.Load();
             _collisionSound.Load();
             _menuSound.Load();
-        }
 
+        }
         /// <summary>
         /// Menu sound
         /// </summary>

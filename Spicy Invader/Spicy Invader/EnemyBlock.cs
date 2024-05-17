@@ -1,34 +1,34 @@
 ﻿/// ETML
 /// Author: Valentin Pignat 
 /// Date (creation): 08.02.2024
-/// Description: EnnemyBlock class
+/// Description: EnemyBlock class
 ///     - Update all ennemies positions and decide next movement
 ///     - Manage ennemy fire 
 
-using EnemiesNS;
-using GameObjectsNS;
-using Spicy_Invader;
 using System;
 using System.Linq;
 
-namespace EnemyBlockNS
+namespace Spicy_Invader
 {
-    internal class EnemyBlock : GameObject
+    /// <summary>
+    /// EnemyBlock class, manages enemies
+    /// </summary>
+    public class EnemyBlock : GameObject
     {
         /// <summary>
         /// Max active missiles in easy mode
         /// </summary>
-        private const int MAX_ACTIVE_MISSILES = 1;
+        public const int MAX_ACTIVE_MISSILES = 1;
 
         /// <summary>
         /// Max active missile in hard mode
         /// </summary>
-        private const int MAX_ACTIVE_MISSILES_HARD = 2;
+        public const int MAX_ACTIVE_MISSILES_HARD = 2;
 
         /// <summary>
         /// Max active missile depensding on game difficulty
         /// </summary>
-        private readonly int _maxActiveMissile;
+        public int MaxActiveMissile { get; private set; }
 
         /// <summary>
         /// Horizontal space between each enemy
@@ -111,7 +111,7 @@ namespace EnemyBlockNS
         /// <summary>
         /// SoundManager to call for audio
         /// </summary>
-        private SoundManager _soundManager;
+        public SoundManager SoundManager { get; private set; }
 
         /// <summary>
         /// EnemyBlock constructor
@@ -119,15 +119,15 @@ namespace EnemyBlockNS
         /// <param name="easymode">True if easy mode on</param>
         public EnemyBlock(bool easymode, SoundManager soundManager) {
 
-            _soundManager = soundManager;
+            SoundManager = soundManager;
 
             // Maximum nb of active missile for the ennemyBlock depending on difficulty
             if (easymode)
             {
-                _maxActiveMissile = MAX_ACTIVE_MISSILES;
+                MaxActiveMissile = MAX_ACTIVE_MISSILES;
             }
             else {
-                _maxActiveMissile = MAX_ACTIVE_MISSILES_HARD;
+                MaxActiveMissile = MAX_ACTIVE_MISSILES_HARD;
             }
 
             // Create enemies and put them in the 2D array
@@ -209,7 +209,7 @@ namespace EnemyBlockNS
             // Random chance of making a random enemy fire
             if (rnd.NextDouble() < randomShootProbability) {
                 RandomFire();
-                _soundManager.FiringSound();
+                SoundManager.FiringSound();
             }  
         }
 
@@ -230,7 +230,7 @@ namespace EnemyBlockNS
                 if (enemiesTab[colFiring, i] != null)
                 {
                     Enemy firingEnnemy = enemiesTab[colFiring, i];
-                    FireMissile(missilesList: missilesList, vectorY: +1, maxMissiles: _maxActiveMissile, x: firingEnnemy.X + firingEnnemy.Height, y: firingEnnemy.Y + firingEnnemy.Width / 2, status: Game.collisionStatus.Enemy, owner: this); ;
+                    FireMissile(missilesList: missilesList, vectorY: +1, maxMissiles: MaxActiveMissile, x: firingEnnemy.X + firingEnnemy.Height, y: firingEnnemy.Y + firingEnnemy.Width / 2, status: Game.collisionStatus.Enemy, owner: this); ;
                     break;
                 }
             }

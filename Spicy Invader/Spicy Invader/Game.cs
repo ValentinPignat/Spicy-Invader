@@ -5,12 +5,6 @@
 ///         -   Create a game with many GameObjects and loops until end of game
 ///         -   Constants can be changed to tweak different aspects of the game
 
-using BricksNS;
-using EnemiesNS;
-using EnemyBlockNS;
-using GameObjectsNS;
-using MissileNS;
-using SpaceshipNS;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -18,7 +12,10 @@ using System.Windows.Input;
 
 namespace Spicy_Invader
 {
-    internal class Game
+    /// <summary>
+    /// Game class for Spicy Invader
+    /// </summary>
+    public class Game
     {
 
         #region CONSTANTS 
@@ -286,14 +283,13 @@ namespace Spicy_Invader
             _score = 0;
 
             // Draw Layout
-            DrawLayout();
-            DisplayControlScheme();
+            DrawAll();
         }
 
         /// <summary>
-        /// Redraw every game and UI element
+        /// Draw every game and UI element
         /// </summary>
-        private void RedrawAll() { 
+        private void DrawAll() { 
             DrawLayout();
             DisplayControlScheme();  
             DisplayScoreHp(score: 0, hp:0) ;
@@ -338,7 +334,7 @@ namespace Spicy_Invader
                 {
                     _soundManager.MenuSound();
                     _pauseMenu.Pause();
-                    RedrawAll();
+                    DrawAll();
                 }
 
                 // Player update every PLAYER_SPEED cycles

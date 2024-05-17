@@ -3,10 +3,6 @@
 /// Date (creation): 18.01.2024
 /// Description: Main Program for the Spicy Invader Game
 ///     - Setup console and enter menus
-
-/// TODO :
-///     DISABLE SCROLL AND CLICK
-///     replace playceholser
 ///     
 /// Missing/Incomplete feature:
 ///     - A propos

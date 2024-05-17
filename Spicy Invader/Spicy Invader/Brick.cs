@@ -3,12 +3,15 @@
 /// Date (creation): 14.03.2024
 /// Description: Brick class derived from GameObject, used to create bunkers
 
-using GameObjectsNS;
-using Spicy_Invader;
+using System.Runtime.CompilerServices;
 
-namespace BricksNS
+[assembly: InternalsVisibleToAttribute("SpicyTest")]
+namespace Spicy_Invader
 {
-    internal class Brick : GameObject
+    /// <summary>
+    /// Brick class derived from GameObject, used to create bunkers
+    /// </summary>
+    public class Brick : GameObject
     {
         /// <summary>
         /// Brick sprite
@@ -41,7 +44,6 @@ namespace BricksNS
             _sprite = SPRITE;
             _collisionStatus = STATUS;
             _hp = HP;
-            Draw();
         }
     }
 }

@@ -4,17 +4,16 @@
 /// Description: Game objects class, used for commomn atributes between missiles, player, ennemies.
 ///     - Movement, and out of bounds test
 ///     - Shooting Object utiliy FireMissile() UpdateMissile()
-///     
-/// Note: The "Y" attribute is an inverted axis used for the console position "top" atribute.
 
-using MissileNS;
-using Spicy_Invader;
 using System;
 using System.Collections.Generic;
 
-namespace GameObjectsNS
+namespace Spicy_Invader
 {
-    internal abstract class GameObject 
+    /// <summary>
+    /// Game objects class, used for commomn atributes between missiles, player, ennemies
+    /// </summary>
+    public abstract class GameObject 
     {
         /// <summary>
         /// GameObject maximum X position

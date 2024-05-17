@@ -4,12 +4,12 @@
 /// Description: Spaceship class derived from GameObject
 ///     - Shoot() method fires a missile upwards from player position
 
-using GameObjectsNS;
-using Spicy_Invader;
-
-namespace SpaceshipNS
+namespace Spicy_Invader
 {
-    internal class SpaceShip : GameObject
+    /// <summary>
+    /// Spaceship class derived from GameObject
+    /// </summary>
+    public class SpaceShip : GameObject
     {
         /// <summary>
         /// Maximum hp

@@ -4,15 +4,12 @@
 /// Description: Missile class inheriting GameObject 
 ///         - Vector added for repeated moves
 
-using GameObjectsNS;
-using Spicy_Invader;
-
-namespace MissileNS
+namespace Spicy_Invader
 {
     /// <summary>
-    /// Missile class 
+    /// Missile class inheriting GameObject 
     /// </summary>
-    internal class Missile :GameObject
+    public class Missile :GameObject
     {
         /// <summary>
         /// Missile HP
