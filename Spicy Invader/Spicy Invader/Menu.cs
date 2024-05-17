@@ -119,7 +119,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Game Over prompt
         /// </summary>
-        private const string GAME_OVER_PROMPT = "Please enter your username for highscores and Enter:";
+        private const string GAME_OVER_PROMPT = "Enter username for highscores:  ";
 
         /// <summary>
         /// Sound on highlighted
@@ -447,7 +447,8 @@ namespace Spicy_Invader
         /// Sort score from highest to lowest and entries beyond MAX_SCORES
         /// </summary>
         private void SortScores() {
-            _highscores.OrderBy(x => x.Score);
+            _highscores = _highscores.OrderBy(x => x.Score).ToList();
+            _highscores.Reverse();
             if (_highscores.Count > MAX_SCORES) { 
                 _highscores.RemoveRange(MAX_SCORES, _highscores.Count - MAX_SCORES);
             }
@@ -489,16 +490,7 @@ namespace Spicy_Invader
             SortScores();
             Highscore highscore = new Highscore (score: score, username: username);
 
-            // If highscore is empty
-            if (_highscores.Count == 0) {
-                _highscores.Add(highscore);
-                SortScores();
-            }
-            // Else if higher than the lowest highscore in list add it to the list
-            else if (score > _highscores[_highscores.Count - 1].Score) { 
-                _highscores.Add(highscore);
-                SortScores();
-            }
+            _highscores.Add(highscore);
             
             // Update highscore to file
             UpdadeHighscoreFile();
@@ -570,6 +562,10 @@ namespace Spicy_Invader
 
             Console.Clear();
 
+            // Flush keyboard buffer
+            //https://stackoverflow.com/questions/978091/c-sharp-or-net-flushing-keyboard-buffer
+            while (Console.KeyAvailable) { Console.ReadKey(intercept: true); }
+
             // Player name
             string username = "";
 
@@ -579,13 +575,12 @@ namespace Spicy_Invader
             // Display prompt for input
             WriteCenterHorizontal(toDisplay: GAME_OVER_PROMPT, top: MARGIN_TOP * 2 + GAME_OVER_TITLE.Split('\n').Length);
 
-
-            Console.WriteLine('\t');
+            // Read input and add to highscores
             username = Console.ReadLine();
-
             AddToHighscore(score: score, username: username);
 
         }
+
         /// <summary>
         /// Display a countdown
         /// </summary>

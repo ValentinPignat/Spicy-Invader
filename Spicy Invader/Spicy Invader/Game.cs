@@ -97,7 +97,10 @@ namespace Spicy_Invader
         /// </summary>
         private const double RATIO_LINEDOWN_ACCELETATION = 5;
 
-        private const string CONTROL_SCHEME = "SPACEBAR : Shoot  V : Pause  R : Resume  A/D or <-/-> : Move";
+        /// <summary>
+        /// Control scheme for player
+        /// </summary>
+        private const string CONTROL_SCHEME = "SPACE : Shoot    V : Pause   R : Resume  A/D or <-/-> : Move";
         #endregion
 
         #region ATTRIBUTES
@@ -367,9 +370,7 @@ namespace Spicy_Invader
                 // CheckColision() for player's missile(s);
                 foreach (Missile missile in _player.missilesList)
                 {
-                    CheckColision(missile: missile, target: _collisionObjects);
-
-                    // CheckColision(missile: missile, target: enemyBlock.missilesList);
+                    CheckColision(missile: missile, target: _collisionObjects, targetMissile: _enemyBlock.missilesList);
                 }
 
                 // CheckColision() for enemy missile(s);
@@ -452,8 +453,9 @@ namespace Spicy_Invader
         /// Supports sprite on multiple lines
         /// </summary>
         /// <param name="missile">Missile</param>
-        /// <param name="target">List of GameObjects</param>
-        private void CheckColision(Missile missile, List<GameObject> target)
+        /// <param name="target">List of GameObjects to target</param>
+        /// <param name="targetMissile">List of Missile to target</param>
+        private void CheckColision(Missile missile, List<GameObject> target, List<Missile> targetMissile = null)
         {
 
             // Foreach GameObject ...
@@ -475,6 +477,30 @@ namespace Spicy_Invader
                         return;
                     }
                 }
+            }
+
+            if (targetMissile != null) {
+                // Foreach Missile ...
+                foreach (Missile tarMissile in targetMissile)
+                {
+                    if (tarMissile != null)
+                    {
+
+                        // ... if missile is on any coordinate in missile target square hitbox ...
+                        if (missile.X >= tarMissile.X && missile.X <= tarMissile.X + tarMissile.Width && missile.Y >= tarMissile.Y && missile.Y <= tarMissile.Y + tarMissile.Height)
+                        {
+                            if (missile.CollisionStatus != tarMissile.CollisionStatus)
+                            {
+                                _soundManager.CollisionSound();
+                                // ... deal one damage to both objects
+                                if (missile.Hp > 0) { missile.Hp--; }
+                                if (tarMissile.Hp > 0) { tarMissile.Hp--; }
+                            }
+                            return;
+                        }
+                    }
+                }
+
             }
         }
 

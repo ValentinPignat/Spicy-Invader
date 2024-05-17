@@ -5,18 +5,13 @@
 ///     - Setup console and enter menus
 
 /// TODO :
-///   
 ///     DISABLE SCROLL AND CLICK
-///     CALCULATE WIDTH AND HEIGHT FROM SPRTIE (No need for manual change) Make a GameObject constructor ... then base vitrual override 
-///     Stop console change / remove nativemethods ?
-///     ADD CONTROLS FOR USER (V for pause etc...)
-///     win/loose screen 
-///     Shooter class => EnemyBlock
+///     replace playceholser
 ///     
 /// Missing/Incomplete feature:
-///     - Where should high score path be located ?
 ///     - A propos
-///     - CONTROL SCHEEEEEEEEMEMEMEMMEMEME test on WIN10
+///     -Test unitaires 
+
 
 using System;
 using System.Runtime.InteropServices;
