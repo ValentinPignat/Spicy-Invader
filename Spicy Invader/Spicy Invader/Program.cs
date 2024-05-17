@@ -5,13 +5,12 @@
 ///     - Setup console and enter menus
 
 /// TODO :
-///     Change to onhit method in each object to manage collision and avoid updatig all ? THTHTHTHTH
+///   
 ///     DISABLE SCROLL AND CLICK
 ///     CALCULATE WIDTH AND HEIGHT FROM SPRTIE (No need for manual change) Make a GameObject constructor ... then base vitrual override 
 ///     Stop console change / remove nativemethods ?
 ///     ADD CONTROLS FOR USER (V for pause etc...)
 ///     win/loose screen 
-///     TODO windows 11 ???
 ///     Shooter class => EnemyBlock
 ///     
 /// Missing/Incomplete feature:

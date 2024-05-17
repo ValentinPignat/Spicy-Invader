@@ -18,14 +18,14 @@ namespace Spicy_Invader
     {
         #region CONSTANTS
         /// <summary>
+        /// Separator between username and highscore in text file
+        /// </summary>
+        private const char SEPARATOR = ';';
+
+        /// <summary>
         /// Max number of high scores - keep x highest scores and discard rest
         /// </summary>
         private const int MAX_SCORES = 10;
-
-        /// <summary>
-        /// Separator used in text file between scores
-        /// </summary>
-        private const char SEPARATOR = '\n';
 
         /// <summary>
         /// Top margin size
@@ -35,7 +35,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Highscore file path
         /// </summary>
-        private const string HIGHSCORE_PATH = @"D:\Temp\SpicyInvaderHighScores.txt";
+        private const string HIGHSCORE_PATH = @"..\..\highscore.txt";
 
         /// <summary>
         /// Position relative to console height 1/x of Console.WindowHeight
@@ -43,7 +43,7 @@ namespace Spicy_Invader
         private const int RATIO_CONSOLE_HEIGHT= 4;
 
         /// <summary>
-        /// Pause Title
+        /// Pause title
         /// Adapted from https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20  font: DOOM
         /// </summary>
         private const string PAUSED = "╔═══════════════════════════════════╗\n" +
@@ -56,7 +56,7 @@ namespace Spicy_Invader
                                 "╚═══════════════════════════════════╝\n";
 
         /// <summary>
-        /// Highscore menu
+        /// Highscore title
         /// Adapted from https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20  font: DOOM
         /// </summary>
         private const string HIGHSCORE_TITLE = " _   _ _       _                            \n" +
@@ -69,7 +69,7 @@ namespace Spicy_Invader
             "         |___/                              \n";
 
         /// <summary>
-        /// Menu Title
+        /// Menu title
         /// Adapted from https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20  font: DOOM
         /// </summary>
         private const string MAIN_TITLE =
@@ -89,6 +89,24 @@ namespace Spicy_Invader
                                     " \\___/ |_| |_|  \\_/   \\__,_| \\__,_| \\___||_|   |___/\n";
 
         /// <summary>
+        /// Game over title
+        /// </summary>
+        private const string GAME_OVER_TITLE = " _____                      \n" +
+                                    "|  __ \\                     \n" +
+                                    "| |  \\/ __ _ _ __ ___   ___ \n" +
+                                    "| | __ / _` | '_ ` _ \\ / _ \\\n" +
+                                    "| |_\\ \\ (_| | | | | | |  __/\n" +
+                                    " \\____/\\__,_|_| |_| |_|\\___|\n" +
+                                    "                            \n" +
+                                    "                            \n" +
+                                    " _____                      \n" +
+                                    "|  _  |                     \n" +
+                                    "| | | |_   _____ _ __          \n" +
+                                    "| | | \\ \\ / / _ \\ '__|      \n" +
+                                    "\\ \\_/ /\\ V /  __/ |         \n" +
+                                    " \\___/  \\_/ \\___|_|         \n";
+        
+        /// <summary>
         /// Main menu options
         /// </summary>
         private const string MAIN_MENU = 
@@ -97,6 +115,11 @@ namespace Spicy_Invader
                                         "3) HIGHSCORE\n" +
                                         "4) ABOUT\n" +
                                         "5) EXIT\n";
+
+        /// <summary>
+        /// Game Over prompt
+        /// </summary>
+        private const string GAME_OVER_PROMPT = "Please enter your username for highscores and Enter:";
 
         /// <summary>
         /// Sound on highlighted
@@ -180,6 +203,16 @@ namespace Spicy_Invader
         /// Array of every countdown number
         /// </summary>
         private readonly string[] NB_COUNTDOWN = { THREE_CD, TWO_CD, ONE_CD };
+
+        /// <summary>
+        /// Index of usernames in _highscores
+        /// </summary>
+        private const int INDEX_USERNAME = 0;
+
+        /// <summary>
+        /// Index of scores in _highscores
+        /// </summary>
+        private const int INDEX_SCORE = 1;
         #endregion
 
         /// <summary>
@@ -201,7 +234,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Highscores list 
         /// </summary>
-        private List<int> _highscores = new List<int>();
+        private List<Highscore> _highscores = new List<Highscore>();
 
         /// <summary>
         /// Menu default constructor
@@ -220,9 +253,9 @@ namespace Spicy_Invader
         /// Check if the file path exists and return its content, else try to create it
         /// </summary>
         /// <returns>List of scores</returns>
-        private List<int> GetHighscore()
+        private List<Highscore> GetHighscore()
         {
-            List <int> highscores = new List<int>();
+            List <Highscore> highscores = new List<Highscore>();
             string _content = "";
             int score = 0;
 
@@ -238,10 +271,10 @@ namespace Spicy_Invader
                     FileStream file = File.Create(HIGHSCORE_PATH);
                     file.Close();
                 }
-                // If the path is incorect, warning and exit eith false
+                // If the path is incorect, warning and exit with empty highscore
                 catch
                 {
-                    return new List<int>();
+                    return new List<Highscore>();
                 }
             }
 
@@ -252,13 +285,19 @@ namespace Spicy_Invader
             // For each of the lines add the score to the _highscores
             foreach (string line in lines)
             {
-                if (Int32.TryParse(line, out score))
-                {
-                    _highscores.Add(score);
+                // Split username and score 
+                string[] splited = line.Split(SEPARATOR);
+                if (splited.Length == 2) {
+                    if (Int32.TryParse(splited[INDEX_SCORE], out score))
+                    {
+                        Highscore highscore = new Highscore(score: score, username: splited[INDEX_USERNAME]);
+                        highscores.Add(highscore);
+                    }
                 }
+                
             }
             // If file found or created return highscores
-            return _highscores;
+            return highscores;
         }
 
         /// <summary>
@@ -266,7 +305,7 @@ namespace Spicy_Invader
         /// </summary>
         /// <param name="toDisplay">String to display</param>
         /// <param name="top">Top position</param>
-        private void WriteCenterHorizontal(string toDisplay, int top) {
+        public void  WriteCenterHorizontal(string toDisplay, int top) {
 
             // Calculate maximum line size
             int maxLineSize = 0;
@@ -408,8 +447,7 @@ namespace Spicy_Invader
         /// Sort score from highest to lowest and entries beyond MAX_SCORES
         /// </summary>
         private void SortScores() {
-            _highscores.Sort();
-            _highscores.Reverse();
+            _highscores.OrderBy(x => x.Score);
             if (_highscores.Count > MAX_SCORES) { 
                 _highscores.RemoveRange(MAX_SCORES, _highscores.Count - MAX_SCORES);
             }
@@ -429,7 +467,7 @@ namespace Spicy_Invader
             // Sort scores and display them 
             SortScores();
             for(int i = 0; i< _highscores.Count; i++) {
-                toDisplay += (i + 1+ ". " + _highscores[i] + "\n");
+                toDisplay += (i + 1+ ". " + _highscores[i].Score + "\t" + _highscores[i].Username + "\n");
             }
             WriteCenterHorizontal(toDisplay: toDisplay, top: MARGIN_TOP *2 + HIGHSCORE_TITLE.Split('\n').Length);
 
@@ -441,19 +479,27 @@ namespace Spicy_Invader
         }
 
         /// <summary>
-        /// Add score to highscores
+        /// Add a Highscore object in highscores
         /// </summary>
-        /// <param name="score"></param>
-        public void AddToHighscore(int score) {
+        /// <param name="score">Score</param>
+        /// <param name="username">Username</param>
+        public void AddToHighscore(int score, string username) {
             
+            // Sort existant highscore and create a new highscore
             SortScores();
+            Highscore highscore = new Highscore (score: score, username: username);
 
-            // If higher than the lowest highscore in list add it to the list
-            if (score > _highscores.Min()) { 
-                _highscores.Add(score);
+            // If highscore is empty
+            if (_highscores.Count == 0) {
+                _highscores.Add(highscore);
                 SortScores();
             }
-
+            // Else if higher than the lowest highscore in list add it to the list
+            else if (score > _highscores[_highscores.Count - 1].Score) { 
+                _highscores.Add(highscore);
+                SortScores();
+            }
+            
             // Update highscore to file
             UpdadeHighscoreFile();
         }
@@ -464,9 +510,11 @@ namespace Spicy_Invader
         private void UpdadeHighscoreFile()
         {
             string content = "";
-            foreach (int score in _highscores) {
-                content += score;
+            foreach (Highscore highscore in _highscores) {
+                content += highscore.Username.ToString();
                 content += SEPARATOR;
+                content += highscore.Score.ToString();
+                content += "\n";
             }
             File.WriteAllText(HIGHSCORE_PATH, content);
         }
@@ -515,6 +563,29 @@ namespace Spicy_Invader
             _soundManager.MenuSound();
         }
 
+        /// <summary>
+        /// Game Over screen
+        /// </summary>
+        public void GameOver(int score) {
+
+            Console.Clear();
+
+            // Player name
+            string username = "";
+
+            // Display title
+            WriteCenterHorizontal(toDisplay: GAME_OVER_TITLE, top: MARGIN_TOP * 1);
+
+            // Display prompt for input
+            WriteCenterHorizontal(toDisplay: GAME_OVER_PROMPT, top: MARGIN_TOP * 2 + GAME_OVER_TITLE.Split('\n').Length);
+
+
+            Console.WriteLine('\t');
+            username = Console.ReadLine();
+
+            AddToHighscore(score: score, username: username);
+
+        }
         /// <summary>
         /// Display a countdown
         /// </summary>

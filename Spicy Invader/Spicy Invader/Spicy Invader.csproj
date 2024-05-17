@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Brick.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Highscore.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="EnemyBlock.cs" />
     <Compile Include="Enemies.cs" />

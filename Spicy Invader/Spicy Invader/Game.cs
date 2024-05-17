@@ -75,7 +75,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Width of the game space 
         /// </summary>
-        public const int WIDTH = 40;
+        public const int WIDTH = 50;
 
         /// <summary>
         /// Console horizontal margin around the map
@@ -187,9 +187,9 @@ namespace Spicy_Invader
         /// </summary>
         /// <param name="score">Player's score to add/remove</param>
         /// <param name="hp">Player's hp to add/remove</param>
-        public static void DisplayScoreHp(int score, int hp)
+        public static void DisplayScoreHp(int score = 0, int hp = 0)
         {
-            Console.SetCursorPosition(MARGIN_SIDE, MARGIN_TOP_BOTTOM + HEIGHT);
+            Console.SetCursorPosition(0, MARGIN_TOP_BOTTOM + HEIGHT);
             Console.WriteLine("\n\n HP: " + hp + "\n\n SCORE : " + score);
         }
 
@@ -198,8 +198,9 @@ namespace Spicy_Invader
         /// </summary>
         public static void DisplayControlScheme()
         {
-            Console.SetCursorPosition(MARGIN_SIDE, MARGIN_TOP_BOTTOM*2 + HEIGHT );
+            Console.SetCursorPosition(MARGIN_SIDE, Console.WindowHeight - 2 );
             Console.WriteLine(CONTROL_SCHEME);
+  
         }
 
         /// <summary>
@@ -414,7 +415,8 @@ namespace Spicy_Invader
             } // End of Game loop
 
             // After game end add score to highscore
-            _pauseMenu.AddToHighscore(_score);
+            _pauseMenu.GameOver(score: _score);
+           
         }
 
         /// <summary>
