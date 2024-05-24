@@ -486,7 +486,7 @@ namespace Spicy_Invader
             // Display how to go back to main menu
             WriteCenterHorizontal(toDisplay: RETURN, top: MARGIN_TOP * 3 + HIGHSCORE_TITLE.Split('\n').Length + toDisplay.Split('\n').Length);
 
-            Console.ReadLine();
+            Console.ReadKey(intercept:true);
             _soundManager.MenuSound();
         }
 
@@ -562,7 +562,7 @@ namespace Spicy_Invader
 
             // Display how to go back to main menu
             WriteCenterHorizontal(toDisplay: RETURN, top: MARGIN_TOP * 3 + ABOUT_TITLE.Split('\n').Length + ABOUT.Split('\n').Length);
-            Console.ReadLine();
+            Console.ReadKey(intercept: true);
             _soundManager.MenuSound();
         }
 

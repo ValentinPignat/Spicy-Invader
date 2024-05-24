@@ -24,7 +24,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Maximum active missiles 
         /// </summary>
-        public const int MAX_ACTIVE_MISSILES = 20;
+        public const int MAX_ACTIVE_MISSILES = 1;
 
         /// <summary>
         /// Width of the sprite
@@ -41,6 +41,9 @@ namespace Spicy_Invader
         /// </summary>
         private const string SPRITE =  "/-^-\\";
 
+        /// <summary>
+        /// Spaceship collision status
+        /// </summary>
         private const Game.collisionStatus STATUS = Game.collisionStatus.Friendly;
 
         /// <summary>
@@ -73,8 +76,5 @@ namespace Spicy_Invader
         public void Shoot() {
             FireMissile(missilesList: missilesList, vectorY: -1, maxMissiles: MAX_ACTIVE_MISSILES, x: _x + _width / 2, y: _y - _height, status: Game.collisionStatus.Friendly, owner: this);
         }
-
-
-
     }
 }

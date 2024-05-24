@@ -57,7 +57,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Missile speed (number of cycle before update)
         /// </summary>
-        private const int MISSILES_SPEED = 6;
+        private const int MISSILES_SPEED = 3;
 
         /// <summary>
         /// Margin for the display / player and enemies movement zone
@@ -156,6 +156,11 @@ namespace Spicy_Invader
         /// SoundManager to call for audio
         /// </summary>
         private SoundManager _soundManager;
+
+        /// <summary>
+        /// Number of wave spawned
+        /// </summary>
+        private int waveCount = 0;
         #endregion
 
         /// <summary>
@@ -310,8 +315,9 @@ namespace Spicy_Invader
         /// Populate _enemyBlock with and EnemyBlock
         /// </summary>
         private void SpawnEnemies() {
-            // Create enemy block 
-            _enemyBlock = new EnemyBlock(easymode: _easymode, soundManager:_soundManager);
+
+            // Create enemy block with scaling bonus missile on each wave 
+            _enemyBlock = new EnemyBlock(easymode: _easymode, soundManager:_soundManager, bonusMissile: waveCount);
 
             // Create enemies
             foreach (Enemy enemy in _enemyBlock.enemiesTab)
@@ -319,6 +325,8 @@ namespace Spicy_Invader
                 _collisionObjects.Add(enemy);
             }
 
+            // Increment wave count 
+            waveCount++;
         }
 
         /// <summary>

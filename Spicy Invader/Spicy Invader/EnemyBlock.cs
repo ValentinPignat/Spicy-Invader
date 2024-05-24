@@ -117,17 +117,18 @@ namespace Spicy_Invader
         /// EnemyBlock constructor
         /// </summary>
         /// <param name="easymode">True if easy mode on</param>
-        public EnemyBlock(bool easymode, SoundManager soundManager) {
+        /// <param name="bonusMissile">Additional max missile (default 0)</param>
+        public EnemyBlock(bool easymode, SoundManager soundManager, int bonusMissile = 0) {
 
             SoundManager = soundManager;
 
             // Maximum nb of active missile for the ennemyBlock depending on difficulty
             if (easymode)
             {
-                MaxActiveMissile = MAX_ACTIVE_MISSILES;
+                MaxActiveMissile = MAX_ACTIVE_MISSILES + bonusMissile;
             }
             else {
-                MaxActiveMissile = MAX_ACTIVE_MISSILES_HARD;
+                MaxActiveMissile = MAX_ACTIVE_MISSILES_HARD + bonusMissile;
             }
 
             // Create enemies and put them in the 2D array
@@ -191,17 +192,15 @@ namespace Spicy_Invader
                 {
                     if (enemy != null)
                     {
-                        //  ... in the lowest row
-                        if (enemy.Row == enemiesByCol.ToList().Max())
+                        
+                        // If can't do next move
+                        if (!enemy.CastOutOfBounds(vectorXCast: 0, vectorYCast: _nextVectorY))
                         {
-                            // If can't do next move
-                            if (!enemy.CastOutOfBounds(vectorXCast: 0, vectorYCast: _nextVectorY))
-                            {
-                                // Change vectors to move to the oposite side of _lastVectorX
-                                _nextVectorY = 0;
-                                _nextVectorX = -1 * _lastVectorX;
-                            }
+                            // Change vectors to move to the oposite side of _lastVectorX
+                            _nextVectorY = 0;
+                            _nextVectorX = -1 * _lastVectorX;
                         }
+                        
                     }
                 }
             }

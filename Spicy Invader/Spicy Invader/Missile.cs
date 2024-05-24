@@ -39,7 +39,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Missile shooter
         /// </summary>
-        private GameObject _owner;
+        public GameObject Owner { get; private set; }
 
         /// <summary>
         /// Missile Y vector getter
@@ -67,7 +67,7 @@ namespace Spicy_Invader
             _sprite = SPRITE;
             _width = WIDTH;
             _height = HEIGHT;
-            _owner = owner;
+            Owner = owner;
             _hp = HP;
         }
     }

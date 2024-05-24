@@ -5,7 +5,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Spicy_Invader;
-
+using static Spicy_Invader.Game;
 
 namespace SpicyTest
 {
@@ -114,6 +114,75 @@ namespace SpicyTest
             // Assert 
             Assert.AreEqual(EXP_SCORE, highscore.Score);
             Assert.AreEqual(EXP_USERNAME, highscore.Username);
+        }
+
+        /// <summary>
+        /// Test Missile
+        /// </summary>
+        [TestMethod]
+        public void MissileConstructor()
+        {
+            // Arrange 
+            const int EXP_X = 20;
+            const int EXP_Y = 10;
+            const int EXP_VECTOR_Y = 1;
+            const collisionStatus EXP_COLLISION_STATUS = collisionStatus.Enemy;
+            SoundManager soundManager = new SoundManager();
+            EnemyBlock enemyBlock = new EnemyBlock(soundManager: soundManager, easymode: true);
+            Missile missile = new Missile(x: EXP_X, y: EXP_Y, vectorY: EXP_VECTOR_Y,collisionStatus:EXP_COLLISION_STATUS, owner:enemyBlock);
+
+            // Act
+
+            // Assert 
+            Assert.AreEqual(EXP_X, missile.X);
+            Assert.AreEqual(EXP_Y, missile.Y);
+            Assert.AreEqual(EXP_VECTOR_Y, missile.VectorY);
+            Assert.AreEqual(EXP_COLLISION_STATUS, missile.CollisionStatus);
+            Assert.AreEqual(enemyBlock, missile.Owner);
+        }
+
+        /// <summary>
+        /// Test Spaceship - easy mode
+        /// </summary>
+        [TestMethod]
+        public void SpaceshipEasyConstructor()
+        {
+            // Arrange 
+            const int EXP_X = 20;
+            const int EXP_Y = 10;
+
+            const bool EASY_MODE = true;
+            SpaceShip spaceShip = new SpaceShip(x: EXP_X, y: EXP_Y, easymode: EASY_MODE);
+
+            // Act
+
+            // Assert 
+            Assert.AreEqual(EXP_X, spaceShip.X);
+            Assert.AreEqual(EXP_Y, spaceShip.Y);
+            Assert.AreEqual(SpaceShip.MAX_HP, spaceShip.Hp);
+
+        }
+
+        /// <summary>
+        /// Test Spaceship - hard mode
+        /// </summary>
+        [TestMethod]
+        public void SpaceshipHardConstructor()
+        {
+            // Arrange 
+            const int EXP_X = 20;
+            const int EXP_Y = 10;
+
+            const bool EASY_MODE = false;
+            SpaceShip spaceShip = new SpaceShip(x: EXP_X, y: EXP_Y, easymode: EASY_MODE);
+
+            // Act
+
+            // Assert 
+            Assert.AreEqual(EXP_X, spaceShip.X);
+            Assert.AreEqual(EXP_Y, spaceShip.Y);
+            Assert.AreEqual(SpaceShip.MAX_HP_HARD, spaceShip.Hp);
+
         }
     }
 }

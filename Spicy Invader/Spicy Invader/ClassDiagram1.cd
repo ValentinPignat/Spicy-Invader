@@ -31,7 +31,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>tAEABgAAgAgAAgAECIAACgAQgAUAAAQAAKAQ5MBNBQg=</HashCode>
+      <HashCode>tAEABgAAgAgAAgAECIAACgAQgAUAAAQAAKAS5MBNBQg=</HashCode>
       <FileName>Game.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -43,7 +43,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Spicy_Invader.Highscore">
-    <Position X="12" Y="2.75" Width="1.5" />
+    <Position X="11.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAgAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Highscore.cs</FileName>
@@ -59,7 +59,7 @@
   <Class Name="Spicy_Invader.Missile">
     <Position X="20.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAAIAAAAAAAAIAAAAAQAQAAAAAAAAAEABAAAA=</HashCode>
+      <HashCode>AAAAAACAAIAAAAAAAAIAAAAAQAQAAAAAAAAAEABAAAA=</HashCode>
       <FileName>Missile.cs</FileName>
     </TypeIdentifier>
   </Class>

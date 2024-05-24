@@ -6,8 +6,7 @@
 ///     
 /// Missing/Incomplete feature:
 ///     - A propos
-///     -Test unitaires 
-
+///     - Test unitaires
 
 using System;
 using System.Runtime.InteropServices;
