@@ -3,9 +3,6 @@
 /// Date (creation): 08.02.2024
 /// Description: Enemy class derived from GameObject
 
-using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleToAttribute("SpicyTest")]
 namespace Spicy_Invader
 {
 
@@ -110,8 +107,8 @@ namespace Spicy_Invader
         /// <returns>Score to award on destruction</returns>
         public override int Destroyed()
         {
-            Owner.enemiesTab[_row, _col] = null;
-            Owner.enemiesByCol[_col]--;
+            Owner._enemiesTab[_row, _col] = null;
+            Owner._enemiesByCol[_col]--;
             DelPosition();
             return SCORE; 
         }

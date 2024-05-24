@@ -78,7 +78,7 @@ namespace Spicy_Invader
         /// <summary>
         /// EnemyBlock fire probability at each update
         /// </summary>
-        private double randomShootProbability = 0.15;
+        private double _randomShootProbability = 0.15;
 
         /// <summary>
         /// EnemyBlcock nb of lines went down
@@ -96,17 +96,17 @@ namespace Spicy_Invader
         /// <summary>
         /// Random
         /// </summary>
-        private Random rnd = new Random();
+        private Random _rnd = new Random();
 
         /// <summary>
         /// Enemy tab, storing each enemy by position
         /// </summary>
-        public Enemy[,] enemiesTab = new Enemy[COL,ROW];
+        public Enemy[,] _enemiesTab = new Enemy[COL,ROW];
 
         /// <summary>
         /// Nb of alive enemies by column
         /// </summary>
-        public int[] enemiesByCol = new int[COL];
+        public int[] _enemiesByCol = new int[COL];
 
         /// <summary>
         /// SoundManager to call for audio
@@ -136,13 +136,13 @@ namespace Spicy_Invader
             {
                 for (int j = 0; j < ROW; j++) {
                     Enemy enemy = new Enemy(x: Game.MARGIN_SIDE + 1 + i * Enemy.WIDTH + i * BETWEEN_X, y: Game.MARGIN_TOP_BOTTOM + 1 + j * Enemy.HEIGHT + j * BETWEEN_Y, row: i, col: j, owner: this);
-                    enemiesTab[i, j] = enemy;
+                    _enemiesTab[i, j] = enemy;
                 }
             }
             
             // Foreach column, nb of enemies = nb of rows
-            for (int i = 0; i < enemiesByCol.Length; i++) { 
-                enemiesByCol[i] = ROW;
+            for (int i = 0; i < _enemiesByCol.Length; i++) { 
+                _enemiesByCol[i] = ROW;
             }
         }
 
@@ -160,7 +160,7 @@ namespace Spicy_Invader
             _linesDown += _vectorY;
 
             // For each enemy ... 
-            foreach (Enemy enemy in enemiesTab)
+            foreach (Enemy enemy in _enemiesTab)
             {
                 if (enemy != null)
                 {
@@ -188,7 +188,7 @@ namespace Spicy_Invader
 
             // If next movement is down, foreach enemy ...
             if (_nextVectorY > 0) {
-                foreach (Enemy enemy in enemiesTab)
+                foreach (Enemy enemy in _enemiesTab)
                 {
                     if (enemy != null)
                     {
@@ -206,7 +206,7 @@ namespace Spicy_Invader
             }
             
             // Random chance of making a random enemy fire
-            if (rnd.NextDouble() < randomShootProbability) {
+            if (_rnd.NextDouble() < _randomShootProbability) {
                 RandomFire();
                 SoundManager.FiringSound();
             }  
@@ -220,16 +220,16 @@ namespace Spicy_Invader
 
             // Keep getting random column if empty
             do{
-                colFiring = rnd.Next(0, COL);
-            } while (enemiesByCol[colFiring] == 0);
+                colFiring = _rnd.Next(0, COL);
+            } while (_enemiesByCol[colFiring] == 0);
 
             // Iterate through line of enemy and make lowest fire
             for (int i = ROW - 1; i >= 0; i--)
             {
-                if (enemiesTab[colFiring, i] != null)
+                if (_enemiesTab[colFiring, i] != null)
                 {
-                    Enemy firingEnnemy = enemiesTab[colFiring, i];
-                    FireMissile(missilesList: missilesList, vectorY: +1, maxMissiles: MaxActiveMissile, x: firingEnnemy.X + firingEnnemy.Height, y: firingEnnemy.Y + firingEnnemy.Width / 2, status: Game.collisionStatus.Enemy, owner: this); ;
+                    Enemy firingEnnemy = _enemiesTab[colFiring, i];
+                    FireMissile(missilesList: _missilesList, vectorY: +1, maxMissiles: MaxActiveMissile, x: firingEnnemy.X + firingEnnemy.Height, y: firingEnnemy.Y + firingEnnemy.Width / 2, status: Game.collisionStatus.Enemy, owner: this); ;
                     break;
                 }
             }
@@ -241,7 +241,7 @@ namespace Spicy_Invader
         /// <returns>True if empty</returns>
         public bool IsEmpty() {
             bool isEmpty = true;
-            foreach (Enemy enemy in enemiesTab) {
+            foreach (Enemy enemy in _enemiesTab) {
                 if (enemy != null)
                 {
                     isEmpty = false;

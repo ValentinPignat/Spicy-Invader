@@ -58,7 +58,7 @@ namespace Spicy_Invader
         /// <summary>
         /// List of GameObject active missile
         /// </summary>
-        public List<Missile> missilesList = new List<Missile>();
+        public List<Missile> _missilesList = new List<Missile>();
 
         /// <summary>
         /// GameObject sprite
@@ -235,25 +235,25 @@ namespace Spicy_Invader
             bool moved = true;
 
             // Goes through the missile list and update them 
-            for (int i = 0; i < missilesList.Count; i++)
+            for (int i = 0; i < _missilesList.Count; i++)
             {
 
                 // Missile goes up  if not dead
-                if (moving && missilesList[i].Hp != 0) {
+                if (moving && _missilesList[i].Hp != 0) {
 
                     // False if destination was out of bounds
-                    moved = missilesList[i].Move(vectorX: 0, vectorY: missilesList[i].VectorY);
+                    moved = _missilesList[i].Move(vectorX: 0, vectorY: _missilesList[i].VectorY);
                 }
 
                 // If missile is out of bounds or dead ..
-                if (!moved || missilesList[i].Hp == 0)
+                if (!moved || _missilesList[i].Hp == 0)
                 {
 
                     // delete his sprite
-                    missilesList[i].DelPosition();
+                    _missilesList[i].DelPosition();
 
                     // .. removes it from the list 
-                    missilesList.Remove(missilesList[i]);
+                    _missilesList.Remove(_missilesList[i]);
 
                     // Decrement as the list is displaced by the removal
                     i--;

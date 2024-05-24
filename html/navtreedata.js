@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "SpicyInvader", "index.html", [
+  [ "Spicy Invader", "index.html", [
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -49,7 +49,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_8_n_e_t_framework_00_version_0av4_88_8_assembly_attributes_8cs.html",
-"class_spicy___invader_1_1_game_object.html#abb54690f495e70e5ed445fb46a751a18"
+"class_spicy___invader_1_1_game_object.html#ab0d50911ca99456c71b6930e448881a8"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

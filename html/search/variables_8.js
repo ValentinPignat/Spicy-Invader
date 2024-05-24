@@ -9,8 +9,8 @@ var searchData=
   ['max_5factive_5fmissiles_5fhard_6',['MAX_ACTIVE_MISSILES_HARD',['../class_spicy___invader_1_1_enemy_block.html#ac3e510215d84359b1016f4fd82f1b1cc',1,'Spicy_Invader::EnemyBlock']]],
   ['max_5fhp_7',['MAX_HP',['../class_spicy___invader_1_1_enemy.html#ac5ed5e69c276d02847db50d861a28809',1,'Spicy_Invader.Enemy.MAX_HP'],['../class_spicy___invader_1_1_space_ship.html#ae9f6bc75862d14aa4d236aea1352f812',1,'Spicy_Invader.SpaceShip.MAX_HP']]],
   ['max_5fhp_5fhard_8',['MAX_HP_HARD',['../class_spicy___invader_1_1_space_ship.html#ac86dccdadb459c7c3d522c9a0d24e070',1,'Spicy_Invader::SpaceShip']]],
-  ['max_5fscores_9',['MAX_SCORES',['../class_spicy___invader_1_1_menu.html#a7c1f6f1b55e3ce6eabef1103c32b9024',1,'Spicy_Invader::Menu']]],
-  ['max_5fy_10',['MAX_Y',['../class_spicy___invader_1_1_enemy.html#a11bb7c17ba9a8767babd933ae755d44c',1,'Spicy_Invader::Enemy']]],
-  ['missiles_5fspeed_11',['MISSILES_SPEED',['../class_spicy___invader_1_1_game.html#a9a579aa105d6196895065a563629b97b',1,'Spicy_Invader::Game']]],
-  ['missileslist_12',['missilesList',['../class_spicy___invader_1_1_game_object.html#ab04bfd867779500d62e091e1a6e2f9ef',1,'Spicy_Invader::GameObject']]]
+  ['max_5fname_5fsize_9',['MAX_NAME_SIZE',['../class_spicy___invader_1_1_menu.html#ae30261ed844f83635acdf4e6a87d896e',1,'Spicy_Invader::Menu']]],
+  ['max_5fscores_10',['MAX_SCORES',['../class_spicy___invader_1_1_menu.html#a7c1f6f1b55e3ce6eabef1103c32b9024',1,'Spicy_Invader::Menu']]],
+  ['max_5fy_11',['MAX_Y',['../class_spicy___invader_1_1_enemy.html#a11bb7c17ba9a8767babd933ae755d44c',1,'Spicy_Invader::Enemy']]],
+  ['missiles_5fspeed_12',['MISSILES_SPEED',['../class_spicy___invader_1_1_game.html#a9a579aa105d6196895065a563629b97b',1,'Spicy_Invader::Game']]]
 ];

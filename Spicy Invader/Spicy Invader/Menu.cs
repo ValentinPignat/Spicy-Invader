@@ -38,6 +38,11 @@ namespace Spicy_Invader
         private const int MARGIN_TOP = 2;
 
         /// <summary>
+        /// Maximum lenght of usernames
+        /// </summary>
+        private const int MAX_NAME_SIZE = 15;
+
+        /// <summary>
         /// Highscore file path
         /// </summary>
         private const string HIGHSCORE_PATH = @"..\..\highscore.txt";
@@ -169,8 +174,16 @@ namespace Spicy_Invader
         /// <summary>
         /// About section
         /// </summary>
-        private const string ABOUT = "This is a placeholder about section";
-
+        private const string ABOUT = "COMMANDS:\n\n" +
+            "Shoot\tSPACEBAR\n" +
+            "Pause\tV\n" + 
+            "Resume\tR\n"+
+            "Go left\tA or left arrow\n"+
+            "Go right\tD or right arrow\n\n"+
+            "RULES:\n\n"+
+            "Kill a maximum of enemies and dodge their shots\n\n"+
+            "HARD MODE:\n\tLess health \n\tMore enemy missiles \n\tEnemy respawn \n\tHigher scores!";
+        
         /// <summary>
         /// Number one display
         /// Adapted from https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20 font:DOOM
@@ -316,7 +329,7 @@ namespace Spicy_Invader
         /// </summary>
         /// <param name="toDisplay">String to display</param>
         /// <param name="top">Top position</param>
-        public void  WriteCenterHorizontal(string toDisplay, int top) {
+        public void WriteCenterHorizontal(string toDisplay, int top) {
 
             // Calculate maximum line size
             int maxLineSize = 0;
@@ -587,7 +600,8 @@ namespace Spicy_Invader
             WriteCenterHorizontal(toDisplay: GAME_OVER_PROMPT, top: MARGIN_TOP * 2 + GAME_OVER_TITLE.Split('\n').Length);
 
             // Read input and add to highscores
-            username = Console.ReadLine();
+            // Highscore is cut if longer that MAX_NAME_SIZE 
+            username = Console.ReadLine().Substring(0,MAX_NAME_SIZE);
             AddToHighscore(score: score, username: username);
 
         }

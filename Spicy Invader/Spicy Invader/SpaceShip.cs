@@ -74,7 +74,7 @@ namespace Spicy_Invader
         /// Shoot upwards from player position
         /// </summary>
         public void Shoot() {
-            FireMissile(missilesList: missilesList, vectorY: -1, maxMissiles: MAX_ACTIVE_MISSILES, x: _x + _width / 2, y: _y - _height, status: Game.collisionStatus.Friendly, owner: this);
+            FireMissile(missilesList: _missilesList, vectorY: -1, maxMissiles: MAX_ACTIVE_MISSILES, x: _x + _width / 2, y: _y - _height, status: Game.collisionStatus.Friendly, owner: this);
         }
     }
 }

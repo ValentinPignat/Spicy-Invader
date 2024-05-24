@@ -11,5 +11,6 @@ var hierarchy =
     ] ],
     [ "Spicy_Invader.Highscore", "class_spicy___invader_1_1_highscore.html", null ],
     [ "Spicy_Invader.Menu", "class_spicy___invader_1_1_menu.html", null ],
-    [ "Spicy_Invader.SoundManager", "class_spicy___invader_1_1_sound_manager.html", null ]
+    [ "Spicy_Invader.SoundManager", "class_spicy___invader_1_1_sound_manager.html", null ],
+    [ "SpicyTest.VariousTest", "class_spicy_test_1_1_various_test.html", null ]
 ];

@@ -160,7 +160,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Number of wave spawned
         /// </summary>
-        private int waveCount = 0;
+        private int _waveCount = 0;
         #endregion
 
         /// <summary>
@@ -301,11 +301,11 @@ namespace Spicy_Invader
             foreach (GameObject go in _collisionObjects) {
                 go.Draw();
             }
-            foreach (Missile missile in _player.missilesList)
+            foreach (Missile missile in _player._missilesList)
             {
                missile.Draw();
             }
-            foreach (Missile missile in _enemyBlock.missilesList)
+            foreach (Missile missile in _enemyBlock._missilesList)
             {
                 missile.Draw();
             }
@@ -317,16 +317,16 @@ namespace Spicy_Invader
         private void SpawnEnemies() {
 
             // Create enemy block with scaling bonus missile on each wave 
-            _enemyBlock = new EnemyBlock(easymode: _easymode, soundManager:_soundManager, bonusMissile: waveCount);
+            _enemyBlock = new EnemyBlock(easymode: _easymode, soundManager:_soundManager, bonusMissile: _waveCount);
 
             // Create enemies
-            foreach (Enemy enemy in _enemyBlock.enemiesTab)
+            foreach (Enemy enemy in _enemyBlock._enemiesTab)
             {
                 _collisionObjects.Add(enemy);
             }
 
             // Increment wave count 
-            waveCount++;
+            _waveCount++;
         }
 
         /// <summary>
@@ -372,13 +372,13 @@ namespace Spicy_Invader
                 }
 
                 // CheckColision() for player's missile(s);
-                foreach (Missile missile in _player.missilesList)
+                foreach (Missile missile in _player._missilesList)
                 {
-                    CheckColision(missile: missile, target: _collisionObjects, targetMissile: _enemyBlock.missilesList);
+                    CheckColision(missile: missile, target: _collisionObjects, targetMissile: _enemyBlock._missilesList);
                 }
 
                 // CheckColision() for enemy missile(s);
-                foreach (Missile missile in _enemyBlock.missilesList)
+                foreach (Missile missile in _enemyBlock._missilesList)
                 {
                     CheckColision(missile: missile, target: _collisionObjects);
                 }

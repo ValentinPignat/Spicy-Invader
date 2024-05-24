@@ -33,6 +33,7 @@ var class_spicy___invader_1_1_menu =
     [ "MAIN_MENU", "class_spicy___invader_1_1_menu.html#aa0e536f28026096a4813e5ce124b3999", null ],
     [ "MAIN_TITLE", "class_spicy___invader_1_1_menu.html#a223183fbb1e93fa1a36122aec2c0bc6c", null ],
     [ "MARGIN_TOP", "class_spicy___invader_1_1_menu.html#a44ede5e4a2ab8353e5ede3210b0087e9", null ],
+    [ "MAX_NAME_SIZE", "class_spicy___invader_1_1_menu.html#ae30261ed844f83635acdf4e6a87d896e", null ],
     [ "MAX_SCORES", "class_spicy___invader_1_1_menu.html#a7c1f6f1b55e3ce6eabef1103c32b9024", null ],
     [ "NB_COUNTDOWN", "class_spicy___invader_1_1_menu.html#a9bb0fb884d58f148edd0abefa7b6429f", null ],
     [ "ONE_CD", "class_spicy___invader_1_1_menu.html#af33c5dc5f13f77ea9fe5e0b10244ba07", null ],

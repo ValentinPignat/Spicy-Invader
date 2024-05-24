@@ -13,6 +13,7 @@ var annotated_dup =
       [ "SpaceShip", "class_spicy___invader_1_1_space_ship.html", "class_spicy___invader_1_1_space_ship" ]
     ] ],
     [ "SpicyTest", "namespace_spicy_test.html", [
-      [ "ConstructorTest", "class_spicy_test_1_1_constructor_test.html", "class_spicy_test_1_1_constructor_test" ]
+      [ "ConstructorTest", "class_spicy_test_1_1_constructor_test.html", "class_spicy_test_1_1_constructor_test" ],
+      [ "VariousTest", "class_spicy_test_1_1_various_test.html", "class_spicy_test_1_1_various_test" ]
     ] ]
 ];

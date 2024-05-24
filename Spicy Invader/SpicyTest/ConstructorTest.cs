@@ -46,21 +46,22 @@ namespace SpicyTest
             const int EXP_ROW = 2;
 
             SoundManager soundManager = new SoundManager();
-            EnemyBlock enemyBlock = new EnemyBlock(easymode: true, soundManager:soundManager) ;
-            Enemy enemy = new Enemy(x: EXP_X, y:EXP_Y, col:EXP_COL, row: EXP_ROW, owner: enemyBlock);
+            EnemyBlock enemyBlock = new EnemyBlock(easymode: true, soundManager: soundManager);
+            Enemy enemy = new Enemy(x: EXP_X, y: EXP_Y, col: EXP_COL, row: EXP_ROW, owner: enemyBlock);
 
             // Act
 
             // Assert 
             Assert.AreEqual(EXP_X, enemy.X);
             Assert.AreEqual(EXP_Y, enemy.Y);
-            Assert.AreEqual(EXP_COL , enemy.Col);
+            Assert.AreEqual(EXP_COL, enemy.Col);
             Assert.AreEqual(EXP_ROW, enemy.Row);
             Assert.AreEqual(enemyBlock, enemy.Owner);
+            
         }
 
         /// <summary>
-        /// Test EnemyBlock constructor on easy mode
+        /// Test EnemyBlock constructor - easy mode
         /// </summary>
         [TestMethod]
         public void EnemyBlockEasy()
@@ -79,7 +80,7 @@ namespace SpicyTest
         }
 
         /// <summary>
-        /// Test EnemyBlock constructor on easy mode
+        /// Test EnemyBlock constructor - hard mode
         /// </summary>
         [TestMethod]
         public void EnemyBlockHard()

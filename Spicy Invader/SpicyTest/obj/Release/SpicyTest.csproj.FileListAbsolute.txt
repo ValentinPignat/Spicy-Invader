@@ -1,0 +1,24 @@
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\fr\Microsoft.TestPlatform.AdapterUtilities.resources.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\fr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\fr\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\fr\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\fr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\fr\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\Microsoft.TestPlatform.AdapterUtilities.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\SpicyTest.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\SpicyTest.pdb
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\Spicy Invader.exe
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\Spicy Invader.pdb
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\Spicy Invader.exe.config
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\obj\Release\SpicyTest.csproj.AssemblyReference.cache
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\obj\Release\SpicyTest.csproj.CoreCompileInputs.cache
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\obj\Release\SpicyTest.csproj.Up2Date
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\obj\Release\SpicyTest.dll
+D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\SpicyTest\obj\Release\SpicyTest.pdb
