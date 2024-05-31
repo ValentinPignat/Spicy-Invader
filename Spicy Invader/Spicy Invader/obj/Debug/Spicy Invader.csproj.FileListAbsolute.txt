@@ -20,7 +20,10 @@ D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Inva
 D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.csproj.CoreCompileInputs.cache
 D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.exe
 D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.pdb
-D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\bin\Debug\Spicy Invader.exe.manifest
-D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\bin\Debug\Spicy Invader.application
-D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.exe.manifest
-D:\P_EnCours\Spicy_Invader\Game\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.application
+C:\Users\pe41oyl\Downloads\Spicy-Invader (2)\Spicy-Invader-11fa69fd40ce691b62bc5f235b1d69e3b96360c0\Spicy Invader\Spicy Invader\bin\Debug\Spicy Invader.exe.config
+C:\Users\pe41oyl\Downloads\Spicy-Invader (2)\Spicy-Invader-11fa69fd40ce691b62bc5f235b1d69e3b96360c0\Spicy Invader\Spicy Invader\bin\Debug\Spicy Invader.exe
+C:\Users\pe41oyl\Downloads\Spicy-Invader (2)\Spicy-Invader-11fa69fd40ce691b62bc5f235b1d69e3b96360c0\Spicy Invader\Spicy Invader\bin\Debug\Spicy Invader.pdb
+C:\Users\pe41oyl\Downloads\Spicy-Invader (2)\Spicy-Invader-11fa69fd40ce691b62bc5f235b1d69e3b96360c0\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.csproj.AssemblyReference.cache
+C:\Users\pe41oyl\Downloads\Spicy-Invader (2)\Spicy-Invader-11fa69fd40ce691b62bc5f235b1d69e3b96360c0\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.csproj.CoreCompileInputs.cache
+C:\Users\pe41oyl\Downloads\Spicy-Invader (2)\Spicy-Invader-11fa69fd40ce691b62bc5f235b1d69e3b96360c0\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.exe
+C:\Users\pe41oyl\Downloads\Spicy-Invader (2)\Spicy-Invader-11fa69fd40ce691b62bc5f235b1d69e3b96360c0\Spicy Invader\Spicy Invader\obj\Debug\Spicy Invader.pdb

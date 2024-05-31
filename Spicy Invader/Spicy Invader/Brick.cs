@@ -24,6 +24,11 @@ namespace Spicy_Invader
         private const int HP = 1;
 
         /// <summary>
+        /// Brick widht 
+        /// </summary>
+        private const int WIDTH = 1;
+
+        /// <summary>
         /// Brick colision status
         /// </summary>
         private const Game.collisionStatus STATUS = Game.collisionStatus.Neutral;

@@ -75,12 +75,12 @@ namespace Spicy_Invader
             _col = col;
             _row = row;
             _sprite = SPRITE;
+            _width = WIDTH;
+            _height = HEIGHT;
             _collisionStatus = STATUS;
             Owner = owner;
             _hp = MAX_HP;
             _maxY = MAX_Y;
-
-            CalcDimension();
         }
 
         /// <summary>

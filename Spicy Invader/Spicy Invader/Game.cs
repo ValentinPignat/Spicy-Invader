@@ -434,7 +434,8 @@ namespace Spicy_Invader
             if (Keyboard.IsKeyDown(Key.Space))
             {
                 _player.Shoot();
-                if (_player._missilesList.Count < SpaceShip.MAX_ACTIVE_MISSILES) {
+                if (_player._missilesList.Count < SpaceShip.MAX_ACTIVE_MISSILES)
+                {
                     _soundManager.FiringSound();
                 }
             }

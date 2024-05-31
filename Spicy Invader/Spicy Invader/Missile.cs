@@ -17,6 +17,16 @@ namespace Spicy_Invader
         const int HP = 1;
 
         /// <summary>
+        /// Width of the sprite
+        /// </summary>
+        const int WIDTH = 1;
+
+        /// <summary>
+        /// Height of the sprite
+        /// </summary>-
+        const int HEIGHT = 1;
+
+        /// <summary>
         /// Move vector
         /// </summary>
         private int _vectorY = 0; 
@@ -55,10 +65,10 @@ namespace Spicy_Invader
             _x = x;
             _y = y;
             _sprite = SPRITE;
+            _width = WIDTH;
+            _height = HEIGHT;
             Owner = owner;
             _hp = HP;
-
-            CalcDimension();
         }
     }
 }

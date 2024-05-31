@@ -606,11 +606,11 @@ namespace Spicy_Invader
             // Username is cut if longer that MAX_NAME_SIZE 
             username = Console.ReadLine();
             username = username.Trim();
-            if (username.Length > MAX_NAME_SIZE) { 
+            if (username.Length > MAX_NAME_SIZE)
+            {
                 username = username.Substring(0, MAX_NAME_SIZE);
             }
             AddToHighscore(score: score, username: username);
-
         }
 
         /// <summary>

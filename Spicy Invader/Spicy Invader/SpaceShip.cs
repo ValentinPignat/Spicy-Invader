@@ -27,6 +27,16 @@ namespace Spicy_Invader
         public const int MAX_ACTIVE_MISSILES = 1;
 
         /// <summary>
+        /// Width of the sprite
+        /// </summary>
+        const int WIDTH = 5;
+
+        /// <summary>
+        /// Height of the sprite
+        /// </summary>
+        const int HEIGHT = 1;
+
+        /// <summary>
         /// Spaceship sprite
         /// </summary>
         private const string SPRITE =  "/-^-\\";
@@ -55,9 +65,9 @@ namespace Spicy_Invader
             _x = x;
             _y = y;
             _sprite = SPRITE;
+            _height = HEIGHT;
+            _width = WIDTH;
             _collisionStatus = STATUS;
-
-            CalcDimension();
         }
 
         /// <summary>
