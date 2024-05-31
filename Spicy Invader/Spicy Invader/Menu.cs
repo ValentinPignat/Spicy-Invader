@@ -586,22 +586,29 @@ namespace Spicy_Invader
 
             Console.Clear();
 
-            // Flush keyboard buffer
-            //https://stackoverflow.com/questions/978091/c-sharp-or-net-flushing-keyboard-buffer
-            while (Console.KeyAvailable) { Console.ReadKey(intercept: true); }
-
             // Player name
             string username = "";
 
             // Display title
             WriteCenterHorizontal(toDisplay: GAME_OVER_TITLE, top: MARGIN_TOP * 1);
 
+            // Delay before taking input to not take involuntary input
+            Thread.Sleep(1000);
+
+            // Flush keyboard buffer
+            //https://stackoverflow.com/questions/978091/c-sharp-or-net-flushing-keyboard-buffer
+            while (Console.KeyAvailable) { Console.ReadKey(intercept: true); }
+
             // Display prompt for input
             WriteCenterHorizontal(toDisplay: GAME_OVER_PROMPT, top: MARGIN_TOP * 2 + GAME_OVER_TITLE.Split('\n').Length);
 
             // Read input and add to highscores
-            // Highscore is cut if longer that MAX_NAME_SIZE 
-            username = Console.ReadLine().Substring(0,MAX_NAME_SIZE);
+            // Username is cut if longer that MAX_NAME_SIZE 
+            username = Console.ReadLine();
+            username = username.Trim();
+            if (username.Length > MAX_NAME_SIZE) { 
+                username = username.Substring(0, MAX_NAME_SIZE);
+            }
             AddToHighscore(score: score, username: username);
 
         }

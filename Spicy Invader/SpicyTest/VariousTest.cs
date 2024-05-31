@@ -5,7 +5,6 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Spicy_Invader;
-using static Spicy_Invader.Game;
 
 namespace SpicyTest
 {

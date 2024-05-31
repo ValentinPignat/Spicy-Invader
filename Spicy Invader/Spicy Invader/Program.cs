@@ -5,8 +5,7 @@
 ///     - Setup console and enter menus
 ///     
 /// Missing/Incomplete feature:
-///     - A propos
-///     - Test unitaires
+///     - Test unitaires game
 
 using System;
 using System.Runtime.InteropServices;

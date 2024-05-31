@@ -434,7 +434,9 @@ namespace Spicy_Invader
             if (Keyboard.IsKeyDown(Key.Space))
             {
                 _player.Shoot();
-                _soundManager.FiringSound();
+                if (_player._missilesList.Count < SpaceShip.MAX_ACTIVE_MISSILES) {
+                    _soundManager.FiringSound();
+                }
             }
 
             // LEFT movement key pressed and right movement key not pressed..

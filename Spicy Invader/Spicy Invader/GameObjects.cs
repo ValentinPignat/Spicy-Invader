@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Spicy_Invader
 {
@@ -148,6 +149,22 @@ namespace Spicy_Invader
             else {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Calculate sprite widht and height
+        /// </summary>
+        public void CalcDimension() {
+            int width = 0;
+            List<string> lines = _sprite.Split('\n').ToList();
+
+            foreach (string line in lines) {
+                if (line.Length > width) { 
+                    width = line.Length;
+                }
+            }
+            _width = width;
+            _height = lines.Count;       
         }
 
         /// <summary>
