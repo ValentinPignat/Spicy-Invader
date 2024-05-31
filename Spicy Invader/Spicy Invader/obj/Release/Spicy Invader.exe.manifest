@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Spicy Invader.exe" size="34216">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Spicy Invader.exe" size="32680">
       <assemblyIdentity name="Spicy Invader" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sBZz2sEZ2vNl2hIvc8HOK91n+ZTfiyCZrGwBzgdqUSA=</dsig:DigestValue>
+        <dsig:DigestValue>HW+C+9hHdiXQ6jyaPfo9y3uikgZNZ+XBZ19rEg7B988=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

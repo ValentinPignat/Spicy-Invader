@@ -3,23 +3,42 @@
   "WorkspaceRootPath": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|d:\\p_encours\\spicy_invader\\game\\spicy invader\\spicy invader\\highscore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\highscore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|SpicyTest||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\enemies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\enemies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|Spicy Invader||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|d:\\p_encours\\spicy_invader\\game\\spicy invader\\spicy invader\\highscore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\highscore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\gameobjects.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\gameobjects.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\classdiagram1.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|",
       "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\classdiagram1.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\soundmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -28,10 +47,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\enemyblock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\enemyblock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\gameobjects.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\gameobjects.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\brick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,16 +61,14 @@
       "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\spaceship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5037D855-70EA-43C3-B144-977636909C25}|SpicyTest\\SpicyTest.csproj|d:\\p_encours\\spicy_invader\\game\\spicy invader\\spicytest\\varioustest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5037D855-70EA-43C3-B144-977636909C25}|SpicyTest\\SpicyTest.csproj|solutionrelative:spicytest\\varioustest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\spicy invader\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|solutionrelative:spicy invader\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{1EB8CF65-1F73-42DA-A728-704892E7DA3C}|Spicy Invader\\Spicy Invader.csproj|d:\\p_encours\\spicy_invader\\game\\spicy invader\\spicy invader\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|cc4014f5-b18d-439c-9352-f99d984cca85"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5037D855-70EA-43C3-B144-977636909C25}|SpicyTest\\SpicyTest.csproj|d:\\p_encours\\spicy_invader\\game\\spicy invader\\spicytest\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|5e9a8ac2-4f34-4521-858f-4c248ba31532"
     }
   ],
   "DocumentGroupContainers": [
@@ -65,11 +78,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1656,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "Missile.cs",
               "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\Missile.cs",
               "RelativeDocumentMoniker": "Spicy Invader\\Missile.cs",
@@ -82,16 +95,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\Program.cs",
               "RelativeDocumentMoniker": "Spicy Invader\\Program.cs",
               "ToolTip": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\Program.cs",
               "RelativeToolTip": "Spicy Invader\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAdAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABoAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-07T12:10:48.117Z",
               "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Spicy Invader",
+              "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\Spicy Invader.csproj",
+              "RelativeDocumentMoniker": "Spicy Invader\\Spicy Invader.csproj",
+              "ToolTip": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\Spicy Invader.csproj",
+              "RelativeToolTip": "Spicy Invader\\Spicy Invader.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-05-31T13:23:55.997Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -99,7 +124,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
+              "Title": "Game.cs",
+              "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\Game.cs",
+              "RelativeDocumentMoniker": "Spicy Invader\\Game.cs",
+              "ToolTip": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\Game.cs",
+              "RelativeToolTip": "Spicy Invader\\Game.cs",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAQwCwAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T13:06:21.108Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "EnemyBlock.cs",
               "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\EnemyBlock.cs",
               "RelativeDocumentMoniker": "Spicy Invader\\EnemyBlock.cs",
@@ -111,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "Brick.cs",
               "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\Brick.cs",
               "RelativeDocumentMoniker": "Spicy Invader\\Brick.cs",
@@ -123,7 +160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Enemies.cs",
               "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\Enemies.cs",
               "RelativeDocumentMoniker": "Spicy Invader\\Enemies.cs",
@@ -131,23 +168,25 @@
               "RelativeToolTip": "Spicy Invader\\Enemies.cs",
               "ViewState": "AQIAAFcAAAAAAAAAAAAowD4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T12:10:48.202Z"
+              "WhenOpened": "2024-03-07T12:10:48.202Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Menu.cs",
               "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\Menu.cs",
               "RelativeDocumentMoniker": "Spicy Invader\\Menu.cs",
               "ToolTip": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\Menu.cs",
               "RelativeToolTip": "Spicy Invader\\Menu.cs",
-              "ViewState": "AQIAACQCAAAAAAAAAAAUwFUCAAAMAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAABRAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-17T13:18:12.006Z"
+              "WhenOpened": "2024-05-17T13:18:12.006Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "ClassDiagram1.cd",
               "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\ClassDiagram1.cd",
               "RelativeDocumentMoniker": "Spicy Invader\\ClassDiagram1.cd",
@@ -158,7 +197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "SoundManager.cs",
               "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\SoundManager.cs",
               "RelativeDocumentMoniker": "Spicy Invader\\SoundManager.cs",
@@ -170,7 +209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "SpaceShip.cs",
               "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\SpaceShip.cs",
               "RelativeDocumentMoniker": "Spicy Invader\\SpaceShip.cs",
@@ -182,25 +221,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "GameObjects.cs",
               "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\GameObjects.cs",
               "RelativeDocumentMoniker": "Spicy Invader\\GameObjects.cs",
               "ToolTip": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\GameObjects.cs",
               "RelativeToolTip": "Spicy Invader\\GameObjects.cs",
-              "ViewState": "AQIAAJQAAAAAAAAAAAAwwKcAAAAJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-17T13:26:16.602Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "Highscore.cs",
               "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\Highscore.cs",
               "RelativeDocumentMoniker": "Spicy Invader\\Highscore.cs",
               "ToolTip": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\Highscore.cs",
               "RelativeToolTip": "Spicy Invader\\Highscore.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAA5AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-17T11:45:33.21Z",
               "EditorCaption": ""
@@ -214,11 +253,12 @@
               "ToolTip": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\SpicyTest\\SpicyTest.csproj",
               "RelativeToolTip": "SpicyTest\\SpicyTest.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-05-24T11:19:37.503Z"
+              "WhenOpened": "2024-05-24T11:19:37.503Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 2,
               "Title": "App.config",
               "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\Spicy Invader\\App.config",
               "RelativeDocumentMoniker": "Spicy Invader\\App.config",
@@ -226,7 +266,8 @@
               "RelativeToolTip": "Spicy Invader\\App.config",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-04-19T14:00:33.596Z"
+              "WhenOpened": "2024-04-19T14:00:33.596Z",
+              "EditorCaption": ""
             }
           ]
         },
@@ -240,7 +281,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "VariousTest.cs",
               "DocumentMoniker": "D:\\P_EnCours\\Spicy_Invader\\Game\\Spicy Invader\\SpicyTest\\VariousTest.cs",
               "RelativeDocumentMoniker": "SpicyTest\\VariousTest.cs",

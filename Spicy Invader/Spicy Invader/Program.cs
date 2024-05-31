@@ -3,9 +3,6 @@
 /// Date (creation): 18.01.2024
 /// Description: Main Program for the Spicy Invader Game
 ///     - Setup console and enter menus
-///     
-/// Missing/Incomplete feature:
-///     - Test unitaires game
 
 using System;
 using System.Runtime.InteropServices;
